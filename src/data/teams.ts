@@ -35,9 +35,3 @@ export const NHL_TEAMS: Record<string, Team> = {
   WSH: { abbreviation: 'WSH', city: 'Washington', name: 'Capitals', logoLight: '/logos/20252026_WSH_Logo_Light.PNG', logoDark: '/logos/20252026_WSH_Logo_Dark.PNG' },
   WPG: { abbreviation: 'WPG', city: 'Winnipeg', name: 'Jets', logoLight: '/logos/20252026_WPG_Logo_Light.PNG', logoDark: '/logos/20252026_WPG_Logo_Dark.PNG' },
 };
-
-export const getTeam = (abbreviation: string): Team => {
-  const team = NHL_TEAMS[abbreviation];
-  if (!team) throw new Error(`Team with abbreviation ${abbreviation} not found.`);
-  return team;
-};
