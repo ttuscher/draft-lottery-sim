@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  /* Exact NHL 94 Rewind Colors */
+  --rewind-cyan: #96EDF6; 
+  --rewind-light-cyan: #B8F6FA;
+  --rewind-black: #000000;
+  --rewind-red: #E2231A;
+  --rewind-white: #FFFFFF;
+}
+
+body {
+  background-color: var(--rewind-cyan);
+  /* Subtle diagonal ice glare effect */
+  background-image: linear-gradient(
+    115deg, 
+    rgba(255,255,255,0.4) 0%, 
+    rgba(255,255,255,0) 20%, 
+    rgba(255,255,255,0) 80%, 
+    rgba(255,255,255,0.3) 100%
+  );
+  color: var(--rewind-black);
+}
+
+/* Base UI Component Styles */
+.retro-border {
+  border: 4px solid var(--rewind-black);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+.team-box {
+  background-color: var(--rewind-white);
+  border: 4px solid var(--rewind-black);
+  box-shadow: inset -4px -4px 0px rgba(0,0,0,0.1);
+  transition: all 0.2s ease-out;
+}
+
+.team-box.winner {
+  background-color: var(--rewind-red);
+  color: var(--rewind-white);
+  animation: flashWinner 1s infinite alternate;
+}
+
+@keyframes flashWinner {
+  0% { box-shadow: 0 0 0px var(--rewind-red); }
+  100% { box-shadow: 0 0 15px var(--rewind-red); }
+}
+
+/* Custom Scrollbar for Intel Panel */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--rewind-black);
+}
+
+/* TICKER STYLES */
+.ticker-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--rewind-black);
+  border-top: 4px solid var(--rewind-white);
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.ticker-content {
+  display: inline-block;
+  /* 40s is significantly slower and more readable than the original HTML's 25s */
+  animation: ticker 40s linear infinite; 
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  /* Snaps back at exactly 50% to create a seamless infinite loop */
+  100% { transform: translateX(-50%); } 
+}

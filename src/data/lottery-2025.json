@@ -1,0 +1,12155 @@
+{
+  "seasonKey": "2025",
+  "redrawCombo": [
+    11,
+    12,
+    13,
+    14
+  ],
+  "teamOrder": [
+    "SJS",
+    "CHI",
+    "NSH",
+    "PHI",
+    "BOS",
+    "SEA",
+    "BUF",
+    "ANA",
+    "PIT",
+    "NYI",
+    "NYR",
+    "DET",
+    "CBJ",
+    "UTA",
+    "VAN",
+    "CGY"
+  ],
+  "teams": {
+    "SJS": {
+      "seed": 1,
+      "teamCode": "SJS",
+      "name": "San Jose Sharks",
+      "baseDraw1Odds": 18.5,
+      "baseOverallNo1Odds": 25.5
+    },
+    "CHI": {
+      "seed": 2,
+      "teamCode": "CHI",
+      "name": "Chicago Blackhawks",
+      "baseDraw1Odds": 13.5,
+      "baseOverallNo1Odds": 13.5
+    },
+    "NSH": {
+      "seed": 3,
+      "teamCode": "NSH",
+      "name": "Nashville Predators",
+      "baseDraw1Odds": 11.5,
+      "baseOverallNo1Odds": 11.5
+    },
+    "PHI": {
+      "seed": 4,
+      "teamCode": "PHI",
+      "name": "Philadelphia Flyers",
+      "baseDraw1Odds": 9.5,
+      "baseOverallNo1Odds": 9.5
+    },
+    "BOS": {
+      "seed": 5,
+      "teamCode": "BOS",
+      "name": "Boston Bruins",
+      "baseDraw1Odds": 8.5,
+      "baseOverallNo1Odds": 8.5
+    },
+    "SEA": {
+      "seed": 6,
+      "teamCode": "SEA",
+      "name": "Seattle Kraken",
+      "baseDraw1Odds": 7.5,
+      "baseOverallNo1Odds": 7.5
+    },
+    "BUF": {
+      "seed": 7,
+      "teamCode": "BUF",
+      "name": "Buffalo Sabres",
+      "baseDraw1Odds": 6.5,
+      "baseOverallNo1Odds": 6.5
+    },
+    "ANA": {
+      "seed": 8,
+      "teamCode": "ANA",
+      "name": "Anaheim Ducks",
+      "baseDraw1Odds": 6,
+      "baseOverallNo1Odds": 6
+    },
+    "PIT": {
+      "seed": 9,
+      "teamCode": "PIT",
+      "name": "Pittsburgh Penguins",
+      "baseDraw1Odds": 5,
+      "baseOverallNo1Odds": 5
+    },
+    "NYI": {
+      "seed": 10,
+      "teamCode": "NYI",
+      "name": "New York Islanders",
+      "baseDraw1Odds": 3.5,
+      "baseOverallNo1Odds": 3.5
+    },
+    "NYR": {
+      "seed": 11,
+      "teamCode": "NYR",
+      "name": "New York Rangers",
+      "baseDraw1Odds": 3,
+      "baseOverallNo1Odds": 3
+    },
+    "DET": {
+      "seed": 12,
+      "teamCode": "DET",
+      "name": "Detroit Red Wings",
+      "baseDraw1Odds": 2.5,
+      "baseOverallNo1Odds": 0
+    },
+    "CBJ": {
+      "seed": 13,
+      "teamCode": "CBJ",
+      "name": "Columbus Blue Jackets",
+      "baseDraw1Odds": 2,
+      "baseOverallNo1Odds": 0
+    },
+    "UTA": {
+      "seed": 14,
+      "teamCode": "UTA",
+      "name": "Utah Hockey Club",
+      "baseDraw1Odds": 1.5,
+      "baseOverallNo1Odds": 0
+    },
+    "VAN": {
+      "seed": 15,
+      "teamCode": "VAN",
+      "name": "Vancouver Canucks",
+      "baseDraw1Odds": 0.5,
+      "baseOverallNo1Odds": 0
+    },
+    "CGY": {
+      "seed": 16,
+      "teamCode": "CGY",
+      "name": "Calgary Flames",
+      "baseDraw1Odds": 0.5,
+      "baseOverallNo1Odds": 0
+    }
+  },
+  "entries": [
+    {
+      "id": 1,
+      "balls": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "teamCode": "SEA",
+      "seq": 1,
+      "comboLabel": "1-2-3-4"
+    },
+    {
+      "id": 2,
+      "balls": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "teamCode": "BOS",
+      "seq": 1,
+      "comboLabel": "1-2-3-5"
+    },
+    {
+      "id": 3,
+      "balls": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "teamCode": "CHI",
+      "seq": 1,
+      "comboLabel": "1-2-3-6"
+    },
+    {
+      "id": 4,
+      "balls": [
+        1,
+        2,
+        3,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 1,
+      "comboLabel": "1-2-3-7"
+    },
+    {
+      "id": 5,
+      "balls": [
+        1,
+        2,
+        3,
+        8
+      ],
+      "teamCode": "ANA",
+      "seq": 1,
+      "comboLabel": "1-2-3-8"
+    },
+    {
+      "id": 6,
+      "balls": [
+        1,
+        2,
+        3,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 2,
+      "comboLabel": "1-2-3-9"
+    },
+    {
+      "id": 7,
+      "balls": [
+        1,
+        2,
+        3,
+        10
+      ],
+      "teamCode": "NYR",
+      "seq": 1,
+      "comboLabel": "1-2-3-10"
+    },
+    {
+      "id": 8,
+      "balls": [
+        1,
+        2,
+        3,
+        11
+      ],
+      "teamCode": "NYI",
+      "seq": 1,
+      "comboLabel": "1-2-3-11"
+    },
+    {
+      "id": 9,
+      "balls": [
+        1,
+        2,
+        3,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 1,
+      "comboLabel": "1-2-3-12"
+    },
+    {
+      "id": 10,
+      "balls": [
+        1,
+        2,
+        3,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 1,
+      "comboLabel": "1-2-3-13"
+    },
+    {
+      "id": 11,
+      "balls": [
+        1,
+        2,
+        3,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 2,
+      "comboLabel": "1-2-3-14"
+    },
+    {
+      "id": 12,
+      "balls": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "teamCode": "BUF",
+      "seq": 1,
+      "comboLabel": "1-2-4-5"
+    },
+    {
+      "id": 13,
+      "balls": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "teamCode": "NYR",
+      "seq": 2,
+      "comboLabel": "1-2-4-6"
+    },
+    {
+      "id": 14,
+      "balls": [
+        1,
+        2,
+        4,
+        7
+      ],
+      "teamCode": "NYR",
+      "seq": 3,
+      "comboLabel": "1-2-4-7"
+    },
+    {
+      "id": 15,
+      "balls": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 3,
+      "comboLabel": "1-2-4-8"
+    },
+    {
+      "id": 16,
+      "balls": [
+        1,
+        2,
+        4,
+        9
+      ],
+      "teamCode": "PIT",
+      "seq": 2,
+      "comboLabel": "1-2-4-9"
+    },
+    {
+      "id": 17,
+      "balls": [
+        1,
+        2,
+        4,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 4,
+      "comboLabel": "1-2-4-10"
+    },
+    {
+      "id": 18,
+      "balls": [
+        1,
+        2,
+        4,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 1,
+      "comboLabel": "1-2-4-11"
+    },
+    {
+      "id": 19,
+      "balls": [
+        1,
+        2,
+        4,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 2,
+      "comboLabel": "1-2-4-12"
+    },
+    {
+      "id": 20,
+      "balls": [
+        1,
+        2,
+        4,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 2,
+      "comboLabel": "1-2-4-13"
+    },
+    {
+      "id": 21,
+      "balls": [
+        1,
+        2,
+        4,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 5,
+      "comboLabel": "1-2-4-14"
+    },
+    {
+      "id": 22,
+      "balls": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "teamCode": "SJS",
+      "seq": 6,
+      "comboLabel": "1-2-5-6"
+    },
+    {
+      "id": 23,
+      "balls": [
+        1,
+        2,
+        5,
+        7
+      ],
+      "teamCode": "SEA",
+      "seq": 2,
+      "comboLabel": "1-2-5-7"
+    },
+    {
+      "id": 24,
+      "balls": [
+        1,
+        2,
+        5,
+        8
+      ],
+      "teamCode": "BUF",
+      "seq": 2,
+      "comboLabel": "1-2-5-8"
+    },
+    {
+      "id": 25,
+      "balls": [
+        1,
+        2,
+        5,
+        9
+      ],
+      "teamCode": "PIT",
+      "seq": 3,
+      "comboLabel": "1-2-5-9"
+    },
+    {
+      "id": 26,
+      "balls": [
+        1,
+        2,
+        5,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 3,
+      "comboLabel": "1-2-5-10"
+    },
+    {
+      "id": 27,
+      "balls": [
+        1,
+        2,
+        5,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 3,
+      "comboLabel": "1-2-5-11"
+    },
+    {
+      "id": 28,
+      "balls": [
+        1,
+        2,
+        5,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 7,
+      "comboLabel": "1-2-5-12"
+    },
+    {
+      "id": 29,
+      "balls": [
+        1,
+        2,
+        5,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 3,
+      "comboLabel": "1-2-5-13"
+    },
+    {
+      "id": 30,
+      "balls": [
+        1,
+        2,
+        5,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 3,
+      "comboLabel": "1-2-5-14"
+    },
+    {
+      "id": 31,
+      "balls": [
+        1,
+        2,
+        6,
+        7
+      ],
+      "teamCode": "ANA",
+      "seq": 4,
+      "comboLabel": "1-2-6-7"
+    },
+    {
+      "id": 32,
+      "balls": [
+        1,
+        2,
+        6,
+        8
+      ],
+      "teamCode": "BOS",
+      "seq": 2,
+      "comboLabel": "1-2-6-8"
+    },
+    {
+      "id": 33,
+      "balls": [
+        1,
+        2,
+        6,
+        9
+      ],
+      "teamCode": "SEA",
+      "seq": 4,
+      "comboLabel": "1-2-6-9"
+    },
+    {
+      "id": 34,
+      "balls": [
+        1,
+        2,
+        6,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 2,
+      "comboLabel": "1-2-6-10"
+    },
+    {
+      "id": 35,
+      "balls": [
+        1,
+        2,
+        6,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 3,
+      "comboLabel": "1-2-6-11"
+    },
+    {
+      "id": 36,
+      "balls": [
+        1,
+        2,
+        6,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 5,
+      "comboLabel": "1-2-6-12"
+    },
+    {
+      "id": 37,
+      "balls": [
+        1,
+        2,
+        6,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 3,
+      "comboLabel": "1-2-6-13"
+    },
+    {
+      "id": 38,
+      "balls": [
+        1,
+        2,
+        6,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 6,
+      "comboLabel": "1-2-6-14"
+    },
+    {
+      "id": 39,
+      "balls": [
+        1,
+        2,
+        7,
+        8
+      ],
+      "teamCode": "UTA",
+      "seq": 1,
+      "comboLabel": "1-2-7-8"
+    },
+    {
+      "id": 40,
+      "balls": [
+        1,
+        2,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 8,
+      "comboLabel": "1-2-7-9"
+    },
+    {
+      "id": 41,
+      "balls": [
+        1,
+        2,
+        7,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 4,
+      "comboLabel": "1-2-7-10"
+    },
+    {
+      "id": 42,
+      "balls": [
+        1,
+        2,
+        7,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 4,
+      "comboLabel": "1-2-7-11"
+    },
+    {
+      "id": 43,
+      "balls": [
+        1,
+        2,
+        7,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 5,
+      "comboLabel": "1-2-7-12"
+    },
+    {
+      "id": 44,
+      "balls": [
+        1,
+        2,
+        7,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 3,
+      "comboLabel": "1-2-7-13"
+    },
+    {
+      "id": 45,
+      "balls": [
+        1,
+        2,
+        7,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 4,
+      "comboLabel": "1-2-7-14"
+    },
+    {
+      "id": 46,
+      "balls": [
+        1,
+        2,
+        8,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 4,
+      "comboLabel": "1-2-8-9"
+    },
+    {
+      "id": 47,
+      "balls": [
+        1,
+        2,
+        8,
+        10
+      ],
+      "teamCode": "DET",
+      "seq": 1,
+      "comboLabel": "1-2-8-10"
+    },
+    {
+      "id": 48,
+      "balls": [
+        1,
+        2,
+        8,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 4,
+      "comboLabel": "1-2-8-11"
+    },
+    {
+      "id": 49,
+      "balls": [
+        1,
+        2,
+        8,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 5,
+      "comboLabel": "1-2-8-12"
+    },
+    {
+      "id": 50,
+      "balls": [
+        1,
+        2,
+        8,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 5,
+      "comboLabel": "1-2-8-13"
+    },
+    {
+      "id": 51,
+      "balls": [
+        1,
+        2,
+        8,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 6,
+      "comboLabel": "1-2-8-14"
+    },
+    {
+      "id": 52,
+      "balls": [
+        1,
+        2,
+        9,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 6,
+      "comboLabel": "1-2-9-10"
+    },
+    {
+      "id": 53,
+      "balls": [
+        1,
+        2,
+        9,
+        11
+      ],
+      "teamCode": "CBJ",
+      "seq": 1,
+      "comboLabel": "1-2-9-11"
+    },
+    {
+      "id": 54,
+      "balls": [
+        1,
+        2,
+        9,
+        12
+      ],
+      "teamCode": "NYI",
+      "seq": 2,
+      "comboLabel": "1-2-9-12"
+    },
+    {
+      "id": 55,
+      "balls": [
+        1,
+        2,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 7,
+      "comboLabel": "1-2-9-13"
+    },
+    {
+      "id": 56,
+      "balls": [
+        1,
+        2,
+        9,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 7,
+      "comboLabel": "1-2-9-14"
+    },
+    {
+      "id": 57,
+      "balls": [
+        1,
+        2,
+        10,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 5,
+      "comboLabel": "1-2-10-11"
+    },
+    {
+      "id": 58,
+      "balls": [
+        1,
+        2,
+        10,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 6,
+      "comboLabel": "1-2-10-12"
+    },
+    {
+      "id": 59,
+      "balls": [
+        1,
+        2,
+        10,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 5,
+      "comboLabel": "1-2-10-13"
+    },
+    {
+      "id": 60,
+      "balls": [
+        1,
+        2,
+        10,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 5,
+      "comboLabel": "1-2-10-14"
+    },
+    {
+      "id": 61,
+      "balls": [
+        1,
+        2,
+        11,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 7,
+      "comboLabel": "1-2-11-12"
+    },
+    {
+      "id": 62,
+      "balls": [
+        1,
+        2,
+        11,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 4,
+      "comboLabel": "1-2-11-13"
+    },
+    {
+      "id": 63,
+      "balls": [
+        1,
+        2,
+        11,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 8,
+      "comboLabel": "1-2-11-14"
+    },
+    {
+      "id": 64,
+      "balls": [
+        1,
+        2,
+        12,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 2,
+      "comboLabel": "1-2-12-13"
+    },
+    {
+      "id": 65,
+      "balls": [
+        1,
+        2,
+        12,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 3,
+      "comboLabel": "1-2-12-14"
+    },
+    {
+      "id": 66,
+      "balls": [
+        1,
+        2,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 6,
+      "comboLabel": "1-2-13-14"
+    },
+    {
+      "id": 67,
+      "balls": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "teamCode": "SEA",
+      "seq": 7,
+      "comboLabel": "1-3-4-5"
+    },
+    {
+      "id": 68,
+      "balls": [
+        1,
+        3,
+        4,
+        6
+      ],
+      "teamCode": "BUF",
+      "seq": 6,
+      "comboLabel": "1-3-4-6"
+    },
+    {
+      "id": 69,
+      "balls": [
+        1,
+        3,
+        4,
+        7
+      ],
+      "teamCode": "NSH",
+      "seq": 7,
+      "comboLabel": "1-3-4-7"
+    },
+    {
+      "id": 70,
+      "balls": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "teamCode": "BUF",
+      "seq": 7,
+      "comboLabel": "1-3-4-8"
+    },
+    {
+      "id": 71,
+      "balls": [
+        1,
+        3,
+        4,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 6,
+      "comboLabel": "1-3-4-9"
+    },
+    {
+      "id": 72,
+      "balls": [
+        1,
+        3,
+        4,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 8,
+      "comboLabel": "1-3-4-10"
+    },
+    {
+      "id": 73,
+      "balls": [
+        1,
+        3,
+        4,
+        11
+      ],
+      "teamCode": "PIT",
+      "seq": 5,
+      "comboLabel": "1-3-4-11"
+    },
+    {
+      "id": 74,
+      "balls": [
+        1,
+        3,
+        4,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 9,
+      "comboLabel": "1-3-4-12"
+    },
+    {
+      "id": 75,
+      "balls": [
+        1,
+        3,
+        4,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 9,
+      "comboLabel": "1-3-4-13"
+    },
+    {
+      "id": 76,
+      "balls": [
+        1,
+        3,
+        4,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 8,
+      "comboLabel": "1-3-4-14"
+    },
+    {
+      "id": 77,
+      "balls": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "teamCode": "SJS",
+      "seq": 10,
+      "comboLabel": "1-3-5-6"
+    },
+    {
+      "id": 78,
+      "balls": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 11,
+      "comboLabel": "1-3-5-7"
+    },
+    {
+      "id": 79,
+      "balls": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "teamCode": "NSH",
+      "seq": 9,
+      "comboLabel": "1-3-5-8"
+    },
+    {
+      "id": 80,
+      "balls": [
+        1,
+        3,
+        5,
+        9
+      ],
+      "teamCode": "BUF",
+      "seq": 8,
+      "comboLabel": "1-3-5-9"
+    },
+    {
+      "id": 81,
+      "balls": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "teamCode": "PIT",
+      "seq": 6,
+      "comboLabel": "1-3-5-10"
+    },
+    {
+      "id": 82,
+      "balls": [
+        1,
+        3,
+        5,
+        11
+      ],
+      "teamCode": "DET",
+      "seq": 2,
+      "comboLabel": "1-3-5-11"
+    },
+    {
+      "id": 83,
+      "balls": [
+        1,
+        3,
+        5,
+        12
+      ],
+      "teamCode": "UTA",
+      "seq": 2,
+      "comboLabel": "1-3-5-12"
+    },
+    {
+      "id": 84,
+      "balls": [
+        1,
+        3,
+        5,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 12,
+      "comboLabel": "1-3-5-13"
+    },
+    {
+      "id": 85,
+      "balls": [
+        1,
+        3,
+        5,
+        14
+      ],
+      "teamCode": "UTA",
+      "seq": 3,
+      "comboLabel": "1-3-5-14"
+    },
+    {
+      "id": 86,
+      "balls": [
+        1,
+        3,
+        6,
+        7
+      ],
+      "teamCode": "NSH",
+      "seq": 10,
+      "comboLabel": "1-3-6-7"
+    },
+    {
+      "id": 87,
+      "balls": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "teamCode": "BOS",
+      "seq": 10,
+      "comboLabel": "1-3-6-8"
+    },
+    {
+      "id": 88,
+      "balls": [
+        1,
+        3,
+        6,
+        9
+      ],
+      "teamCode": "BUF",
+      "seq": 9,
+      "comboLabel": "1-3-6-9"
+    },
+    {
+      "id": 89,
+      "balls": [
+        1,
+        3,
+        6,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 11,
+      "comboLabel": "1-3-6-10"
+    },
+    {
+      "id": 90,
+      "balls": [
+        1,
+        3,
+        6,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 8,
+      "comboLabel": "1-3-6-11"
+    },
+    {
+      "id": 91,
+      "balls": [
+        1,
+        3,
+        6,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 8,
+      "comboLabel": "1-3-6-12"
+    },
+    {
+      "id": 92,
+      "balls": [
+        1,
+        3,
+        6,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 9,
+      "comboLabel": "1-3-6-13"
+    },
+    {
+      "id": 93,
+      "balls": [
+        1,
+        3,
+        6,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 7,
+      "comboLabel": "1-3-6-14"
+    },
+    {
+      "id": 94,
+      "balls": [
+        1,
+        3,
+        7,
+        8
+      ],
+      "teamCode": "BUF",
+      "seq": 10,
+      "comboLabel": "1-3-7-8"
+    },
+    {
+      "id": 95,
+      "balls": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "teamCode": "PIT",
+      "seq": 7,
+      "comboLabel": "1-3-7-9"
+    },
+    {
+      "id": 96,
+      "balls": [
+        1,
+        3,
+        7,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 9,
+      "comboLabel": "1-3-7-10"
+    },
+    {
+      "id": 97,
+      "balls": [
+        1,
+        3,
+        7,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 11,
+      "comboLabel": "1-3-7-11"
+    },
+    {
+      "id": 98,
+      "balls": [
+        1,
+        3,
+        7,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 12,
+      "comboLabel": "1-3-7-12"
+    },
+    {
+      "id": 99,
+      "balls": [
+        1,
+        3,
+        7,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 10,
+      "comboLabel": "1-3-7-13"
+    },
+    {
+      "id": 100,
+      "balls": [
+        1,
+        3,
+        7,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 13,
+      "comboLabel": "1-3-7-14"
+    },
+    {
+      "id": 101,
+      "balls": [
+        1,
+        3,
+        8,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 10,
+      "comboLabel": "1-3-8-9"
+    },
+    {
+      "id": 102,
+      "balls": [
+        1,
+        3,
+        8,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 8,
+      "comboLabel": "1-3-8-10"
+    },
+    {
+      "id": 103,
+      "balls": [
+        1,
+        3,
+        8,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 9,
+      "comboLabel": "1-3-8-11"
+    },
+    {
+      "id": 104,
+      "balls": [
+        1,
+        3,
+        8,
+        12
+      ],
+      "teamCode": "DET",
+      "seq": 3,
+      "comboLabel": "1-3-8-12"
+    },
+    {
+      "id": 105,
+      "balls": [
+        1,
+        3,
+        8,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 11,
+      "comboLabel": "1-3-8-13"
+    },
+    {
+      "id": 106,
+      "balls": [
+        1,
+        3,
+        8,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 12,
+      "comboLabel": "1-3-8-14"
+    },
+    {
+      "id": 107,
+      "balls": [
+        1,
+        3,
+        9,
+        10
+      ],
+      "teamCode": "CBJ",
+      "seq": 3,
+      "comboLabel": "1-3-9-10"
+    },
+    {
+      "id": 108,
+      "balls": [
+        1,
+        3,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 14,
+      "comboLabel": "1-3-9-11"
+    },
+    {
+      "id": 109,
+      "balls": [
+        1,
+        3,
+        9,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 13,
+      "comboLabel": "1-3-9-12"
+    },
+    {
+      "id": 110,
+      "balls": [
+        1,
+        3,
+        9,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 4,
+      "comboLabel": "1-3-9-13"
+    },
+    {
+      "id": 111,
+      "balls": [
+        1,
+        3,
+        9,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 9,
+      "comboLabel": "1-3-9-14"
+    },
+    {
+      "id": 112,
+      "balls": [
+        1,
+        3,
+        10,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 12,
+      "comboLabel": "1-3-10-11"
+    },
+    {
+      "id": 113,
+      "balls": [
+        1,
+        3,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 15,
+      "comboLabel": "1-3-10-12"
+    },
+    {
+      "id": 114,
+      "balls": [
+        1,
+        3,
+        10,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 10,
+      "comboLabel": "1-3-10-13"
+    },
+    {
+      "id": 115,
+      "balls": [
+        1,
+        3,
+        10,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 4,
+      "comboLabel": "1-3-10-14"
+    },
+    {
+      "id": 116,
+      "balls": [
+        1,
+        3,
+        11,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 10,
+      "comboLabel": "1-3-11-12"
+    },
+    {
+      "id": 117,
+      "balls": [
+        1,
+        3,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 11,
+      "comboLabel": "1-3-11-13"
+    },
+    {
+      "id": 118,
+      "balls": [
+        1,
+        3,
+        11,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 8,
+      "comboLabel": "1-3-11-14"
+    },
+    {
+      "id": 119,
+      "balls": [
+        1,
+        3,
+        12,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 11,
+      "comboLabel": "1-3-12-13"
+    },
+    {
+      "id": 120,
+      "balls": [
+        1,
+        3,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 13,
+      "comboLabel": "1-3-12-14"
+    },
+    {
+      "id": 121,
+      "balls": [
+        1,
+        3,
+        13,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 4,
+      "comboLabel": "1-3-13-14"
+    },
+    {
+      "id": 122,
+      "balls": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "teamCode": "SJS",
+      "seq": 16,
+      "comboLabel": "1-4-5-6"
+    },
+    {
+      "id": 123,
+      "balls": [
+        1,
+        4,
+        5,
+        7
+      ],
+      "teamCode": "PHI",
+      "seq": 12,
+      "comboLabel": "1-4-5-7"
+    },
+    {
+      "id": 124,
+      "balls": [
+        1,
+        4,
+        5,
+        8
+      ],
+      "teamCode": "SEA",
+      "seq": 14,
+      "comboLabel": "1-4-5-8"
+    },
+    {
+      "id": 125,
+      "balls": [
+        1,
+        4,
+        5,
+        9
+      ],
+      "teamCode": "BOS",
+      "seq": 14,
+      "comboLabel": "1-4-5-9"
+    },
+    {
+      "id": 126,
+      "balls": [
+        1,
+        4,
+        5,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 17,
+      "comboLabel": "1-4-5-10"
+    },
+    {
+      "id": 127,
+      "balls": [
+        1,
+        4,
+        5,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 5,
+      "comboLabel": "1-4-5-11"
+    },
+    {
+      "id": 128,
+      "balls": [
+        1,
+        4,
+        5,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 13,
+      "comboLabel": "1-4-5-12"
+    },
+    {
+      "id": 129,
+      "balls": [
+        1,
+        4,
+        5,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 15,
+      "comboLabel": "1-4-5-13"
+    },
+    {
+      "id": 130,
+      "balls": [
+        1,
+        4,
+        5,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 18,
+      "comboLabel": "1-4-5-14"
+    },
+    {
+      "id": 131,
+      "balls": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "teamCode": "PHI",
+      "seq": 13,
+      "comboLabel": "1-4-6-7"
+    },
+    {
+      "id": 132,
+      "balls": [
+        1,
+        4,
+        6,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 19,
+      "comboLabel": "1-4-6-8"
+    },
+    {
+      "id": 133,
+      "balls": [
+        1,
+        4,
+        6,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 20,
+      "comboLabel": "1-4-6-9"
+    },
+    {
+      "id": 134,
+      "balls": [
+        1,
+        4,
+        6,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 12,
+      "comboLabel": "1-4-6-10"
+    },
+    {
+      "id": 135,
+      "balls": [
+        1,
+        4,
+        6,
+        11
+      ],
+      "teamCode": "CBJ",
+      "seq": 5,
+      "comboLabel": "1-4-6-11"
+    },
+    {
+      "id": 136,
+      "balls": [
+        1,
+        4,
+        6,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 21,
+      "comboLabel": "1-4-6-12"
+    },
+    {
+      "id": 137,
+      "balls": [
+        1,
+        4,
+        6,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 9,
+      "comboLabel": "1-4-6-13"
+    },
+    {
+      "id": 138,
+      "balls": [
+        1,
+        4,
+        6,
+        14
+      ],
+      "teamCode": "NYR",
+      "seq": 6,
+      "comboLabel": "1-4-6-14"
+    },
+    {
+      "id": 139,
+      "balls": [
+        1,
+        4,
+        7,
+        8
+      ],
+      "teamCode": "CHI",
+      "seq": 13,
+      "comboLabel": "1-4-7-8"
+    },
+    {
+      "id": 140,
+      "balls": [
+        1,
+        4,
+        7,
+        9
+      ],
+      "teamCode": "UTA",
+      "seq": 4,
+      "comboLabel": "1-4-7-9"
+    },
+    {
+      "id": 141,
+      "balls": [
+        1,
+        4,
+        7,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 16,
+      "comboLabel": "1-4-7-10"
+    },
+    {
+      "id": 142,
+      "balls": [
+        1,
+        4,
+        7,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 22,
+      "comboLabel": "1-4-7-11"
+    },
+    {
+      "id": 143,
+      "balls": [
+        1,
+        4,
+        7,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 17,
+      "comboLabel": "1-4-7-12"
+    },
+    {
+      "id": 144,
+      "balls": [
+        1,
+        4,
+        7,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 14,
+      "comboLabel": "1-4-7-13"
+    },
+    {
+      "id": 145,
+      "balls": [
+        1,
+        4,
+        7,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 23,
+      "comboLabel": "1-4-7-14"
+    },
+    {
+      "id": 146,
+      "balls": [
+        1,
+        4,
+        8,
+        9
+      ],
+      "teamCode": "BOS",
+      "seq": 15,
+      "comboLabel": "1-4-8-9"
+    },
+    {
+      "id": 147,
+      "balls": [
+        1,
+        4,
+        8,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 18,
+      "comboLabel": "1-4-8-10"
+    },
+    {
+      "id": 148,
+      "balls": [
+        1,
+        4,
+        8,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 24,
+      "comboLabel": "1-4-8-11"
+    },
+    {
+      "id": 149,
+      "balls": [
+        1,
+        4,
+        8,
+        12
+      ],
+      "teamCode": "DET",
+      "seq": 4,
+      "comboLabel": "1-4-8-12"
+    },
+    {
+      "id": 150,
+      "balls": [
+        1,
+        4,
+        8,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 16,
+      "comboLabel": "1-4-8-13"
+    },
+    {
+      "id": 151,
+      "balls": [
+        1,
+        4,
+        8,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 14,
+      "comboLabel": "1-4-8-14"
+    },
+    {
+      "id": 152,
+      "balls": [
+        1,
+        4,
+        9,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 15,
+      "comboLabel": "1-4-9-10"
+    },
+    {
+      "id": 153,
+      "balls": [
+        1,
+        4,
+        9,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 7,
+      "comboLabel": "1-4-9-11"
+    },
+    {
+      "id": 154,
+      "balls": [
+        1,
+        4,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 25,
+      "comboLabel": "1-4-9-12"
+    },
+    {
+      "id": 155,
+      "balls": [
+        1,
+        4,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 16,
+      "comboLabel": "1-4-9-13"
+    },
+    {
+      "id": 156,
+      "balls": [
+        1,
+        4,
+        9,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 17,
+      "comboLabel": "1-4-9-14"
+    },
+    {
+      "id": 157,
+      "balls": [
+        1,
+        4,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 17,
+      "comboLabel": "1-4-10-11"
+    },
+    {
+      "id": 158,
+      "balls": [
+        1,
+        4,
+        10,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 11,
+      "comboLabel": "1-4-10-12"
+    },
+    {
+      "id": 159,
+      "balls": [
+        1,
+        4,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 18,
+      "comboLabel": "1-4-10-13"
+    },
+    {
+      "id": 160,
+      "balls": [
+        1,
+        4,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 26,
+      "comboLabel": "1-4-10-14"
+    },
+    {
+      "id": 161,
+      "balls": [
+        1,
+        4,
+        11,
+        12
+      ],
+      "teamCode": "NYR",
+      "seq": 8,
+      "comboLabel": "1-4-11-12"
+    },
+    {
+      "id": 162,
+      "balls": [
+        1,
+        4,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 15,
+      "comboLabel": "1-4-11-13"
+    },
+    {
+      "id": 163,
+      "balls": [
+        1,
+        4,
+        11,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 16,
+      "comboLabel": "1-4-11-14"
+    },
+    {
+      "id": 164,
+      "balls": [
+        1,
+        4,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 19,
+      "comboLabel": "1-4-12-13"
+    },
+    {
+      "id": 165,
+      "balls": [
+        1,
+        4,
+        12,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 20,
+      "comboLabel": "1-4-12-14"
+    },
+    {
+      "id": 166,
+      "balls": [
+        1,
+        4,
+        13,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 11,
+      "comboLabel": "1-4-13-14"
+    },
+    {
+      "id": 167,
+      "balls": [
+        1,
+        5,
+        6,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 27,
+      "comboLabel": "1-5-6-7"
+    },
+    {
+      "id": 168,
+      "balls": [
+        1,
+        5,
+        6,
+        8
+      ],
+      "teamCode": "NYR",
+      "seq": 9,
+      "comboLabel": "1-5-6-8"
+    },
+    {
+      "id": 169,
+      "balls": [
+        1,
+        5,
+        6,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 28,
+      "comboLabel": "1-5-6-9"
+    },
+    {
+      "id": 170,
+      "balls": [
+        1,
+        5,
+        6,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 29,
+      "comboLabel": "1-5-6-10"
+    },
+    {
+      "id": 171,
+      "balls": [
+        1,
+        5,
+        6,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 17,
+      "comboLabel": "1-5-6-11"
+    },
+    {
+      "id": 172,
+      "balls": [
+        1,
+        5,
+        6,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 30,
+      "comboLabel": "1-5-6-12"
+    },
+    {
+      "id": 173,
+      "balls": [
+        1,
+        5,
+        6,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 5,
+      "comboLabel": "1-5-6-13"
+    },
+    {
+      "id": 174,
+      "balls": [
+        1,
+        5,
+        6,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 18,
+      "comboLabel": "1-5-6-14"
+    },
+    {
+      "id": 175,
+      "balls": [
+        1,
+        5,
+        7,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 31,
+      "comboLabel": "1-5-7-8"
+    },
+    {
+      "id": 176,
+      "balls": [
+        1,
+        5,
+        7,
+        9
+      ],
+      "teamCode": "BUF",
+      "seq": 12,
+      "comboLabel": "1-5-7-9"
+    },
+    {
+      "id": 177,
+      "balls": [
+        1,
+        5,
+        7,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 32,
+      "comboLabel": "1-5-7-10"
+    },
+    {
+      "id": 178,
+      "balls": [
+        1,
+        5,
+        7,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 14,
+      "comboLabel": "1-5-7-11"
+    },
+    {
+      "id": 179,
+      "balls": [
+        1,
+        5,
+        7,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 19,
+      "comboLabel": "1-5-7-12"
+    },
+    {
+      "id": 180,
+      "balls": [
+        1,
+        5,
+        7,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 21,
+      "comboLabel": "1-5-7-13"
+    },
+    {
+      "id": 181,
+      "balls": [
+        1,
+        5,
+        7,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 18,
+      "comboLabel": "1-5-7-14"
+    },
+    {
+      "id": 182,
+      "balls": [
+        1,
+        5,
+        8,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 33,
+      "comboLabel": "1-5-8-9"
+    },
+    {
+      "id": 183,
+      "balls": [
+        1,
+        5,
+        8,
+        10
+      ],
+      "teamCode": "NYI",
+      "seq": 6,
+      "comboLabel": "1-5-8-10"
+    },
+    {
+      "id": 184,
+      "balls": [
+        1,
+        5,
+        8,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 19,
+      "comboLabel": "1-5-8-11"
+    },
+    {
+      "id": 185,
+      "balls": [
+        1,
+        5,
+        8,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 34,
+      "comboLabel": "1-5-8-12"
+    },
+    {
+      "id": 186,
+      "balls": [
+        1,
+        5,
+        8,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 20,
+      "comboLabel": "1-5-8-13"
+    },
+    {
+      "id": 187,
+      "balls": [
+        1,
+        5,
+        8,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 22,
+      "comboLabel": "1-5-8-14"
+    },
+    {
+      "id": 188,
+      "balls": [
+        1,
+        5,
+        9,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 21,
+      "comboLabel": "1-5-9-10"
+    },
+    {
+      "id": 189,
+      "balls": [
+        1,
+        5,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 35,
+      "comboLabel": "1-5-9-11"
+    },
+    {
+      "id": 190,
+      "balls": [
+        1,
+        5,
+        9,
+        12
+      ],
+      "teamCode": "CGY",
+      "seq": 1,
+      "comboLabel": "1-5-9-12"
+    },
+    {
+      "id": 191,
+      "balls": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 36,
+      "comboLabel": "1-5-9-13"
+    },
+    {
+      "id": 192,
+      "balls": [
+        1,
+        5,
+        9,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 19,
+      "comboLabel": "1-5-9-14"
+    },
+    {
+      "id": 193,
+      "balls": [
+        1,
+        5,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 22,
+      "comboLabel": "1-5-10-11"
+    },
+    {
+      "id": 194,
+      "balls": [
+        1,
+        5,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 20,
+      "comboLabel": "1-5-10-12"
+    },
+    {
+      "id": 195,
+      "balls": [
+        1,
+        5,
+        10,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 6,
+      "comboLabel": "1-5-10-13"
+    },
+    {
+      "id": 196,
+      "balls": [
+        1,
+        5,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 21,
+      "comboLabel": "1-5-10-14"
+    },
+    {
+      "id": 197,
+      "balls": [
+        1,
+        5,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 37,
+      "comboLabel": "1-5-11-12"
+    },
+    {
+      "id": 198,
+      "balls": [
+        1,
+        5,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 38,
+      "comboLabel": "1-5-11-13"
+    },
+    {
+      "id": 199,
+      "balls": [
+        1,
+        5,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 39,
+      "comboLabel": "1-5-11-14"
+    },
+    {
+      "id": 200,
+      "balls": [
+        1,
+        5,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 23,
+      "comboLabel": "1-5-12-13"
+    },
+    {
+      "id": 201,
+      "balls": [
+        1,
+        5,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 23,
+      "comboLabel": "1-5-12-14"
+    },
+    {
+      "id": 202,
+      "balls": [
+        1,
+        5,
+        13,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 20,
+      "comboLabel": "1-5-13-14"
+    },
+    {
+      "id": 203,
+      "balls": [
+        1,
+        6,
+        7,
+        8
+      ],
+      "teamCode": "NYI",
+      "seq": 7,
+      "comboLabel": "1-6-7-8"
+    },
+    {
+      "id": 204,
+      "balls": [
+        1,
+        6,
+        7,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 22,
+      "comboLabel": "1-6-7-9"
+    },
+    {
+      "id": 205,
+      "balls": [
+        1,
+        6,
+        7,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 24,
+      "comboLabel": "1-6-7-10"
+    },
+    {
+      "id": 206,
+      "balls": [
+        1,
+        6,
+        7,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 15,
+      "comboLabel": "1-6-7-11"
+    },
+    {
+      "id": 207,
+      "balls": [
+        1,
+        6,
+        7,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 24,
+      "comboLabel": "1-6-7-12"
+    },
+    {
+      "id": 208,
+      "balls": [
+        1,
+        6,
+        7,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 23,
+      "comboLabel": "1-6-7-13"
+    },
+    {
+      "id": 209,
+      "balls": [
+        1,
+        6,
+        7,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 10,
+      "comboLabel": "1-6-7-14"
+    },
+    {
+      "id": 210,
+      "balls": [
+        1,
+        6,
+        8,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 40,
+      "comboLabel": "1-6-8-9"
+    },
+    {
+      "id": 211,
+      "balls": [
+        1,
+        6,
+        8,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 16,
+      "comboLabel": "1-6-8-10"
+    },
+    {
+      "id": 212,
+      "balls": [
+        1,
+        6,
+        8,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 25,
+      "comboLabel": "1-6-8-11"
+    },
+    {
+      "id": 213,
+      "balls": [
+        1,
+        6,
+        8,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 41,
+      "comboLabel": "1-6-8-12"
+    },
+    {
+      "id": 214,
+      "balls": [
+        1,
+        6,
+        8,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 42,
+      "comboLabel": "1-6-8-13"
+    },
+    {
+      "id": 215,
+      "balls": [
+        1,
+        6,
+        8,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 11,
+      "comboLabel": "1-6-8-14"
+    },
+    {
+      "id": 216,
+      "balls": [
+        1,
+        6,
+        9,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 12,
+      "comboLabel": "1-6-9-10"
+    },
+    {
+      "id": 217,
+      "balls": [
+        1,
+        6,
+        9,
+        11
+      ],
+      "teamCode": "DET",
+      "seq": 5,
+      "comboLabel": "1-6-9-11"
+    },
+    {
+      "id": 218,
+      "balls": [
+        1,
+        6,
+        9,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 24,
+      "comboLabel": "1-6-9-12"
+    },
+    {
+      "id": 219,
+      "balls": [
+        1,
+        6,
+        9,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 17,
+      "comboLabel": "1-6-9-13"
+    },
+    {
+      "id": 220,
+      "balls": [
+        1,
+        6,
+        9,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 43,
+      "comboLabel": "1-6-9-14"
+    },
+    {
+      "id": 221,
+      "balls": [
+        1,
+        6,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 25,
+      "comboLabel": "1-6-10-11"
+    },
+    {
+      "id": 222,
+      "balls": [
+        1,
+        6,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 25,
+      "comboLabel": "1-6-10-12"
+    },
+    {
+      "id": 223,
+      "balls": [
+        1,
+        6,
+        10,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 13,
+      "comboLabel": "1-6-10-13"
+    },
+    {
+      "id": 224,
+      "balls": [
+        1,
+        6,
+        10,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 21,
+      "comboLabel": "1-6-10-14"
+    },
+    {
+      "id": 225,
+      "balls": [
+        1,
+        6,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 26,
+      "comboLabel": "1-6-11-12"
+    },
+    {
+      "id": 226,
+      "balls": [
+        1,
+        6,
+        11,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 8,
+      "comboLabel": "1-6-11-13"
+    },
+    {
+      "id": 227,
+      "balls": [
+        1,
+        6,
+        11,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 22,
+      "comboLabel": "1-6-11-14"
+    },
+    {
+      "id": 228,
+      "balls": [
+        1,
+        6,
+        12,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 9,
+      "comboLabel": "1-6-12-13"
+    },
+    {
+      "id": 229,
+      "balls": [
+        1,
+        6,
+        12,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 23,
+      "comboLabel": "1-6-12-14"
+    },
+    {
+      "id": 230,
+      "balls": [
+        1,
+        6,
+        13,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 13,
+      "comboLabel": "1-6-13-14"
+    },
+    {
+      "id": 231,
+      "balls": [
+        1,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "NSH",
+      "seq": 27,
+      "comboLabel": "1-7-8-9"
+    },
+    {
+      "id": 232,
+      "balls": [
+        1,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 18,
+      "comboLabel": "1-7-8-10"
+    },
+    {
+      "id": 233,
+      "balls": [
+        1,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 28,
+      "comboLabel": "1-7-8-11"
+    },
+    {
+      "id": 234,
+      "balls": [
+        1,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 19,
+      "comboLabel": "1-7-8-12"
+    },
+    {
+      "id": 235,
+      "balls": [
+        1,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 26,
+      "comboLabel": "1-7-8-13"
+    },
+    {
+      "id": 236,
+      "balls": [
+        1,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 24,
+      "comboLabel": "1-7-8-14"
+    },
+    {
+      "id": 237,
+      "balls": [
+        1,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 44,
+      "comboLabel": "1-7-9-10"
+    },
+    {
+      "id": 238,
+      "balls": [
+        1,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 26,
+      "comboLabel": "1-7-9-11"
+    },
+    {
+      "id": 239,
+      "balls": [
+        1,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 45,
+      "comboLabel": "1-7-9-12"
+    },
+    {
+      "id": 240,
+      "balls": [
+        1,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 20,
+      "comboLabel": "1-7-9-13"
+    },
+    {
+      "id": 241,
+      "balls": [
+        1,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 29,
+      "comboLabel": "1-7-9-14"
+    },
+    {
+      "id": 242,
+      "balls": [
+        1,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 25,
+      "comboLabel": "1-7-10-11"
+    },
+    {
+      "id": 243,
+      "balls": [
+        1,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 14,
+      "comboLabel": "1-7-10-12"
+    },
+    {
+      "id": 244,
+      "balls": [
+        1,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 27,
+      "comboLabel": "1-7-10-13"
+    },
+    {
+      "id": 245,
+      "balls": [
+        1,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 28,
+      "comboLabel": "1-7-10-14"
+    },
+    {
+      "id": 246,
+      "balls": [
+        1,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 12,
+      "comboLabel": "1-7-11-12"
+    },
+    {
+      "id": 247,
+      "balls": [
+        1,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 29,
+      "comboLabel": "1-7-11-13"
+    },
+    {
+      "id": 248,
+      "balls": [
+        1,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 46,
+      "comboLabel": "1-7-11-14"
+    },
+    {
+      "id": 249,
+      "balls": [
+        1,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 30,
+      "comboLabel": "1-7-12-13"
+    },
+    {
+      "id": 250,
+      "balls": [
+        1,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "UTA",
+      "seq": 5,
+      "comboLabel": "1-7-12-14"
+    },
+    {
+      "id": 251,
+      "balls": [
+        1,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 47,
+      "comboLabel": "1-7-13-14"
+    },
+    {
+      "id": 252,
+      "balls": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 30,
+      "comboLabel": "1-8-9-10"
+    },
+    {
+      "id": 253,
+      "balls": [
+        1,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 26,
+      "comboLabel": "1-8-9-11"
+    },
+    {
+      "id": 254,
+      "balls": [
+        1,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 31,
+      "comboLabel": "1-8-9-12"
+    },
+    {
+      "id": 255,
+      "balls": [
+        1,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 32,
+      "comboLabel": "1-8-9-13"
+    },
+    {
+      "id": 256,
+      "balls": [
+        1,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 14,
+      "comboLabel": "1-8-9-14"
+    },
+    {
+      "id": 257,
+      "balls": [
+        1,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "PIT",
+      "seq": 13,
+      "comboLabel": "1-8-10-11"
+    },
+    {
+      "id": 258,
+      "balls": [
+        1,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 27,
+      "comboLabel": "1-8-10-12"
+    },
+    {
+      "id": 259,
+      "balls": [
+        1,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 15,
+      "comboLabel": "1-8-10-13"
+    },
+    {
+      "id": 260,
+      "balls": [
+        1,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 31,
+      "comboLabel": "1-8-10-14"
+    },
+    {
+      "id": 261,
+      "balls": [
+        1,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 27,
+      "comboLabel": "1-8-11-12"
+    },
+    {
+      "id": 262,
+      "balls": [
+        1,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 15,
+      "comboLabel": "1-8-11-13"
+    },
+    {
+      "id": 263,
+      "balls": [
+        1,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 21,
+      "comboLabel": "1-8-11-14"
+    },
+    {
+      "id": 264,
+      "balls": [
+        1,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 48,
+      "comboLabel": "1-8-12-13"
+    },
+    {
+      "id": 265,
+      "balls": [
+        1,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 49,
+      "comboLabel": "1-8-12-14"
+    },
+    {
+      "id": 266,
+      "balls": [
+        1,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 28,
+      "comboLabel": "1-8-13-14"
+    },
+    {
+      "id": 267,
+      "balls": [
+        1,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 29,
+      "comboLabel": "1-9-10-11"
+    },
+    {
+      "id": 268,
+      "balls": [
+        1,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 22,
+      "comboLabel": "1-9-10-12"
+    },
+    {
+      "id": 269,
+      "balls": [
+        1,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "DET",
+      "seq": 6,
+      "comboLabel": "1-9-10-13"
+    },
+    {
+      "id": 270,
+      "balls": [
+        1,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 23,
+      "comboLabel": "1-9-10-14"
+    },
+    {
+      "id": 271,
+      "balls": [
+        1,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 50,
+      "comboLabel": "1-9-11-12"
+    },
+    {
+      "id": 272,
+      "balls": [
+        1,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 30,
+      "comboLabel": "1-9-11-13"
+    },
+    {
+      "id": 273,
+      "balls": [
+        1,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 24,
+      "comboLabel": "1-9-11-14"
+    },
+    {
+      "id": 274,
+      "balls": [
+        1,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 25,
+      "comboLabel": "1-9-12-13"
+    },
+    {
+      "id": 275,
+      "balls": [
+        1,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 51,
+      "comboLabel": "1-9-12-14"
+    },
+    {
+      "id": 276,
+      "balls": [
+        1,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 14,
+      "comboLabel": "1-9-13-14"
+    },
+    {
+      "id": 277,
+      "balls": [
+        1,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 32,
+      "comboLabel": "1-10-11-12"
+    },
+    {
+      "id": 278,
+      "balls": [
+        1,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 16,
+      "comboLabel": "1-10-11-13"
+    },
+    {
+      "id": 279,
+      "balls": [
+        1,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 7,
+      "comboLabel": "1-10-11-14"
+    },
+    {
+      "id": 280,
+      "balls": [
+        1,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 26,
+      "comboLabel": "1-10-12-13"
+    },
+    {
+      "id": 281,
+      "balls": [
+        1,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 52,
+      "comboLabel": "1-10-12-14"
+    },
+    {
+      "id": 282,
+      "balls": [
+        1,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 10,
+      "comboLabel": "1-10-13-14"
+    },
+    {
+      "id": 283,
+      "balls": [
+        1,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 17,
+      "comboLabel": "1-11-12-13"
+    },
+    {
+      "id": 284,
+      "balls": [
+        1,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 33,
+      "comboLabel": "1-11-12-14"
+    },
+    {
+      "id": 285,
+      "balls": [
+        1,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 34,
+      "comboLabel": "1-11-13-14"
+    },
+    {
+      "id": 286,
+      "balls": [
+        1,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 53,
+      "comboLabel": "1-12-13-14"
+    },
+    {
+      "id": 287,
+      "balls": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "teamCode": "SJS",
+      "seq": 54,
+      "comboLabel": "2-3-4-5"
+    },
+    {
+      "id": 288,
+      "balls": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "teamCode": "NSH",
+      "seq": 35,
+      "comboLabel": "2-3-4-6"
+    },
+    {
+      "id": 289,
+      "balls": [
+        2,
+        3,
+        4,
+        7
+      ],
+      "teamCode": "CBJ",
+      "seq": 7,
+      "comboLabel": "2-3-4-7"
+    },
+    {
+      "id": 290,
+      "balls": [
+        2,
+        3,
+        4,
+        8
+      ],
+      "teamCode": "SEA",
+      "seq": 28,
+      "comboLabel": "2-3-4-8"
+    },
+    {
+      "id": 291,
+      "balls": [
+        2,
+        3,
+        4,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 16,
+      "comboLabel": "2-3-4-9"
+    },
+    {
+      "id": 292,
+      "balls": [
+        2,
+        3,
+        4,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 33,
+      "comboLabel": "2-3-4-10"
+    },
+    {
+      "id": 293,
+      "balls": [
+        2,
+        3,
+        4,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 27,
+      "comboLabel": "2-3-4-11"
+    },
+    {
+      "id": 294,
+      "balls": [
+        2,
+        3,
+        4,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 36,
+      "comboLabel": "2-3-4-12"
+    },
+    {
+      "id": 295,
+      "balls": [
+        2,
+        3,
+        4,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 10,
+      "comboLabel": "2-3-4-13"
+    },
+    {
+      "id": 296,
+      "balls": [
+        2,
+        3,
+        4,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 29,
+      "comboLabel": "2-3-4-14"
+    },
+    {
+      "id": 297,
+      "balls": [
+        2,
+        3,
+        5,
+        6
+      ],
+      "teamCode": "SJS",
+      "seq": 55,
+      "comboLabel": "2-3-5-6"
+    },
+    {
+      "id": 298,
+      "balls": [
+        2,
+        3,
+        5,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 56,
+      "comboLabel": "2-3-5-7"
+    },
+    {
+      "id": 299,
+      "balls": [
+        2,
+        3,
+        5,
+        8
+      ],
+      "teamCode": "NSH",
+      "seq": 37,
+      "comboLabel": "2-3-5-8"
+    },
+    {
+      "id": 300,
+      "balls": [
+        2,
+        3,
+        5,
+        9
+      ],
+      "teamCode": "NYR",
+      "seq": 11,
+      "comboLabel": "2-3-5-9"
+    },
+    {
+      "id": 301,
+      "balls": [
+        2,
+        3,
+        5,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 17,
+      "comboLabel": "2-3-5-10"
+    },
+    {
+      "id": 302,
+      "balls": [
+        2,
+        3,
+        5,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 12,
+      "comboLabel": "2-3-5-11"
+    },
+    {
+      "id": 303,
+      "balls": [
+        2,
+        3,
+        5,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 31,
+      "comboLabel": "2-3-5-12"
+    },
+    {
+      "id": 304,
+      "balls": [
+        2,
+        3,
+        5,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 32,
+      "comboLabel": "2-3-5-13"
+    },
+    {
+      "id": 305,
+      "balls": [
+        2,
+        3,
+        5,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 15,
+      "comboLabel": "2-3-5-14"
+    },
+    {
+      "id": 306,
+      "balls": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "teamCode": "PHI",
+      "seq": 28,
+      "comboLabel": "2-3-6-7"
+    },
+    {
+      "id": 307,
+      "balls": [
+        2,
+        3,
+        6,
+        8
+      ],
+      "teamCode": "NSH",
+      "seq": 38,
+      "comboLabel": "2-3-6-8"
+    },
+    {
+      "id": 308,
+      "balls": [
+        2,
+        3,
+        6,
+        9
+      ],
+      "teamCode": "CBJ",
+      "seq": 8,
+      "comboLabel": "2-3-6-9"
+    },
+    {
+      "id": 309,
+      "balls": [
+        2,
+        3,
+        6,
+        10
+      ],
+      "teamCode": "DET",
+      "seq": 8,
+      "comboLabel": "2-3-6-10"
+    },
+    {
+      "id": 310,
+      "balls": [
+        2,
+        3,
+        6,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 39,
+      "comboLabel": "2-3-6-11"
+    },
+    {
+      "id": 311,
+      "balls": [
+        2,
+        3,
+        6,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 18,
+      "comboLabel": "2-3-6-12"
+    },
+    {
+      "id": 312,
+      "balls": [
+        2,
+        3,
+        6,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 34,
+      "comboLabel": "2-3-6-13"
+    },
+    {
+      "id": 313,
+      "balls": [
+        2,
+        3,
+        6,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 40,
+      "comboLabel": "2-3-6-14"
+    },
+    {
+      "id": 314,
+      "balls": [
+        2,
+        3,
+        7,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 57,
+      "comboLabel": "2-3-7-8"
+    },
+    {
+      "id": 315,
+      "balls": [
+        2,
+        3,
+        7,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 29,
+      "comboLabel": "2-3-7-9"
+    },
+    {
+      "id": 316,
+      "balls": [
+        2,
+        3,
+        7,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 41,
+      "comboLabel": "2-3-7-10"
+    },
+    {
+      "id": 317,
+      "balls": [
+        2,
+        3,
+        7,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 58,
+      "comboLabel": "2-3-7-11"
+    },
+    {
+      "id": 318,
+      "balls": [
+        2,
+        3,
+        7,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 59,
+      "comboLabel": "2-3-7-12"
+    },
+    {
+      "id": 319,
+      "balls": [
+        2,
+        3,
+        7,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 60,
+      "comboLabel": "2-3-7-13"
+    },
+    {
+      "id": 320,
+      "balls": [
+        2,
+        3,
+        7,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 30,
+      "comboLabel": "2-3-7-14"
+    },
+    {
+      "id": 321,
+      "balls": [
+        2,
+        3,
+        8,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 61,
+      "comboLabel": "2-3-8-9"
+    },
+    {
+      "id": 322,
+      "balls": [
+        2,
+        3,
+        8,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 62,
+      "comboLabel": "2-3-8-10"
+    },
+    {
+      "id": 323,
+      "balls": [
+        2,
+        3,
+        8,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 19,
+      "comboLabel": "2-3-8-11"
+    },
+    {
+      "id": 324,
+      "balls": [
+        2,
+        3,
+        8,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 35,
+      "comboLabel": "2-3-8-12"
+    },
+    {
+      "id": 325,
+      "balls": [
+        2,
+        3,
+        8,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 18,
+      "comboLabel": "2-3-8-13"
+    },
+    {
+      "id": 326,
+      "balls": [
+        2,
+        3,
+        8,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 11,
+      "comboLabel": "2-3-8-14"
+    },
+    {
+      "id": 327,
+      "balls": [
+        2,
+        3,
+        9,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 30,
+      "comboLabel": "2-3-9-10"
+    },
+    {
+      "id": 328,
+      "balls": [
+        2,
+        3,
+        9,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 36,
+      "comboLabel": "2-3-9-11"
+    },
+    {
+      "id": 329,
+      "balls": [
+        2,
+        3,
+        9,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 20,
+      "comboLabel": "2-3-9-12"
+    },
+    {
+      "id": 330,
+      "balls": [
+        2,
+        3,
+        9,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 31,
+      "comboLabel": "2-3-9-13"
+    },
+    {
+      "id": 331,
+      "balls": [
+        2,
+        3,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 37,
+      "comboLabel": "2-3-9-14"
+    },
+    {
+      "id": 332,
+      "balls": [
+        2,
+        3,
+        10,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 42,
+      "comboLabel": "2-3-10-11"
+    },
+    {
+      "id": 333,
+      "balls": [
+        2,
+        3,
+        10,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 19,
+      "comboLabel": "2-3-10-12"
+    },
+    {
+      "id": 334,
+      "balls": [
+        2,
+        3,
+        10,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 20,
+      "comboLabel": "2-3-10-13"
+    },
+    {
+      "id": 335,
+      "balls": [
+        2,
+        3,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 63,
+      "comboLabel": "2-3-10-14"
+    },
+    {
+      "id": 336,
+      "balls": [
+        2,
+        3,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 64,
+      "comboLabel": "2-3-11-12"
+    },
+    {
+      "id": 337,
+      "balls": [
+        2,
+        3,
+        11,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 9,
+      "comboLabel": "2-3-11-13"
+    },
+    {
+      "id": 338,
+      "balls": [
+        2,
+        3,
+        11,
+        14
+      ],
+      "teamCode": "UTA",
+      "seq": 6,
+      "comboLabel": "2-3-11-14"
+    },
+    {
+      "id": 339,
+      "balls": [
+        2,
+        3,
+        12,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 21,
+      "comboLabel": "2-3-12-13"
+    },
+    {
+      "id": 340,
+      "balls": [
+        2,
+        3,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 65,
+      "comboLabel": "2-3-12-14"
+    },
+    {
+      "id": 341,
+      "balls": [
+        2,
+        3,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 38,
+      "comboLabel": "2-3-13-14"
+    },
+    {
+      "id": 342,
+      "balls": [
+        2,
+        4,
+        5,
+        6
+      ],
+      "teamCode": "PIT",
+      "seq": 16,
+      "comboLabel": "2-4-5-6"
+    },
+    {
+      "id": 343,
+      "balls": [
+        2,
+        4,
+        5,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 66,
+      "comboLabel": "2-4-5-7"
+    },
+    {
+      "id": 344,
+      "balls": [
+        2,
+        4,
+        5,
+        8
+      ],
+      "teamCode": "PHI",
+      "seq": 32,
+      "comboLabel": "2-4-5-8"
+    },
+    {
+      "id": 345,
+      "balls": [
+        2,
+        4,
+        5,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 39,
+      "comboLabel": "2-4-5-9"
+    },
+    {
+      "id": 346,
+      "balls": [
+        2,
+        4,
+        5,
+        10
+      ],
+      "teamCode": "BUF",
+      "seq": 22,
+      "comboLabel": "2-4-5-10"
+    },
+    {
+      "id": 347,
+      "balls": [
+        2,
+        4,
+        5,
+        11
+      ],
+      "teamCode": "VAN",
+      "seq": 1,
+      "comboLabel": "2-4-5-11"
+    },
+    {
+      "id": 348,
+      "balls": [
+        2,
+        4,
+        5,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 40,
+      "comboLabel": "2-4-5-12"
+    },
+    {
+      "id": 349,
+      "balls": [
+        2,
+        4,
+        5,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 67,
+      "comboLabel": "2-4-5-13"
+    },
+    {
+      "id": 350,
+      "balls": [
+        2,
+        4,
+        5,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 43,
+      "comboLabel": "2-4-5-14"
+    },
+    {
+      "id": 351,
+      "balls": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "teamCode": "SJS",
+      "seq": 68,
+      "comboLabel": "2-4-6-7"
+    },
+    {
+      "id": 352,
+      "balls": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "teamCode": "CHI",
+      "seq": 41,
+      "comboLabel": "2-4-6-8"
+    },
+    {
+      "id": 353,
+      "balls": [
+        2,
+        4,
+        6,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 69,
+      "comboLabel": "2-4-6-9"
+    },
+    {
+      "id": 354,
+      "balls": [
+        2,
+        4,
+        6,
+        10
+      ],
+      "teamCode": "PIT",
+      "seq": 17,
+      "comboLabel": "2-4-6-10"
+    },
+    {
+      "id": 355,
+      "balls": [
+        2,
+        4,
+        6,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 33,
+      "comboLabel": "2-4-6-11"
+    },
+    {
+      "id": 356,
+      "balls": [
+        2,
+        4,
+        6,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 33,
+      "comboLabel": "2-4-6-12"
+    },
+    {
+      "id": 357,
+      "balls": [
+        2,
+        4,
+        6,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 44,
+      "comboLabel": "2-4-6-13"
+    },
+    {
+      "id": 358,
+      "balls": [
+        2,
+        4,
+        6,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 42,
+      "comboLabel": "2-4-6-14"
+    },
+    {
+      "id": 359,
+      "balls": [
+        2,
+        4,
+        7,
+        8
+      ],
+      "teamCode": "PHI",
+      "seq": 34,
+      "comboLabel": "2-4-7-8"
+    },
+    {
+      "id": 360,
+      "balls": [
+        2,
+        4,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 70,
+      "comboLabel": "2-4-7-9"
+    },
+    {
+      "id": 361,
+      "balls": [
+        2,
+        4,
+        7,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 43,
+      "comboLabel": "2-4-7-10"
+    },
+    {
+      "id": 362,
+      "balls": [
+        2,
+        4,
+        7,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 34,
+      "comboLabel": "2-4-7-11"
+    },
+    {
+      "id": 363,
+      "balls": [
+        2,
+        4,
+        7,
+        12
+      ],
+      "teamCode": "NYI",
+      "seq": 12,
+      "comboLabel": "2-4-7-12"
+    },
+    {
+      "id": 364,
+      "balls": [
+        2,
+        4,
+        7,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 31,
+      "comboLabel": "2-4-7-13"
+    },
+    {
+      "id": 365,
+      "balls": [
+        2,
+        4,
+        7,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 10,
+      "comboLabel": "2-4-7-14"
+    },
+    {
+      "id": 366,
+      "balls": [
+        2,
+        4,
+        8,
+        9
+      ],
+      "teamCode": "PIT",
+      "seq": 18,
+      "comboLabel": "2-4-8-9"
+    },
+    {
+      "id": 367,
+      "balls": [
+        2,
+        4,
+        8,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 35,
+      "comboLabel": "2-4-8-10"
+    },
+    {
+      "id": 368,
+      "balls": [
+        2,
+        4,
+        8,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 45,
+      "comboLabel": "2-4-8-11"
+    },
+    {
+      "id": 369,
+      "balls": [
+        2,
+        4,
+        8,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 21,
+      "comboLabel": "2-4-8-12"
+    },
+    {
+      "id": 370,
+      "balls": [
+        2,
+        4,
+        8,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 23,
+      "comboLabel": "2-4-8-13"
+    },
+    {
+      "id": 371,
+      "balls": [
+        2,
+        4,
+        8,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 71,
+      "comboLabel": "2-4-8-14"
+    },
+    {
+      "id": 372,
+      "balls": [
+        2,
+        4,
+        9,
+        10
+      ],
+      "teamCode": "PIT",
+      "seq": 19,
+      "comboLabel": "2-4-9-10"
+    },
+    {
+      "id": 373,
+      "balls": [
+        2,
+        4,
+        9,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 13,
+      "comboLabel": "2-4-9-11"
+    },
+    {
+      "id": 374,
+      "balls": [
+        2,
+        4,
+        9,
+        12
+      ],
+      "teamCode": "UTA",
+      "seq": 7,
+      "comboLabel": "2-4-9-12"
+    },
+    {
+      "id": 375,
+      "balls": [
+        2,
+        4,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 72,
+      "comboLabel": "2-4-9-13"
+    },
+    {
+      "id": 376,
+      "balls": [
+        2,
+        4,
+        9,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 13,
+      "comboLabel": "2-4-9-14"
+    },
+    {
+      "id": 377,
+      "balls": [
+        2,
+        4,
+        10,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 44,
+      "comboLabel": "2-4-10-11"
+    },
+    {
+      "id": 378,
+      "balls": [
+        2,
+        4,
+        10,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 46,
+      "comboLabel": "2-4-10-12"
+    },
+    {
+      "id": 379,
+      "balls": [
+        2,
+        4,
+        10,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 22,
+      "comboLabel": "2-4-10-13"
+    },
+    {
+      "id": 380,
+      "balls": [
+        2,
+        4,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 45,
+      "comboLabel": "2-4-10-14"
+    },
+    {
+      "id": 381,
+      "balls": [
+        2,
+        4,
+        11,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 23,
+      "comboLabel": "2-4-11-12"
+    },
+    {
+      "id": 382,
+      "balls": [
+        2,
+        4,
+        11,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 14,
+      "comboLabel": "2-4-11-13"
+    },
+    {
+      "id": 383,
+      "balls": [
+        2,
+        4,
+        11,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 14,
+      "comboLabel": "2-4-11-14"
+    },
+    {
+      "id": 384,
+      "balls": [
+        2,
+        4,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 46,
+      "comboLabel": "2-4-12-13"
+    },
+    {
+      "id": 385,
+      "balls": [
+        2,
+        4,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 36,
+      "comboLabel": "2-4-12-14"
+    },
+    {
+      "id": 386,
+      "balls": [
+        2,
+        4,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 47,
+      "comboLabel": "2-4-13-14"
+    },
+    {
+      "id": 387,
+      "balls": [
+        2,
+        5,
+        6,
+        7
+      ],
+      "teamCode": "PIT",
+      "seq": 20,
+      "comboLabel": "2-5-6-7"
+    },
+    {
+      "id": 388,
+      "balls": [
+        2,
+        5,
+        6,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 73,
+      "comboLabel": "2-5-6-8"
+    },
+    {
+      "id": 389,
+      "balls": [
+        2,
+        5,
+        6,
+        9
+      ],
+      "teamCode": "SEA",
+      "seq": 32,
+      "comboLabel": "2-5-6-9"
+    },
+    {
+      "id": 390,
+      "balls": [
+        2,
+        5,
+        6,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 48,
+      "comboLabel": "2-5-6-10"
+    },
+    {
+      "id": 391,
+      "balls": [
+        2,
+        5,
+        6,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 35,
+      "comboLabel": "2-5-6-11"
+    },
+    {
+      "id": 392,
+      "balls": [
+        2,
+        5,
+        6,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 33,
+      "comboLabel": "2-5-6-12"
+    },
+    {
+      "id": 393,
+      "balls": [
+        2,
+        5,
+        6,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 74,
+      "comboLabel": "2-5-6-13"
+    },
+    {
+      "id": 394,
+      "balls": [
+        2,
+        5,
+        6,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 24,
+      "comboLabel": "2-5-6-14"
+    },
+    {
+      "id": 395,
+      "balls": [
+        2,
+        5,
+        7,
+        8
+      ],
+      "teamCode": "BOS",
+      "seq": 37,
+      "comboLabel": "2-5-7-8"
+    },
+    {
+      "id": 396,
+      "balls": [
+        2,
+        5,
+        7,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 36,
+      "comboLabel": "2-5-7-9"
+    },
+    {
+      "id": 397,
+      "balls": [
+        2,
+        5,
+        7,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 34,
+      "comboLabel": "2-5-7-10"
+    },
+    {
+      "id": 398,
+      "balls": [
+        2,
+        5,
+        7,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 37,
+      "comboLabel": "2-5-7-11"
+    },
+    {
+      "id": 399,
+      "balls": [
+        2,
+        5,
+        7,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 38,
+      "comboLabel": "2-5-7-12"
+    },
+    {
+      "id": 400,
+      "balls": [
+        2,
+        5,
+        7,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 47,
+      "comboLabel": "2-5-7-13"
+    },
+    {
+      "id": 401,
+      "balls": [
+        2,
+        5,
+        7,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 35,
+      "comboLabel": "2-5-7-14"
+    },
+    {
+      "id": 402,
+      "balls": [
+        2,
+        5,
+        8,
+        9
+      ],
+      "teamCode": "NYR",
+      "seq": 15,
+      "comboLabel": "2-5-8-9"
+    },
+    {
+      "id": 403,
+      "balls": [
+        2,
+        5,
+        8,
+        10
+      ],
+      "teamCode": "PIT",
+      "seq": 21,
+      "comboLabel": "2-5-8-10"
+    },
+    {
+      "id": 404,
+      "balls": [
+        2,
+        5,
+        8,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 25,
+      "comboLabel": "2-5-8-11"
+    },
+    {
+      "id": 405,
+      "balls": [
+        2,
+        5,
+        8,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 75,
+      "comboLabel": "2-5-8-12"
+    },
+    {
+      "id": 406,
+      "balls": [
+        2,
+        5,
+        8,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 48,
+      "comboLabel": "2-5-8-13"
+    },
+    {
+      "id": 407,
+      "balls": [
+        2,
+        5,
+        8,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 11,
+      "comboLabel": "2-5-8-14"
+    },
+    {
+      "id": 408,
+      "balls": [
+        2,
+        5,
+        9,
+        10
+      ],
+      "teamCode": "BUF",
+      "seq": 26,
+      "comboLabel": "2-5-9-10"
+    },
+    {
+      "id": 409,
+      "balls": [
+        2,
+        5,
+        9,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 49,
+      "comboLabel": "2-5-9-11"
+    },
+    {
+      "id": 410,
+      "balls": [
+        2,
+        5,
+        9,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 22,
+      "comboLabel": "2-5-9-12"
+    },
+    {
+      "id": 411,
+      "balls": [
+        2,
+        5,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 49,
+      "comboLabel": "2-5-9-13"
+    },
+    {
+      "id": 412,
+      "balls": [
+        2,
+        5,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 50,
+      "comboLabel": "2-5-9-14"
+    },
+    {
+      "id": 413,
+      "balls": [
+        2,
+        5,
+        10,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 39,
+      "comboLabel": "2-5-10-11"
+    },
+    {
+      "id": 414,
+      "balls": [
+        2,
+        5,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 51,
+      "comboLabel": "2-5-10-12"
+    },
+    {
+      "id": 415,
+      "balls": [
+        2,
+        5,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 50,
+      "comboLabel": "2-5-10-13"
+    },
+    {
+      "id": 416,
+      "balls": [
+        2,
+        5,
+        10,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 24,
+      "comboLabel": "2-5-10-14"
+    },
+    {
+      "id": 417,
+      "balls": [
+        2,
+        5,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 51,
+      "comboLabel": "2-5-11-12"
+    },
+    {
+      "id": 418,
+      "balls": [
+        2,
+        5,
+        11,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 36,
+      "comboLabel": "2-5-11-13"
+    },
+    {
+      "id": 419,
+      "balls": [
+        2,
+        5,
+        11,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 37,
+      "comboLabel": "2-5-11-14"
+    },
+    {
+      "id": 420,
+      "balls": [
+        2,
+        5,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 52,
+      "comboLabel": "2-5-12-13"
+    },
+    {
+      "id": 421,
+      "balls": [
+        2,
+        5,
+        12,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 38,
+      "comboLabel": "2-5-12-14"
+    },
+    {
+      "id": 422,
+      "balls": [
+        2,
+        5,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 52,
+      "comboLabel": "2-5-13-14"
+    },
+    {
+      "id": 423,
+      "balls": [
+        2,
+        6,
+        7,
+        8
+      ],
+      "teamCode": "CHI",
+      "seq": 53,
+      "comboLabel": "2-6-7-8"
+    },
+    {
+      "id": 424,
+      "balls": [
+        2,
+        6,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 76,
+      "comboLabel": "2-6-7-9"
+    },
+    {
+      "id": 425,
+      "balls": [
+        2,
+        6,
+        7,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 40,
+      "comboLabel": "2-6-7-10"
+    },
+    {
+      "id": 426,
+      "balls": [
+        2,
+        6,
+        7,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 53,
+      "comboLabel": "2-6-7-11"
+    },
+    {
+      "id": 427,
+      "balls": [
+        2,
+        6,
+        7,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 41,
+      "comboLabel": "2-6-7-12"
+    },
+    {
+      "id": 428,
+      "balls": [
+        2,
+        6,
+        7,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 25,
+      "comboLabel": "2-6-7-13"
+    },
+    {
+      "id": 429,
+      "balls": [
+        2,
+        6,
+        7,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 27,
+      "comboLabel": "2-6-7-14"
+    },
+    {
+      "id": 430,
+      "balls": [
+        2,
+        6,
+        8,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 26,
+      "comboLabel": "2-6-8-9"
+    },
+    {
+      "id": 431,
+      "balls": [
+        2,
+        6,
+        8,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 54,
+      "comboLabel": "2-6-8-10"
+    },
+    {
+      "id": 432,
+      "balls": [
+        2,
+        6,
+        8,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 77,
+      "comboLabel": "2-6-8-11"
+    },
+    {
+      "id": 433,
+      "balls": [
+        2,
+        6,
+        8,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 39,
+      "comboLabel": "2-6-8-12"
+    },
+    {
+      "id": 434,
+      "balls": [
+        2,
+        6,
+        8,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 78,
+      "comboLabel": "2-6-8-13"
+    },
+    {
+      "id": 435,
+      "balls": [
+        2,
+        6,
+        8,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 79,
+      "comboLabel": "2-6-8-14"
+    },
+    {
+      "id": 436,
+      "balls": [
+        2,
+        6,
+        9,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 80,
+      "comboLabel": "2-6-9-10"
+    },
+    {
+      "id": 437,
+      "balls": [
+        2,
+        6,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 81,
+      "comboLabel": "2-6-9-11"
+    },
+    {
+      "id": 438,
+      "balls": [
+        2,
+        6,
+        9,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 38,
+      "comboLabel": "2-6-9-12"
+    },
+    {
+      "id": 439,
+      "balls": [
+        2,
+        6,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 54,
+      "comboLabel": "2-6-9-13"
+    },
+    {
+      "id": 440,
+      "balls": [
+        2,
+        6,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 55,
+      "comboLabel": "2-6-9-14"
+    },
+    {
+      "id": 441,
+      "balls": [
+        2,
+        6,
+        10,
+        11
+      ],
+      "teamCode": "ANA",
+      "seq": 27,
+      "comboLabel": "2-6-10-11"
+    },
+    {
+      "id": 442,
+      "balls": [
+        2,
+        6,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 56,
+      "comboLabel": "2-6-10-12"
+    },
+    {
+      "id": 443,
+      "balls": [
+        2,
+        6,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 55,
+      "comboLabel": "2-6-10-13"
+    },
+    {
+      "id": 444,
+      "balls": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 82,
+      "comboLabel": "2-6-10-14"
+    },
+    {
+      "id": 445,
+      "balls": [
+        2,
+        6,
+        11,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 28,
+      "comboLabel": "2-6-11-12"
+    },
+    {
+      "id": 446,
+      "balls": [
+        2,
+        6,
+        11,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 56,
+      "comboLabel": "2-6-11-13"
+    },
+    {
+      "id": 447,
+      "balls": [
+        2,
+        6,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 42,
+      "comboLabel": "2-6-11-14"
+    },
+    {
+      "id": 448,
+      "balls": [
+        2,
+        6,
+        12,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 39,
+      "comboLabel": "2-6-12-13"
+    },
+    {
+      "id": 449,
+      "balls": [
+        2,
+        6,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 43,
+      "comboLabel": "2-6-12-14"
+    },
+    {
+      "id": 450,
+      "balls": [
+        2,
+        6,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 57,
+      "comboLabel": "2-6-13-14"
+    },
+    {
+      "id": 451,
+      "balls": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 44,
+      "comboLabel": "2-7-8-9"
+    },
+    {
+      "id": 452,
+      "balls": [
+        2,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 57,
+      "comboLabel": "2-7-8-10"
+    },
+    {
+      "id": 453,
+      "balls": [
+        2,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 40,
+      "comboLabel": "2-7-8-11"
+    },
+    {
+      "id": 454,
+      "balls": [
+        2,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 28,
+      "comboLabel": "2-7-8-12"
+    },
+    {
+      "id": 455,
+      "balls": [
+        2,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 29,
+      "comboLabel": "2-7-8-13"
+    },
+    {
+      "id": 456,
+      "balls": [
+        2,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 83,
+      "comboLabel": "2-7-8-14"
+    },
+    {
+      "id": 457,
+      "balls": [
+        2,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 40,
+      "comboLabel": "2-7-9-10"
+    },
+    {
+      "id": 458,
+      "balls": [
+        2,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "ANA",
+      "seq": 29,
+      "comboLabel": "2-7-9-11"
+    },
+    {
+      "id": 459,
+      "balls": [
+        2,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 30,
+      "comboLabel": "2-7-9-12"
+    },
+    {
+      "id": 460,
+      "balls": [
+        2,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 58,
+      "comboLabel": "2-7-9-13"
+    },
+    {
+      "id": 461,
+      "balls": [
+        2,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 59,
+      "comboLabel": "2-7-9-14"
+    },
+    {
+      "id": 462,
+      "balls": [
+        2,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 84,
+      "comboLabel": "2-7-10-11"
+    },
+    {
+      "id": 463,
+      "balls": [
+        2,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 60,
+      "comboLabel": "2-7-10-12"
+    },
+    {
+      "id": 464,
+      "balls": [
+        2,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 58,
+      "comboLabel": "2-7-10-13"
+    },
+    {
+      "id": 465,
+      "balls": [
+        2,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 41,
+      "comboLabel": "2-7-10-14"
+    },
+    {
+      "id": 466,
+      "balls": [
+        2,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 30,
+      "comboLabel": "2-7-11-12"
+    },
+    {
+      "id": 467,
+      "balls": [
+        2,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 85,
+      "comboLabel": "2-7-11-13"
+    },
+    {
+      "id": 468,
+      "balls": [
+        2,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 59,
+      "comboLabel": "2-7-11-14"
+    },
+    {
+      "id": 469,
+      "balls": [
+        2,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 61,
+      "comboLabel": "2-7-12-13"
+    },
+    {
+      "id": 470,
+      "balls": [
+        2,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 60,
+      "comboLabel": "2-7-12-14"
+    },
+    {
+      "id": 471,
+      "balls": [
+        2,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 9,
+      "comboLabel": "2-7-13-14"
+    },
+    {
+      "id": 472,
+      "balls": [
+        2,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "NYI",
+      "seq": 15,
+      "comboLabel": "2-8-9-10"
+    },
+    {
+      "id": 473,
+      "balls": [
+        2,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 31,
+      "comboLabel": "2-8-9-11"
+    },
+    {
+      "id": 474,
+      "balls": [
+        2,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 45,
+      "comboLabel": "2-8-9-12"
+    },
+    {
+      "id": 475,
+      "balls": [
+        2,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 86,
+      "comboLabel": "2-8-9-13"
+    },
+    {
+      "id": 476,
+      "balls": [
+        2,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 12,
+      "comboLabel": "2-8-9-14"
+    },
+    {
+      "id": 477,
+      "balls": [
+        2,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 61,
+      "comboLabel": "2-8-10-11"
+    },
+    {
+      "id": 478,
+      "balls": [
+        2,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 46,
+      "comboLabel": "2-8-10-12"
+    },
+    {
+      "id": 479,
+      "balls": [
+        2,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 62,
+      "comboLabel": "2-8-10-13"
+    },
+    {
+      "id": 480,
+      "balls": [
+        2,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 41,
+      "comboLabel": "2-8-10-14"
+    },
+    {
+      "id": 481,
+      "balls": [
+        2,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 63,
+      "comboLabel": "2-8-11-12"
+    },
+    {
+      "id": 482,
+      "balls": [
+        2,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 23,
+      "comboLabel": "2-8-11-13"
+    },
+    {
+      "id": 483,
+      "balls": [
+        2,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 87,
+      "comboLabel": "2-8-11-14"
+    },
+    {
+      "id": 484,
+      "balls": [
+        2,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 64,
+      "comboLabel": "2-8-12-13"
+    },
+    {
+      "id": 485,
+      "balls": [
+        2,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 88,
+      "comboLabel": "2-8-12-14"
+    },
+    {
+      "id": 486,
+      "balls": [
+        2,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 47,
+      "comboLabel": "2-8-13-14"
+    },
+    {
+      "id": 487,
+      "balls": [
+        2,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 48,
+      "comboLabel": "2-9-10-11"
+    },
+    {
+      "id": 488,
+      "balls": [
+        2,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 89,
+      "comboLabel": "2-9-10-12"
+    },
+    {
+      "id": 489,
+      "balls": [
+        2,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 42,
+      "comboLabel": "2-9-10-13"
+    },
+    {
+      "id": 490,
+      "balls": [
+        2,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 31,
+      "comboLabel": "2-9-10-14"
+    },
+    {
+      "id": 491,
+      "balls": [
+        2,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 43,
+      "comboLabel": "2-9-11-12"
+    },
+    {
+      "id": 492,
+      "balls": [
+        2,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 65,
+      "comboLabel": "2-9-11-13"
+    },
+    {
+      "id": 493,
+      "balls": [
+        2,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 42,
+      "comboLabel": "2-9-11-14"
+    },
+    {
+      "id": 494,
+      "balls": [
+        2,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 66,
+      "comboLabel": "2-9-12-13"
+    },
+    {
+      "id": 495,
+      "balls": [
+        2,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "VAN",
+      "seq": 2,
+      "comboLabel": "2-9-12-14"
+    },
+    {
+      "id": 496,
+      "balls": [
+        2,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 62,
+      "comboLabel": "2-9-13-14"
+    },
+    {
+      "id": 497,
+      "balls": [
+        2,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 32,
+      "comboLabel": "2-10-11-12"
+    },
+    {
+      "id": 498,
+      "balls": [
+        2,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 13,
+      "comboLabel": "2-10-11-13"
+    },
+    {
+      "id": 499,
+      "balls": [
+        2,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 43,
+      "comboLabel": "2-10-11-14"
+    },
+    {
+      "id": 500,
+      "balls": [
+        2,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 90,
+      "comboLabel": "2-10-12-13"
+    },
+    {
+      "id": 501,
+      "balls": [
+        2,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 32,
+      "comboLabel": "2-10-12-14"
+    },
+    {
+      "id": 502,
+      "balls": [
+        2,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 33,
+      "comboLabel": "2-10-13-14"
+    },
+    {
+      "id": 503,
+      "balls": [
+        2,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 49,
+      "comboLabel": "2-11-12-13"
+    },
+    {
+      "id": 504,
+      "balls": [
+        2,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 44,
+      "comboLabel": "2-11-12-14"
+    },
+    {
+      "id": 505,
+      "balls": [
+        2,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 67,
+      "comboLabel": "2-11-13-14"
+    },
+    {
+      "id": 506,
+      "balls": [
+        2,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 24,
+      "comboLabel": "2-12-13-14"
+    },
+    {
+      "id": 507,
+      "balls": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "teamCode": "PHI",
+      "seq": 50,
+      "comboLabel": "3-4-5-6"
+    },
+    {
+      "id": 508,
+      "balls": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "teamCode": "SEA",
+      "seq": 44,
+      "comboLabel": "3-4-5-7"
+    },
+    {
+      "id": 509,
+      "balls": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 91,
+      "comboLabel": "3-4-5-8"
+    },
+    {
+      "id": 510,
+      "balls": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "teamCode": "UTA",
+      "seq": 8,
+      "comboLabel": "3-4-5-9"
+    },
+    {
+      "id": 511,
+      "balls": [
+        3,
+        4,
+        5,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 63,
+      "comboLabel": "3-4-5-10"
+    },
+    {
+      "id": 512,
+      "balls": [
+        3,
+        4,
+        5,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 64,
+      "comboLabel": "3-4-5-11"
+    },
+    {
+      "id": 513,
+      "balls": [
+        3,
+        4,
+        5,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 45,
+      "comboLabel": "3-4-5-12"
+    },
+    {
+      "id": 514,
+      "balls": [
+        3,
+        4,
+        5,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 33,
+      "comboLabel": "3-4-5-13"
+    },
+    {
+      "id": 515,
+      "balls": [
+        3,
+        4,
+        5,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 65,
+      "comboLabel": "3-4-5-14"
+    },
+    {
+      "id": 516,
+      "balls": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "teamCode": "NSH",
+      "seq": 68,
+      "comboLabel": "3-4-6-7"
+    },
+    {
+      "id": 517,
+      "balls": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "teamCode": "PHI",
+      "seq": 51,
+      "comboLabel": "3-4-6-8"
+    },
+    {
+      "id": 518,
+      "balls": [
+        3,
+        4,
+        6,
+        9
+      ],
+      "teamCode": "NSH",
+      "seq": 69,
+      "comboLabel": "3-4-6-9"
+    },
+    {
+      "id": 519,
+      "balls": [
+        3,
+        4,
+        6,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 45,
+      "comboLabel": "3-4-6-10"
+    },
+    {
+      "id": 520,
+      "balls": [
+        3,
+        4,
+        6,
+        11
+      ],
+      "teamCode": "PIT",
+      "seq": 25,
+      "comboLabel": "3-4-6-11"
+    },
+    {
+      "id": 521,
+      "balls": [
+        3,
+        4,
+        6,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 26,
+      "comboLabel": "3-4-6-12"
+    },
+    {
+      "id": 522,
+      "balls": [
+        3,
+        4,
+        6,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 70,
+      "comboLabel": "3-4-6-13"
+    },
+    {
+      "id": 523,
+      "balls": [
+        3,
+        4,
+        6,
+        14
+      ],
+      "teamCode": "NYR",
+      "seq": 16,
+      "comboLabel": "3-4-6-14"
+    },
+    {
+      "id": 524,
+      "balls": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "teamCode": "PHI",
+      "seq": 52,
+      "comboLabel": "3-4-7-8"
+    },
+    {
+      "id": 525,
+      "balls": [
+        3,
+        4,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 92,
+      "comboLabel": "3-4-7-9"
+    },
+    {
+      "id": 526,
+      "balls": [
+        3,
+        4,
+        7,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 71,
+      "comboLabel": "3-4-7-10"
+    },
+    {
+      "id": 527,
+      "balls": [
+        3,
+        4,
+        7,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 93,
+      "comboLabel": "3-4-7-11"
+    },
+    {
+      "id": 528,
+      "balls": [
+        3,
+        4,
+        7,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 94,
+      "comboLabel": "3-4-7-12"
+    },
+    {
+      "id": 529,
+      "balls": [
+        3,
+        4,
+        7,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 66,
+      "comboLabel": "3-4-7-13"
+    },
+    {
+      "id": 530,
+      "balls": [
+        3,
+        4,
+        7,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 72,
+      "comboLabel": "3-4-7-14"
+    },
+    {
+      "id": 531,
+      "balls": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 34,
+      "comboLabel": "3-4-8-9"
+    },
+    {
+      "id": 532,
+      "balls": [
+        3,
+        4,
+        8,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 46,
+      "comboLabel": "3-4-8-10"
+    },
+    {
+      "id": 533,
+      "balls": [
+        3,
+        4,
+        8,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 53,
+      "comboLabel": "3-4-8-11"
+    },
+    {
+      "id": 534,
+      "balls": [
+        3,
+        4,
+        8,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 46,
+      "comboLabel": "3-4-8-12"
+    },
+    {
+      "id": 535,
+      "balls": [
+        3,
+        4,
+        8,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 14,
+      "comboLabel": "3-4-8-13"
+    },
+    {
+      "id": 536,
+      "balls": [
+        3,
+        4,
+        8,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 73,
+      "comboLabel": "3-4-8-14"
+    },
+    {
+      "id": 537,
+      "balls": [
+        3,
+        4,
+        9,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 67,
+      "comboLabel": "3-4-9-10"
+    },
+    {
+      "id": 538,
+      "balls": [
+        3,
+        4,
+        9,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 74,
+      "comboLabel": "3-4-9-11"
+    },
+    {
+      "id": 539,
+      "balls": [
+        3,
+        4,
+        9,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 54,
+      "comboLabel": "3-4-9-12"
+    },
+    {
+      "id": 540,
+      "balls": [
+        3,
+        4,
+        9,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 55,
+      "comboLabel": "3-4-9-13"
+    },
+    {
+      "id": 541,
+      "balls": [
+        3,
+        4,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 68,
+      "comboLabel": "3-4-9-14"
+    },
+    {
+      "id": 542,
+      "balls": [
+        3,
+        4,
+        10,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 75,
+      "comboLabel": "3-4-10-11"
+    },
+    {
+      "id": 543,
+      "balls": [
+        3,
+        4,
+        10,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 56,
+      "comboLabel": "3-4-10-12"
+    },
+    {
+      "id": 544,
+      "balls": [
+        3,
+        4,
+        10,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 47,
+      "comboLabel": "3-4-10-13"
+    },
+    {
+      "id": 545,
+      "balls": [
+        3,
+        4,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 95,
+      "comboLabel": "3-4-10-14"
+    },
+    {
+      "id": 546,
+      "balls": [
+        3,
+        4,
+        11,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 27,
+      "comboLabel": "3-4-11-12"
+    },
+    {
+      "id": 547,
+      "balls": [
+        3,
+        4,
+        11,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 16,
+      "comboLabel": "3-4-11-13"
+    },
+    {
+      "id": 548,
+      "balls": [
+        3,
+        4,
+        11,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 69,
+      "comboLabel": "3-4-11-14"
+    },
+    {
+      "id": 549,
+      "balls": [
+        3,
+        4,
+        12,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 17,
+      "comboLabel": "3-4-12-13"
+    },
+    {
+      "id": 550,
+      "balls": [
+        3,
+        4,
+        12,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 28,
+      "comboLabel": "3-4-12-14"
+    },
+    {
+      "id": 551,
+      "balls": [
+        3,
+        4,
+        13,
+        14
+      ],
+      "teamCode": "UTA",
+      "seq": 9,
+      "comboLabel": "3-4-13-14"
+    },
+    {
+      "id": 552,
+      "balls": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "teamCode": "ANA",
+      "seq": 35,
+      "comboLabel": "3-5-6-7"
+    },
+    {
+      "id": 553,
+      "balls": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 96,
+      "comboLabel": "3-5-6-8"
+    },
+    {
+      "id": 554,
+      "balls": [
+        3,
+        5,
+        6,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 36,
+      "comboLabel": "3-5-6-9"
+    },
+    {
+      "id": 555,
+      "balls": [
+        3,
+        5,
+        6,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 97,
+      "comboLabel": "3-5-6-10"
+    },
+    {
+      "id": 556,
+      "balls": [
+        3,
+        5,
+        6,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 70,
+      "comboLabel": "3-5-6-11"
+    },
+    {
+      "id": 557,
+      "balls": [
+        3,
+        5,
+        6,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 47,
+      "comboLabel": "3-5-6-12"
+    },
+    {
+      "id": 558,
+      "balls": [
+        3,
+        5,
+        6,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 98,
+      "comboLabel": "3-5-6-13"
+    },
+    {
+      "id": 559,
+      "balls": [
+        3,
+        5,
+        6,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 71,
+      "comboLabel": "3-5-6-14"
+    },
+    {
+      "id": 560,
+      "balls": [
+        3,
+        5,
+        7,
+        8
+      ],
+      "teamCode": "SEA",
+      "seq": 48,
+      "comboLabel": "3-5-7-8"
+    },
+    {
+      "id": 561,
+      "balls": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 72,
+      "comboLabel": "3-5-7-9"
+    },
+    {
+      "id": 562,
+      "balls": [
+        3,
+        5,
+        7,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 73,
+      "comboLabel": "3-5-7-10"
+    },
+    {
+      "id": 563,
+      "balls": [
+        3,
+        5,
+        7,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 49,
+      "comboLabel": "3-5-7-11"
+    },
+    {
+      "id": 564,
+      "balls": [
+        3,
+        5,
+        7,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 37,
+      "comboLabel": "3-5-7-12"
+    },
+    {
+      "id": 565,
+      "balls": [
+        3,
+        5,
+        7,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 34,
+      "comboLabel": "3-5-7-13"
+    },
+    {
+      "id": 566,
+      "balls": [
+        3,
+        5,
+        7,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 74,
+      "comboLabel": "3-5-7-14"
+    },
+    {
+      "id": 567,
+      "balls": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "teamCode": "BOS",
+      "seq": 48,
+      "comboLabel": "3-5-8-9"
+    },
+    {
+      "id": 568,
+      "balls": [
+        3,
+        5,
+        8,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 99,
+      "comboLabel": "3-5-8-10"
+    },
+    {
+      "id": 569,
+      "balls": [
+        3,
+        5,
+        8,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 49,
+      "comboLabel": "3-5-8-11"
+    },
+    {
+      "id": 570,
+      "balls": [
+        3,
+        5,
+        8,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 75,
+      "comboLabel": "3-5-8-12"
+    },
+    {
+      "id": 571,
+      "balls": [
+        3,
+        5,
+        8,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 76,
+      "comboLabel": "3-5-8-13"
+    },
+    {
+      "id": 572,
+      "balls": [
+        3,
+        5,
+        8,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 57,
+      "comboLabel": "3-5-8-14"
+    },
+    {
+      "id": 573,
+      "balls": [
+        3,
+        5,
+        9,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 50,
+      "comboLabel": "3-5-9-10"
+    },
+    {
+      "id": 574,
+      "balls": [
+        3,
+        5,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 100,
+      "comboLabel": "3-5-9-11"
+    },
+    {
+      "id": 575,
+      "balls": [
+        3,
+        5,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 101,
+      "comboLabel": "3-5-9-12"
+    },
+    {
+      "id": 576,
+      "balls": [
+        3,
+        5,
+        9,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 58,
+      "comboLabel": "3-5-9-13"
+    },
+    {
+      "id": 577,
+      "balls": [
+        3,
+        5,
+        9,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 59,
+      "comboLabel": "3-5-9-14"
+    },
+    {
+      "id": 578,
+      "balls": [
+        3,
+        5,
+        10,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 60,
+      "comboLabel": "3-5-10-11"
+    },
+    {
+      "id": 579,
+      "balls": [
+        3,
+        5,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 102,
+      "comboLabel": "3-5-10-12"
+    },
+    {
+      "id": 580,
+      "balls": [
+        3,
+        5,
+        10,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 77,
+      "comboLabel": "3-5-10-13"
+    },
+    {
+      "id": 581,
+      "balls": [
+        3,
+        5,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 78,
+      "comboLabel": "3-5-10-14"
+    },
+    {
+      "id": 582,
+      "balls": [
+        3,
+        5,
+        11,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 38,
+      "comboLabel": "3-5-11-12"
+    },
+    {
+      "id": 583,
+      "balls": [
+        3,
+        5,
+        11,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 39,
+      "comboLabel": "3-5-11-13"
+    },
+    {
+      "id": 584,
+      "balls": [
+        3,
+        5,
+        11,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 40,
+      "comboLabel": "3-5-11-14"
+    },
+    {
+      "id": 585,
+      "balls": [
+        3,
+        5,
+        12,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 51,
+      "comboLabel": "3-5-12-13"
+    },
+    {
+      "id": 586,
+      "balls": [
+        3,
+        5,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 52,
+      "comboLabel": "3-5-12-14"
+    },
+    {
+      "id": 587,
+      "balls": [
+        3,
+        5,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 103,
+      "comboLabel": "3-5-13-14"
+    },
+    {
+      "id": 588,
+      "balls": [
+        3,
+        6,
+        7,
+        8
+      ],
+      "teamCode": "NYI",
+      "seq": 17,
+      "comboLabel": "3-6-7-8"
+    },
+    {
+      "id": 589,
+      "balls": [
+        3,
+        6,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 104,
+      "comboLabel": "3-6-7-9"
+    },
+    {
+      "id": 590,
+      "balls": [
+        3,
+        6,
+        7,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 76,
+      "comboLabel": "3-6-7-10"
+    },
+    {
+      "id": 591,
+      "balls": [
+        3,
+        6,
+        7,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 77,
+      "comboLabel": "3-6-7-11"
+    },
+    {
+      "id": 592,
+      "balls": [
+        3,
+        6,
+        7,
+        12
+      ],
+      "teamCode": "NYR",
+      "seq": 18,
+      "comboLabel": "3-6-7-12"
+    },
+    {
+      "id": 593,
+      "balls": [
+        3,
+        6,
+        7,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 61,
+      "comboLabel": "3-6-7-13"
+    },
+    {
+      "id": 594,
+      "balls": [
+        3,
+        6,
+        7,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 50,
+      "comboLabel": "3-6-7-14"
+    },
+    {
+      "id": 595,
+      "balls": [
+        3,
+        6,
+        8,
+        9
+      ],
+      "teamCode": "NYI",
+      "seq": 18,
+      "comboLabel": "3-6-8-9"
+    },
+    {
+      "id": 596,
+      "balls": [
+        3,
+        6,
+        8,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 78,
+      "comboLabel": "3-6-8-10"
+    },
+    {
+      "id": 597,
+      "balls": [
+        3,
+        6,
+        8,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 35,
+      "comboLabel": "3-6-8-11"
+    },
+    {
+      "id": 598,
+      "balls": [
+        3,
+        6,
+        8,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 79,
+      "comboLabel": "3-6-8-12"
+    },
+    {
+      "id": 599,
+      "balls": [
+        3,
+        6,
+        8,
+        13
+      ],
+      "teamCode": "DET",
+      "seq": 10,
+      "comboLabel": "3-6-8-13"
+    },
+    {
+      "id": 600,
+      "balls": [
+        3,
+        6,
+        8,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 62,
+      "comboLabel": "3-6-8-14"
+    },
+    {
+      "id": 601,
+      "balls": [
+        3,
+        6,
+        9,
+        10
+      ],
+      "teamCode": "UTA",
+      "seq": 10,
+      "comboLabel": "3-6-9-10"
+    },
+    {
+      "id": 602,
+      "balls": [
+        3,
+        6,
+        9,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 63,
+      "comboLabel": "3-6-9-11"
+    },
+    {
+      "id": 603,
+      "balls": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 80,
+      "comboLabel": "3-6-9-12"
+    },
+    {
+      "id": 604,
+      "balls": [
+        3,
+        6,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 79,
+      "comboLabel": "3-6-9-13"
+    },
+    {
+      "id": 605,
+      "balls": [
+        3,
+        6,
+        9,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 19,
+      "comboLabel": "3-6-9-14"
+    },
+    {
+      "id": 606,
+      "balls": [
+        3,
+        6,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 53,
+      "comboLabel": "3-6-10-11"
+    },
+    {
+      "id": 607,
+      "balls": [
+        3,
+        6,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 105,
+      "comboLabel": "3-6-10-12"
+    },
+    {
+      "id": 608,
+      "balls": [
+        3,
+        6,
+        10,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 106,
+      "comboLabel": "3-6-10-13"
+    },
+    {
+      "id": 609,
+      "balls": [
+        3,
+        6,
+        10,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 80,
+      "comboLabel": "3-6-10-14"
+    },
+    {
+      "id": 610,
+      "balls": [
+        3,
+        6,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 107,
+      "comboLabel": "3-6-11-12"
+    },
+    {
+      "id": 611,
+      "balls": [
+        3,
+        6,
+        11,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 36,
+      "comboLabel": "3-6-11-13"
+    },
+    {
+      "id": 612,
+      "balls": [
+        3,
+        6,
+        11,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 81,
+      "comboLabel": "3-6-11-14"
+    },
+    {
+      "id": 613,
+      "balls": [
+        3,
+        6,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 108,
+      "comboLabel": "3-6-12-13"
+    },
+    {
+      "id": 614,
+      "balls": [
+        3,
+        6,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 82,
+      "comboLabel": "3-6-12-14"
+    },
+    {
+      "id": 615,
+      "balls": [
+        3,
+        6,
+        13,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 41,
+      "comboLabel": "3-6-13-14"
+    },
+    {
+      "id": 616,
+      "balls": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 64,
+      "comboLabel": "3-7-8-9"
+    },
+    {
+      "id": 617,
+      "balls": [
+        3,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "BUF",
+      "seq": 37,
+      "comboLabel": "3-7-8-10"
+    },
+    {
+      "id": 618,
+      "balls": [
+        3,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 109,
+      "comboLabel": "3-7-8-11"
+    },
+    {
+      "id": 619,
+      "balls": [
+        3,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 54,
+      "comboLabel": "3-7-8-12"
+    },
+    {
+      "id": 620,
+      "balls": [
+        3,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 65,
+      "comboLabel": "3-7-8-13"
+    },
+    {
+      "id": 621,
+      "balls": [
+        3,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 83,
+      "comboLabel": "3-7-8-14"
+    },
+    {
+      "id": 622,
+      "balls": [
+        3,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 51,
+      "comboLabel": "3-7-9-10"
+    },
+    {
+      "id": 623,
+      "balls": [
+        3,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 84,
+      "comboLabel": "3-7-9-11"
+    },
+    {
+      "id": 624,
+      "balls": [
+        3,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 66,
+      "comboLabel": "3-7-9-12"
+    },
+    {
+      "id": 625,
+      "balls": [
+        3,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 110,
+      "comboLabel": "3-7-9-13"
+    },
+    {
+      "id": 626,
+      "balls": [
+        3,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 38,
+      "comboLabel": "3-7-9-14"
+    },
+    {
+      "id": 627,
+      "balls": [
+        3,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 81,
+      "comboLabel": "3-7-10-11"
+    },
+    {
+      "id": 628,
+      "balls": [
+        3,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 55,
+      "comboLabel": "3-7-10-12"
+    },
+    {
+      "id": 629,
+      "balls": [
+        3,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 67,
+      "comboLabel": "3-7-10-13"
+    },
+    {
+      "id": 630,
+      "balls": [
+        3,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 11,
+      "comboLabel": "3-7-10-14"
+    },
+    {
+      "id": 631,
+      "balls": [
+        3,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 52,
+      "comboLabel": "3-7-11-12"
+    },
+    {
+      "id": 632,
+      "balls": [
+        3,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 53,
+      "comboLabel": "3-7-11-13"
+    },
+    {
+      "id": 633,
+      "balls": [
+        3,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 85,
+      "comboLabel": "3-7-11-14"
+    },
+    {
+      "id": 634,
+      "balls": [
+        3,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 42,
+      "comboLabel": "3-7-12-13"
+    },
+    {
+      "id": 635,
+      "balls": [
+        3,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 111,
+      "comboLabel": "3-7-12-14"
+    },
+    {
+      "id": 636,
+      "balls": [
+        3,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 112,
+      "comboLabel": "3-7-13-14"
+    },
+    {
+      "id": 637,
+      "balls": [
+        3,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "NYI",
+      "seq": 20,
+      "comboLabel": "3-8-9-10"
+    },
+    {
+      "id": 638,
+      "balls": [
+        3,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 54,
+      "comboLabel": "3-8-9-11"
+    },
+    {
+      "id": 639,
+      "balls": [
+        3,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "ANA",
+      "seq": 43,
+      "comboLabel": "3-8-9-12"
+    },
+    {
+      "id": 640,
+      "balls": [
+        3,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 82,
+      "comboLabel": "3-8-9-13"
+    },
+    {
+      "id": 641,
+      "balls": [
+        3,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 83,
+      "comboLabel": "3-8-9-14"
+    },
+    {
+      "id": 642,
+      "balls": [
+        3,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 113,
+      "comboLabel": "3-8-10-11"
+    },
+    {
+      "id": 643,
+      "balls": [
+        3,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 86,
+      "comboLabel": "3-8-10-12"
+    },
+    {
+      "id": 644,
+      "balls": [
+        3,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 56,
+      "comboLabel": "3-8-10-13"
+    },
+    {
+      "id": 645,
+      "balls": [
+        3,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 114,
+      "comboLabel": "3-8-10-14"
+    },
+    {
+      "id": 646,
+      "balls": [
+        3,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 84,
+      "comboLabel": "3-8-11-12"
+    },
+    {
+      "id": 647,
+      "balls": [
+        3,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 19,
+      "comboLabel": "3-8-11-13"
+    },
+    {
+      "id": 648,
+      "balls": [
+        3,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 21,
+      "comboLabel": "3-8-11-14"
+    },
+    {
+      "id": 649,
+      "balls": [
+        3,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 57,
+      "comboLabel": "3-8-12-13"
+    },
+    {
+      "id": 650,
+      "balls": [
+        3,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 115,
+      "comboLabel": "3-8-12-14"
+    },
+    {
+      "id": 651,
+      "balls": [
+        3,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 87,
+      "comboLabel": "3-8-13-14"
+    },
+    {
+      "id": 652,
+      "balls": [
+        3,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 88,
+      "comboLabel": "3-9-10-11"
+    },
+    {
+      "id": 653,
+      "balls": [
+        3,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "CBJ",
+      "seq": 15,
+      "comboLabel": "3-9-10-12"
+    },
+    {
+      "id": 654,
+      "balls": [
+        3,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 116,
+      "comboLabel": "3-9-10-13"
+    },
+    {
+      "id": 655,
+      "balls": [
+        3,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 29,
+      "comboLabel": "3-9-10-14"
+    },
+    {
+      "id": 656,
+      "balls": [
+        3,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 30,
+      "comboLabel": "3-9-11-12"
+    },
+    {
+      "id": 657,
+      "balls": [
+        3,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 89,
+      "comboLabel": "3-9-11-13"
+    },
+    {
+      "id": 658,
+      "balls": [
+        3,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 16,
+      "comboLabel": "3-9-11-14"
+    },
+    {
+      "id": 659,
+      "balls": [
+        3,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 117,
+      "comboLabel": "3-9-12-13"
+    },
+    {
+      "id": 660,
+      "balls": [
+        3,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 39,
+      "comboLabel": "3-9-12-14"
+    },
+    {
+      "id": 661,
+      "balls": [
+        3,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 58,
+      "comboLabel": "3-9-13-14"
+    },
+    {
+      "id": 662,
+      "balls": [
+        3,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 59,
+      "comboLabel": "3-10-11-12"
+    },
+    {
+      "id": 663,
+      "balls": [
+        3,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 90,
+      "comboLabel": "3-10-11-13"
+    },
+    {
+      "id": 664,
+      "balls": [
+        3,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 44,
+      "comboLabel": "3-10-11-14"
+    },
+    {
+      "id": 665,
+      "balls": [
+        3,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 91,
+      "comboLabel": "3-10-12-13"
+    },
+    {
+      "id": 666,
+      "balls": [
+        3,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 31,
+      "comboLabel": "3-10-12-14"
+    },
+    {
+      "id": 667,
+      "balls": [
+        3,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 32,
+      "comboLabel": "3-10-13-14"
+    },
+    {
+      "id": 668,
+      "balls": [
+        3,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 55,
+      "comboLabel": "3-11-12-13"
+    },
+    {
+      "id": 669,
+      "balls": [
+        3,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 56,
+      "comboLabel": "3-11-12-14"
+    },
+    {
+      "id": 670,
+      "balls": [
+        3,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 60,
+      "comboLabel": "3-11-13-14"
+    },
+    {
+      "id": 671,
+      "balls": [
+        3,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 40,
+      "comboLabel": "3-12-13-14"
+    },
+    {
+      "id": 672,
+      "balls": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "teamCode": "BOS",
+      "seq": 61,
+      "comboLabel": "4-5-6-7"
+    },
+    {
+      "id": 673,
+      "balls": [
+        4,
+        5,
+        6,
+        8
+      ],
+      "teamCode": "NSH",
+      "seq": 85,
+      "comboLabel": "4-5-6-8"
+    },
+    {
+      "id": 674,
+      "balls": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 118,
+      "comboLabel": "4-5-6-9"
+    },
+    {
+      "id": 675,
+      "balls": [
+        4,
+        5,
+        6,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 62,
+      "comboLabel": "4-5-6-10"
+    },
+    {
+      "id": 676,
+      "balls": [
+        4,
+        5,
+        6,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 92,
+      "comboLabel": "4-5-6-11"
+    },
+    {
+      "id": 677,
+      "balls": [
+        4,
+        5,
+        6,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 119,
+      "comboLabel": "4-5-6-12"
+    },
+    {
+      "id": 678,
+      "balls": [
+        4,
+        5,
+        6,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 120,
+      "comboLabel": "4-5-6-13"
+    },
+    {
+      "id": 679,
+      "balls": [
+        4,
+        5,
+        6,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 93,
+      "comboLabel": "4-5-6-14"
+    },
+    {
+      "id": 680,
+      "balls": [
+        4,
+        5,
+        7,
+        8
+      ],
+      "teamCode": "NYI",
+      "seq": 22,
+      "comboLabel": "4-5-7-8"
+    },
+    {
+      "id": 681,
+      "balls": [
+        4,
+        5,
+        7,
+        9
+      ],
+      "teamCode": "NSH",
+      "seq": 86,
+      "comboLabel": "4-5-7-9"
+    },
+    {
+      "id": 682,
+      "balls": [
+        4,
+        5,
+        7,
+        10
+      ],
+      "teamCode": "BOS",
+      "seq": 63,
+      "comboLabel": "4-5-7-10"
+    },
+    {
+      "id": 683,
+      "balls": [
+        4,
+        5,
+        7,
+        11
+      ],
+      "teamCode": "ANA",
+      "seq": 45,
+      "comboLabel": "4-5-7-11"
+    },
+    {
+      "id": 684,
+      "balls": [
+        4,
+        5,
+        7,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 57,
+      "comboLabel": "4-5-7-12"
+    },
+    {
+      "id": 685,
+      "balls": [
+        4,
+        5,
+        7,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 87,
+      "comboLabel": "4-5-7-13"
+    },
+    {
+      "id": 686,
+      "balls": [
+        4,
+        5,
+        7,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 94,
+      "comboLabel": "4-5-7-14"
+    },
+    {
+      "id": 687,
+      "balls": [
+        4,
+        5,
+        8,
+        9
+      ],
+      "teamCode": "BOS",
+      "seq": 64,
+      "comboLabel": "4-5-8-9"
+    },
+    {
+      "id": 688,
+      "balls": [
+        4,
+        5,
+        8,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 46,
+      "comboLabel": "4-5-8-10"
+    },
+    {
+      "id": 689,
+      "balls": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "teamCode": "CGY",
+      "seq": 2,
+      "comboLabel": "4-5-8-11"
+    },
+    {
+      "id": 690,
+      "balls": [
+        4,
+        5,
+        8,
+        12
+      ],
+      "teamCode": "NYI",
+      "seq": 23,
+      "comboLabel": "4-5-8-12"
+    },
+    {
+      "id": 691,
+      "balls": [
+        4,
+        5,
+        8,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 95,
+      "comboLabel": "4-5-8-13"
+    },
+    {
+      "id": 692,
+      "balls": [
+        4,
+        5,
+        8,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 121,
+      "comboLabel": "4-5-8-14"
+    },
+    {
+      "id": 693,
+      "balls": [
+        4,
+        5,
+        9,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 122,
+      "comboLabel": "4-5-9-10"
+    },
+    {
+      "id": 694,
+      "balls": [
+        4,
+        5,
+        9,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 65,
+      "comboLabel": "4-5-9-11"
+    },
+    {
+      "id": 695,
+      "balls": [
+        4,
+        5,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 123,
+      "comboLabel": "4-5-9-12"
+    },
+    {
+      "id": 696,
+      "balls": [
+        4,
+        5,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 124,
+      "comboLabel": "4-5-9-13"
+    },
+    {
+      "id": 697,
+      "balls": [
+        4,
+        5,
+        9,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 66,
+      "comboLabel": "4-5-9-14"
+    },
+    {
+      "id": 698,
+      "balls": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 125,
+      "comboLabel": "4-5-10-11"
+    },
+    {
+      "id": 699,
+      "balls": [
+        4,
+        5,
+        10,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 96,
+      "comboLabel": "4-5-10-12"
+    },
+    {
+      "id": 700,
+      "balls": [
+        4,
+        5,
+        10,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 68,
+      "comboLabel": "4-5-10-13"
+    },
+    {
+      "id": 701,
+      "balls": [
+        4,
+        5,
+        10,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 41,
+      "comboLabel": "4-5-10-14"
+    },
+    {
+      "id": 702,
+      "balls": [
+        4,
+        5,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 88,
+      "comboLabel": "4-5-11-12"
+    },
+    {
+      "id": 703,
+      "balls": [
+        4,
+        5,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 126,
+      "comboLabel": "4-5-11-13"
+    },
+    {
+      "id": 704,
+      "balls": [
+        4,
+        5,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 69,
+      "comboLabel": "4-5-11-14"
+    },
+    {
+      "id": 705,
+      "balls": [
+        4,
+        5,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 127,
+      "comboLabel": "4-5-12-13"
+    },
+    {
+      "id": 706,
+      "balls": [
+        4,
+        5,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 97,
+      "comboLabel": "4-5-12-14"
+    },
+    {
+      "id": 707,
+      "balls": [
+        4,
+        5,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 98,
+      "comboLabel": "4-5-13-14"
+    },
+    {
+      "id": 708,
+      "balls": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "teamCode": "SJS",
+      "seq": 128,
+      "comboLabel": "4-6-7-8"
+    },
+    {
+      "id": 709,
+      "balls": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "teamCode": "ANA",
+      "seq": 47,
+      "comboLabel": "4-6-7-9"
+    },
+    {
+      "id": 710,
+      "balls": [
+        4,
+        6,
+        7,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 129,
+      "comboLabel": "4-6-7-10"
+    },
+    {
+      "id": 711,
+      "balls": [
+        4,
+        6,
+        7,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 20,
+      "comboLabel": "4-6-7-11"
+    },
+    {
+      "id": 712,
+      "balls": [
+        4,
+        6,
+        7,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 130,
+      "comboLabel": "4-6-7-12"
+    },
+    {
+      "id": 713,
+      "balls": [
+        4,
+        6,
+        7,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 42,
+      "comboLabel": "4-6-7-13"
+    },
+    {
+      "id": 714,
+      "balls": [
+        4,
+        6,
+        7,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 58,
+      "comboLabel": "4-6-7-14"
+    },
+    {
+      "id": 715,
+      "balls": [
+        4,
+        6,
+        8,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 99,
+      "comboLabel": "4-6-8-9"
+    },
+    {
+      "id": 716,
+      "balls": [
+        4,
+        6,
+        8,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 70,
+      "comboLabel": "4-6-8-10"
+    },
+    {
+      "id": 717,
+      "balls": [
+        4,
+        6,
+        8,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 21,
+      "comboLabel": "4-6-8-11"
+    },
+    {
+      "id": 718,
+      "balls": [
+        4,
+        6,
+        8,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 67,
+      "comboLabel": "4-6-8-12"
+    },
+    {
+      "id": 719,
+      "balls": [
+        4,
+        6,
+        8,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 22,
+      "comboLabel": "4-6-8-13"
+    },
+    {
+      "id": 720,
+      "balls": [
+        4,
+        6,
+        8,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 100,
+      "comboLabel": "4-6-8-14"
+    },
+    {
+      "id": 721,
+      "balls": [
+        4,
+        6,
+        9,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 131,
+      "comboLabel": "4-6-9-10"
+    },
+    {
+      "id": 722,
+      "balls": [
+        4,
+        6,
+        9,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 43,
+      "comboLabel": "4-6-9-11"
+    },
+    {
+      "id": 723,
+      "balls": [
+        4,
+        6,
+        9,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 59,
+      "comboLabel": "4-6-9-12"
+    },
+    {
+      "id": 724,
+      "balls": [
+        4,
+        6,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 101,
+      "comboLabel": "4-6-9-13"
+    },
+    {
+      "id": 725,
+      "balls": [
+        4,
+        6,
+        9,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 33,
+      "comboLabel": "4-6-9-14"
+    },
+    {
+      "id": 726,
+      "balls": [
+        4,
+        6,
+        10,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 60,
+      "comboLabel": "4-6-10-11"
+    },
+    {
+      "id": 727,
+      "balls": [
+        4,
+        6,
+        10,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 89,
+      "comboLabel": "4-6-10-12"
+    },
+    {
+      "id": 728,
+      "balls": [
+        4,
+        6,
+        10,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 44,
+      "comboLabel": "4-6-10-13"
+    },
+    {
+      "id": 729,
+      "balls": [
+        4,
+        6,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 132,
+      "comboLabel": "4-6-10-14"
+    },
+    {
+      "id": 730,
+      "balls": [
+        4,
+        6,
+        11,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 102,
+      "comboLabel": "4-6-11-12"
+    },
+    {
+      "id": 731,
+      "balls": [
+        4,
+        6,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 103,
+      "comboLabel": "4-6-11-13"
+    },
+    {
+      "id": 732,
+      "balls": [
+        4,
+        6,
+        11,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 90,
+      "comboLabel": "4-6-11-14"
+    },
+    {
+      "id": 733,
+      "balls": [
+        4,
+        6,
+        12,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 34,
+      "comboLabel": "4-6-12-13"
+    },
+    {
+      "id": 734,
+      "balls": [
+        4,
+        6,
+        12,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 35,
+      "comboLabel": "4-6-12-14"
+    },
+    {
+      "id": 735,
+      "balls": [
+        4,
+        6,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 133,
+      "comboLabel": "4-6-13-14"
+    },
+    {
+      "id": 736,
+      "balls": [
+        4,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "PHI",
+      "seq": 71,
+      "comboLabel": "4-7-8-9"
+    },
+    {
+      "id": 737,
+      "balls": [
+        4,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "BUF",
+      "seq": 45,
+      "comboLabel": "4-7-8-10"
+    },
+    {
+      "id": 738,
+      "balls": [
+        4,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 134,
+      "comboLabel": "4-7-8-11"
+    },
+    {
+      "id": 739,
+      "balls": [
+        4,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 135,
+      "comboLabel": "4-7-8-12"
+    },
+    {
+      "id": 740,
+      "balls": [
+        4,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 104,
+      "comboLabel": "4-7-8-13"
+    },
+    {
+      "id": 741,
+      "balls": [
+        4,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 48,
+      "comboLabel": "4-7-8-14"
+    },
+    {
+      "id": 742,
+      "balls": [
+        4,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "SEA",
+      "seq": 61,
+      "comboLabel": "4-7-9-10"
+    },
+    {
+      "id": 743,
+      "balls": [
+        4,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 62,
+      "comboLabel": "4-7-9-11"
+    },
+    {
+      "id": 744,
+      "balls": [
+        4,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 91,
+      "comboLabel": "4-7-9-12"
+    },
+    {
+      "id": 745,
+      "balls": [
+        4,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 136,
+      "comboLabel": "4-7-9-13"
+    },
+    {
+      "id": 746,
+      "balls": [
+        4,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 137,
+      "comboLabel": "4-7-9-14"
+    },
+    {
+      "id": 747,
+      "balls": [
+        4,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 68,
+      "comboLabel": "4-7-10-11"
+    },
+    {
+      "id": 748,
+      "balls": [
+        4,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 92,
+      "comboLabel": "4-7-10-12"
+    },
+    {
+      "id": 749,
+      "balls": [
+        4,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 46,
+      "comboLabel": "4-7-10-13"
+    },
+    {
+      "id": 750,
+      "balls": [
+        4,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 72,
+      "comboLabel": "4-7-10-14"
+    },
+    {
+      "id": 751,
+      "balls": [
+        4,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 73,
+      "comboLabel": "4-7-11-12"
+    },
+    {
+      "id": 752,
+      "balls": [
+        4,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 23,
+      "comboLabel": "4-7-11-13"
+    },
+    {
+      "id": 753,
+      "balls": [
+        4,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 105,
+      "comboLabel": "4-7-11-14"
+    },
+    {
+      "id": 754,
+      "balls": [
+        4,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 138,
+      "comboLabel": "4-7-12-13"
+    },
+    {
+      "id": 755,
+      "balls": [
+        4,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 36,
+      "comboLabel": "4-7-12-14"
+    },
+    {
+      "id": 756,
+      "balls": [
+        4,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 37,
+      "comboLabel": "4-7-13-14"
+    },
+    {
+      "id": 757,
+      "balls": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 139,
+      "comboLabel": "4-8-9-10"
+    },
+    {
+      "id": 758,
+      "balls": [
+        4,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 63,
+      "comboLabel": "4-8-9-11"
+    },
+    {
+      "id": 759,
+      "balls": [
+        4,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 93,
+      "comboLabel": "4-8-9-12"
+    },
+    {
+      "id": 760,
+      "balls": [
+        4,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 94,
+      "comboLabel": "4-8-9-13"
+    },
+    {
+      "id": 761,
+      "balls": [
+        4,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 47,
+      "comboLabel": "4-8-9-14"
+    },
+    {
+      "id": 762,
+      "balls": [
+        4,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 74,
+      "comboLabel": "4-8-10-11"
+    },
+    {
+      "id": 763,
+      "balls": [
+        4,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 140,
+      "comboLabel": "4-8-10-12"
+    },
+    {
+      "id": 764,
+      "balls": [
+        4,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 48,
+      "comboLabel": "4-8-10-13"
+    },
+    {
+      "id": 765,
+      "balls": [
+        4,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 49,
+      "comboLabel": "4-8-10-14"
+    },
+    {
+      "id": 766,
+      "balls": [
+        4,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 141,
+      "comboLabel": "4-8-11-12"
+    },
+    {
+      "id": 767,
+      "balls": [
+        4,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 69,
+      "comboLabel": "4-8-11-13"
+    },
+    {
+      "id": 768,
+      "balls": [
+        4,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 142,
+      "comboLabel": "4-8-11-14"
+    },
+    {
+      "id": 769,
+      "balls": [
+        4,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 70,
+      "comboLabel": "4-8-12-13"
+    },
+    {
+      "id": 770,
+      "balls": [
+        4,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 24,
+      "comboLabel": "4-8-12-14"
+    },
+    {
+      "id": 771,
+      "balls": [
+        4,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 12,
+      "comboLabel": "4-8-13-14"
+    },
+    {
+      "id": 772,
+      "balls": [
+        4,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 49,
+      "comboLabel": "4-9-10-11"
+    },
+    {
+      "id": 773,
+      "balls": [
+        4,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 143,
+      "comboLabel": "4-9-10-12"
+    },
+    {
+      "id": 774,
+      "balls": [
+        4,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "NYR",
+      "seq": 24,
+      "comboLabel": "4-9-10-13"
+    },
+    {
+      "id": 775,
+      "balls": [
+        4,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "UTA",
+      "seq": 11,
+      "comboLabel": "4-9-10-14"
+    },
+    {
+      "id": 776,
+      "balls": [
+        4,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 64,
+      "comboLabel": "4-9-11-12"
+    },
+    {
+      "id": 777,
+      "balls": [
+        4,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 25,
+      "comboLabel": "4-9-11-13"
+    },
+    {
+      "id": 778,
+      "balls": [
+        4,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 144,
+      "comboLabel": "4-9-11-14"
+    },
+    {
+      "id": 779,
+      "balls": [
+        4,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "UTA",
+      "seq": 12,
+      "comboLabel": "4-9-12-13"
+    },
+    {
+      "id": 780,
+      "balls": [
+        4,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 50,
+      "comboLabel": "4-9-12-14"
+    },
+    {
+      "id": 781,
+      "balls": [
+        4,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 51,
+      "comboLabel": "4-9-13-14"
+    },
+    {
+      "id": 782,
+      "balls": [
+        4,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 75,
+      "comboLabel": "4-10-11-12"
+    },
+    {
+      "id": 783,
+      "balls": [
+        4,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 106,
+      "comboLabel": "4-10-11-13"
+    },
+    {
+      "id": 784,
+      "balls": [
+        4,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 71,
+      "comboLabel": "4-10-11-14"
+    },
+    {
+      "id": 785,
+      "balls": [
+        4,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 107,
+      "comboLabel": "4-10-12-13"
+    },
+    {
+      "id": 786,
+      "balls": [
+        4,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 76,
+      "comboLabel": "4-10-12-14"
+    },
+    {
+      "id": 787,
+      "balls": [
+        4,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 145,
+      "comboLabel": "4-10-13-14"
+    },
+    {
+      "id": 788,
+      "balls": [
+        4,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 38,
+      "comboLabel": "4-11-12-13"
+    },
+    {
+      "id": 789,
+      "balls": [
+        4,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 146,
+      "comboLabel": "4-11-12-14"
+    },
+    {
+      "id": 790,
+      "balls": [
+        4,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 95,
+      "comboLabel": "4-11-13-14"
+    },
+    {
+      "id": 791,
+      "balls": [
+        4,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 77,
+      "comboLabel": "4-12-13-14"
+    },
+    {
+      "id": 792,
+      "balls": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "teamCode": "SEA",
+      "seq": 65,
+      "comboLabel": "5-6-7-8"
+    },
+    {
+      "id": 793,
+      "balls": [
+        5,
+        6,
+        7,
+        9
+      ],
+      "teamCode": "SJS",
+      "seq": 147,
+      "comboLabel": "5-6-7-9"
+    },
+    {
+      "id": 794,
+      "balls": [
+        5,
+        6,
+        7,
+        10
+      ],
+      "teamCode": "NYR",
+      "seq": 25,
+      "comboLabel": "5-6-7-10"
+    },
+    {
+      "id": 795,
+      "balls": [
+        5,
+        6,
+        7,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 66,
+      "comboLabel": "5-6-7-11"
+    },
+    {
+      "id": 796,
+      "balls": [
+        5,
+        6,
+        7,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 148,
+      "comboLabel": "5-6-7-12"
+    },
+    {
+      "id": 797,
+      "balls": [
+        5,
+        6,
+        7,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 72,
+      "comboLabel": "5-6-7-13"
+    },
+    {
+      "id": 798,
+      "balls": [
+        5,
+        6,
+        7,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 96,
+      "comboLabel": "5-6-7-14"
+    },
+    {
+      "id": 799,
+      "balls": [
+        5,
+        6,
+        8,
+        9
+      ],
+      "teamCode": "CHI",
+      "seq": 108,
+      "comboLabel": "5-6-8-9"
+    },
+    {
+      "id": 800,
+      "balls": [
+        5,
+        6,
+        8,
+        10
+      ],
+      "teamCode": "CHI",
+      "seq": 109,
+      "comboLabel": "5-6-8-10"
+    },
+    {
+      "id": 801,
+      "balls": [
+        5,
+        6,
+        8,
+        11
+      ],
+      "teamCode": "BUF",
+      "seq": 52,
+      "comboLabel": "5-6-8-11"
+    },
+    {
+      "id": 802,
+      "balls": [
+        5,
+        6,
+        8,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 149,
+      "comboLabel": "5-6-8-12"
+    },
+    {
+      "id": 803,
+      "balls": [
+        5,
+        6,
+        8,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 110,
+      "comboLabel": "5-6-8-13"
+    },
+    {
+      "id": 804,
+      "balls": [
+        5,
+        6,
+        8,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 97,
+      "comboLabel": "5-6-8-14"
+    },
+    {
+      "id": 805,
+      "balls": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 98,
+      "comboLabel": "5-6-9-10"
+    },
+    {
+      "id": 806,
+      "balls": [
+        5,
+        6,
+        9,
+        11
+      ],
+      "teamCode": "DET",
+      "seq": 13,
+      "comboLabel": "5-6-9-11"
+    },
+    {
+      "id": 807,
+      "balls": [
+        5,
+        6,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 150,
+      "comboLabel": "5-6-9-12"
+    },
+    {
+      "id": 808,
+      "balls": [
+        5,
+        6,
+        9,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 53,
+      "comboLabel": "5-6-9-13"
+    },
+    {
+      "id": 809,
+      "balls": [
+        5,
+        6,
+        9,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 73,
+      "comboLabel": "5-6-9-14"
+    },
+    {
+      "id": 810,
+      "balls": [
+        5,
+        6,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 74,
+      "comboLabel": "5-6-10-11"
+    },
+    {
+      "id": 811,
+      "balls": [
+        5,
+        6,
+        10,
+        12
+      ],
+      "teamCode": "NYI",
+      "seq": 26,
+      "comboLabel": "5-6-10-12"
+    },
+    {
+      "id": 812,
+      "balls": [
+        5,
+        6,
+        10,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 75,
+      "comboLabel": "5-6-10-13"
+    },
+    {
+      "id": 813,
+      "balls": [
+        5,
+        6,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 151,
+      "comboLabel": "5-6-10-14"
+    },
+    {
+      "id": 814,
+      "balls": [
+        5,
+        6,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 99,
+      "comboLabel": "5-6-11-12"
+    },
+    {
+      "id": 815,
+      "balls": [
+        5,
+        6,
+        11,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 76,
+      "comboLabel": "5-6-11-13"
+    },
+    {
+      "id": 816,
+      "balls": [
+        5,
+        6,
+        11,
+        14
+      ],
+      "teamCode": "VAN",
+      "seq": 3,
+      "comboLabel": "5-6-11-14"
+    },
+    {
+      "id": 817,
+      "balls": [
+        5,
+        6,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 111,
+      "comboLabel": "5-6-12-13"
+    },
+    {
+      "id": 818,
+      "balls": [
+        5,
+        6,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 112,
+      "comboLabel": "5-6-12-14"
+    },
+    {
+      "id": 819,
+      "balls": [
+        5,
+        6,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 113,
+      "comboLabel": "5-6-13-14"
+    },
+    {
+      "id": 820,
+      "balls": [
+        5,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "DET",
+      "seq": 14,
+      "comboLabel": "5-7-8-9"
+    },
+    {
+      "id": 821,
+      "balls": [
+        5,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 152,
+      "comboLabel": "5-7-8-10"
+    },
+    {
+      "id": 822,
+      "balls": [
+        5,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 153,
+      "comboLabel": "5-7-8-11"
+    },
+    {
+      "id": 823,
+      "balls": [
+        5,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 78,
+      "comboLabel": "5-7-8-12"
+    },
+    {
+      "id": 824,
+      "balls": [
+        5,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 79,
+      "comboLabel": "5-7-8-13"
+    },
+    {
+      "id": 825,
+      "balls": [
+        5,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 154,
+      "comboLabel": "5-7-8-14"
+    },
+    {
+      "id": 826,
+      "balls": [
+        5,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "PIT",
+      "seq": 39,
+      "comboLabel": "5-7-9-10"
+    },
+    {
+      "id": 827,
+      "balls": [
+        5,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 155,
+      "comboLabel": "5-7-9-11"
+    },
+    {
+      "id": 828,
+      "balls": [
+        5,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "NYR",
+      "seq": 26,
+      "comboLabel": "5-7-9-12"
+    },
+    {
+      "id": 829,
+      "balls": [
+        5,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 40,
+      "comboLabel": "5-7-9-13"
+    },
+    {
+      "id": 830,
+      "balls": [
+        5,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 27,
+      "comboLabel": "5-7-9-14"
+    },
+    {
+      "id": 831,
+      "balls": [
+        5,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 114,
+      "comboLabel": "5-7-10-11"
+    },
+    {
+      "id": 832,
+      "balls": [
+        5,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 100,
+      "comboLabel": "5-7-10-12"
+    },
+    {
+      "id": 833,
+      "balls": [
+        5,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "VAN",
+      "seq": 4,
+      "comboLabel": "5-7-10-13"
+    },
+    {
+      "id": 834,
+      "balls": [
+        5,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 156,
+      "comboLabel": "5-7-10-14"
+    },
+    {
+      "id": 835,
+      "balls": [
+        5,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "NYI",
+      "seq": 28,
+      "comboLabel": "5-7-11-12"
+    },
+    {
+      "id": 836,
+      "balls": [
+        5,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 50,
+      "comboLabel": "5-7-11-13"
+    },
+    {
+      "id": 837,
+      "balls": [
+        5,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 29,
+      "comboLabel": "5-7-11-14"
+    },
+    {
+      "id": 838,
+      "balls": [
+        5,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 67,
+      "comboLabel": "5-7-12-13"
+    },
+    {
+      "id": 839,
+      "balls": [
+        5,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 80,
+      "comboLabel": "5-7-12-14"
+    },
+    {
+      "id": 840,
+      "balls": [
+        5,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 115,
+      "comboLabel": "5-7-13-14"
+    },
+    {
+      "id": 841,
+      "balls": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 101,
+      "comboLabel": "5-8-9-10"
+    },
+    {
+      "id": 842,
+      "balls": [
+        5,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "DET",
+      "seq": 15,
+      "comboLabel": "5-8-9-11"
+    },
+    {
+      "id": 843,
+      "balls": [
+        5,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 157,
+      "comboLabel": "5-8-9-12"
+    },
+    {
+      "id": 844,
+      "balls": [
+        5,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "DET",
+      "seq": 16,
+      "comboLabel": "5-8-9-13"
+    },
+    {
+      "id": 845,
+      "balls": [
+        5,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 102,
+      "comboLabel": "5-8-9-14"
+    },
+    {
+      "id": 846,
+      "balls": [
+        5,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "SEA",
+      "seq": 68,
+      "comboLabel": "5-8-10-11"
+    },
+    {
+      "id": 847,
+      "balls": [
+        5,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 81,
+      "comboLabel": "5-8-10-12"
+    },
+    {
+      "id": 848,
+      "balls": [
+        5,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 17,
+      "comboLabel": "5-8-10-13"
+    },
+    {
+      "id": 849,
+      "balls": [
+        5,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 41,
+      "comboLabel": "5-8-10-14"
+    },
+    {
+      "id": 850,
+      "balls": [
+        5,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "UTA",
+      "seq": 13,
+      "comboLabel": "5-8-11-12"
+    },
+    {
+      "id": 851,
+      "balls": [
+        5,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "SEA",
+      "seq": 69,
+      "comboLabel": "5-8-11-13"
+    },
+    {
+      "id": 852,
+      "balls": [
+        5,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 54,
+      "comboLabel": "5-8-11-14"
+    },
+    {
+      "id": 853,
+      "balls": [
+        5,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 42,
+      "comboLabel": "5-8-12-13"
+    },
+    {
+      "id": 854,
+      "balls": [
+        5,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 116,
+      "comboLabel": "5-8-12-14"
+    },
+    {
+      "id": 855,
+      "balls": [
+        5,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 117,
+      "comboLabel": "5-8-13-14"
+    },
+    {
+      "id": 856,
+      "balls": [
+        5,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "VAN",
+      "seq": 5,
+      "comboLabel": "5-9-10-11"
+    },
+    {
+      "id": 857,
+      "balls": [
+        5,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 158,
+      "comboLabel": "5-9-10-12"
+    },
+    {
+      "id": 858,
+      "balls": [
+        5,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "CBJ",
+      "seq": 18,
+      "comboLabel": "5-9-10-13"
+    },
+    {
+      "id": 859,
+      "balls": [
+        5,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 51,
+      "comboLabel": "5-9-10-14"
+    },
+    {
+      "id": 860,
+      "balls": [
+        5,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 103,
+      "comboLabel": "5-9-11-12"
+    },
+    {
+      "id": 861,
+      "balls": [
+        5,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "DET",
+      "seq": 17,
+      "comboLabel": "5-9-11-13"
+    },
+    {
+      "id": 862,
+      "balls": [
+        5,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 82,
+      "comboLabel": "5-9-11-14"
+    },
+    {
+      "id": 863,
+      "balls": [
+        5,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 159,
+      "comboLabel": "5-9-12-13"
+    },
+    {
+      "id": 864,
+      "balls": [
+        5,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 118,
+      "comboLabel": "5-9-12-14"
+    },
+    {
+      "id": 865,
+      "balls": [
+        5,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 52,
+      "comboLabel": "5-9-13-14"
+    },
+    {
+      "id": 866,
+      "balls": [
+        5,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 160,
+      "comboLabel": "5-10-11-12"
+    },
+    {
+      "id": 867,
+      "balls": [
+        5,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 53,
+      "comboLabel": "5-10-11-13"
+    },
+    {
+      "id": 868,
+      "balls": [
+        5,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 55,
+      "comboLabel": "5-10-11-14"
+    },
+    {
+      "id": 869,
+      "balls": [
+        5,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "BUF",
+      "seq": 56,
+      "comboLabel": "5-10-12-13"
+    },
+    {
+      "id": 870,
+      "balls": [
+        5,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 43,
+      "comboLabel": "5-10-12-14"
+    },
+    {
+      "id": 871,
+      "balls": [
+        5,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 70,
+      "comboLabel": "5-10-13-14"
+    },
+    {
+      "id": 872,
+      "balls": [
+        5,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 119,
+      "comboLabel": "5-11-12-13"
+    },
+    {
+      "id": 873,
+      "balls": [
+        5,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 18,
+      "comboLabel": "5-11-12-14"
+    },
+    {
+      "id": 874,
+      "balls": [
+        5,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 161,
+      "comboLabel": "5-11-13-14"
+    },
+    {
+      "id": 875,
+      "balls": [
+        5,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "CGY",
+      "seq": 3,
+      "comboLabel": "5-12-13-14"
+    },
+    {
+      "id": 876,
+      "balls": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "teamCode": "BUF",
+      "seq": 57,
+      "comboLabel": "6-7-8-9"
+    },
+    {
+      "id": 877,
+      "balls": [
+        6,
+        7,
+        8,
+        10
+      ],
+      "teamCode": "SJS",
+      "seq": 162,
+      "comboLabel": "6-7-8-10"
+    },
+    {
+      "id": 878,
+      "balls": [
+        6,
+        7,
+        8,
+        11
+      ],
+      "teamCode": "NYI",
+      "seq": 30,
+      "comboLabel": "6-7-8-11"
+    },
+    {
+      "id": 879,
+      "balls": [
+        6,
+        7,
+        8,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 71,
+      "comboLabel": "6-7-8-12"
+    },
+    {
+      "id": 880,
+      "balls": [
+        6,
+        7,
+        8,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 77,
+      "comboLabel": "6-7-8-13"
+    },
+    {
+      "id": 881,
+      "balls": [
+        6,
+        7,
+        8,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 44,
+      "comboLabel": "6-7-8-14"
+    },
+    {
+      "id": 882,
+      "balls": [
+        6,
+        7,
+        9,
+        10
+      ],
+      "teamCode": "NSH",
+      "seq": 104,
+      "comboLabel": "6-7-9-10"
+    },
+    {
+      "id": 883,
+      "balls": [
+        6,
+        7,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 163,
+      "comboLabel": "6-7-9-11"
+    },
+    {
+      "id": 884,
+      "balls": [
+        6,
+        7,
+        9,
+        12
+      ],
+      "teamCode": "BUF",
+      "seq": 58,
+      "comboLabel": "6-7-9-12"
+    },
+    {
+      "id": 885,
+      "balls": [
+        6,
+        7,
+        9,
+        13
+      ],
+      "teamCode": "UTA",
+      "seq": 14,
+      "comboLabel": "6-7-9-13"
+    },
+    {
+      "id": 886,
+      "balls": [
+        6,
+        7,
+        9,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 19,
+      "comboLabel": "6-7-9-14"
+    },
+    {
+      "id": 887,
+      "balls": [
+        6,
+        7,
+        10,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 27,
+      "comboLabel": "6-7-10-11"
+    },
+    {
+      "id": 888,
+      "balls": [
+        6,
+        7,
+        10,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 78,
+      "comboLabel": "6-7-10-12"
+    },
+    {
+      "id": 889,
+      "balls": [
+        6,
+        7,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 105,
+      "comboLabel": "6-7-10-13"
+    },
+    {
+      "id": 890,
+      "balls": [
+        6,
+        7,
+        10,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 72,
+      "comboLabel": "6-7-10-14"
+    },
+    {
+      "id": 891,
+      "balls": [
+        6,
+        7,
+        11,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 83,
+      "comboLabel": "6-7-11-12"
+    },
+    {
+      "id": 892,
+      "balls": [
+        6,
+        7,
+        11,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 54,
+      "comboLabel": "6-7-11-13"
+    },
+    {
+      "id": 893,
+      "balls": [
+        6,
+        7,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 84,
+      "comboLabel": "6-7-11-14"
+    },
+    {
+      "id": 894,
+      "balls": [
+        6,
+        7,
+        12,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 31,
+      "comboLabel": "6-7-12-13"
+    },
+    {
+      "id": 895,
+      "balls": [
+        6,
+        7,
+        12,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 20,
+      "comboLabel": "6-7-12-14"
+    },
+    {
+      "id": 896,
+      "balls": [
+        6,
+        7,
+        13,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 85,
+      "comboLabel": "6-7-13-14"
+    },
+    {
+      "id": 897,
+      "balls": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "ANA",
+      "seq": 55,
+      "comboLabel": "6-8-9-10"
+    },
+    {
+      "id": 898,
+      "balls": [
+        6,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "NSH",
+      "seq": 106,
+      "comboLabel": "6-8-9-11"
+    },
+    {
+      "id": 899,
+      "balls": [
+        6,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 164,
+      "comboLabel": "6-8-9-12"
+    },
+    {
+      "id": 900,
+      "balls": [
+        6,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 120,
+      "comboLabel": "6-8-9-13"
+    },
+    {
+      "id": 901,
+      "balls": [
+        6,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 21,
+      "comboLabel": "6-8-9-14"
+    },
+    {
+      "id": 902,
+      "balls": [
+        6,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 165,
+      "comboLabel": "6-8-10-11"
+    },
+    {
+      "id": 903,
+      "balls": [
+        6,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "DET",
+      "seq": 22,
+      "comboLabel": "6-8-10-12"
+    },
+    {
+      "id": 904,
+      "balls": [
+        6,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 107,
+      "comboLabel": "6-8-10-13"
+    },
+    {
+      "id": 905,
+      "balls": [
+        6,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 73,
+      "comboLabel": "6-8-10-14"
+    },
+    {
+      "id": 906,
+      "balls": [
+        6,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "DET",
+      "seq": 23,
+      "comboLabel": "6-8-11-12"
+    },
+    {
+      "id": 907,
+      "balls": [
+        6,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 79,
+      "comboLabel": "6-8-11-13"
+    },
+    {
+      "id": 908,
+      "balls": [
+        6,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 19,
+      "comboLabel": "6-8-11-14"
+    },
+    {
+      "id": 909,
+      "balls": [
+        6,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 80,
+      "comboLabel": "6-8-12-13"
+    },
+    {
+      "id": 910,
+      "balls": [
+        6,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 56,
+      "comboLabel": "6-8-12-14"
+    },
+    {
+      "id": 911,
+      "balls": [
+        6,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 166,
+      "comboLabel": "6-8-13-14"
+    },
+    {
+      "id": 912,
+      "balls": [
+        6,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "NYR",
+      "seq": 28,
+      "comboLabel": "6-9-10-11"
+    },
+    {
+      "id": 913,
+      "balls": [
+        6,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "UTA",
+      "seq": 15,
+      "comboLabel": "6-9-10-12"
+    },
+    {
+      "id": 914,
+      "balls": [
+        6,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 167,
+      "comboLabel": "6-9-10-13"
+    },
+    {
+      "id": 915,
+      "balls": [
+        6,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 59,
+      "comboLabel": "6-9-10-14"
+    },
+    {
+      "id": 916,
+      "balls": [
+        6,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 108,
+      "comboLabel": "6-9-11-12"
+    },
+    {
+      "id": 917,
+      "balls": [
+        6,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 32,
+      "comboLabel": "6-9-11-13"
+    },
+    {
+      "id": 918,
+      "balls": [
+        6,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 24,
+      "comboLabel": "6-9-11-14"
+    },
+    {
+      "id": 919,
+      "balls": [
+        6,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 121,
+      "comboLabel": "6-9-12-13"
+    },
+    {
+      "id": 920,
+      "balls": [
+        6,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 60,
+      "comboLabel": "6-9-12-14"
+    },
+    {
+      "id": 921,
+      "balls": [
+        6,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 122,
+      "comboLabel": "6-9-13-14"
+    },
+    {
+      "id": 922,
+      "balls": [
+        6,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "PHI",
+      "seq": 86,
+      "comboLabel": "6-10-11-12"
+    },
+    {
+      "id": 923,
+      "balls": [
+        6,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 45,
+      "comboLabel": "6-10-11-13"
+    },
+    {
+      "id": 924,
+      "balls": [
+        6,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 33,
+      "comboLabel": "6-10-11-14"
+    },
+    {
+      "id": 925,
+      "balls": [
+        6,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 123,
+      "comboLabel": "6-10-12-13"
+    },
+    {
+      "id": 926,
+      "balls": [
+        6,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 124,
+      "comboLabel": "6-10-12-14"
+    },
+    {
+      "id": 927,
+      "balls": [
+        6,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "CBJ",
+      "seq": 20,
+      "comboLabel": "6-10-13-14"
+    },
+    {
+      "id": 928,
+      "balls": [
+        6,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 125,
+      "comboLabel": "6-11-12-13"
+    },
+    {
+      "id": 929,
+      "balls": [
+        6,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 168,
+      "comboLabel": "6-11-12-14"
+    },
+    {
+      "id": 930,
+      "balls": [
+        6,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "PIT",
+      "seq": 46,
+      "comboLabel": "6-11-13-14"
+    },
+    {
+      "id": 931,
+      "balls": [
+        6,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "SEA",
+      "seq": 74,
+      "comboLabel": "6-12-13-14"
+    },
+    {
+      "id": 932,
+      "balls": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "teamCode": "PHI",
+      "seq": 87,
+      "comboLabel": "7-8-9-10"
+    },
+    {
+      "id": 933,
+      "balls": [
+        7,
+        8,
+        9,
+        11
+      ],
+      "teamCode": "SJS",
+      "seq": 169,
+      "comboLabel": "7-8-9-11"
+    },
+    {
+      "id": 934,
+      "balls": [
+        7,
+        8,
+        9,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 47,
+      "comboLabel": "7-8-9-12"
+    },
+    {
+      "id": 935,
+      "balls": [
+        7,
+        8,
+        9,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 126,
+      "comboLabel": "7-8-9-13"
+    },
+    {
+      "id": 936,
+      "balls": [
+        7,
+        8,
+        9,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 127,
+      "comboLabel": "7-8-9-14"
+    },
+    {
+      "id": 937,
+      "balls": [
+        7,
+        8,
+        10,
+        11
+      ],
+      "teamCode": "PHI",
+      "seq": 88,
+      "comboLabel": "7-8-10-11"
+    },
+    {
+      "id": 938,
+      "balls": [
+        7,
+        8,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 170,
+      "comboLabel": "7-8-10-12"
+    },
+    {
+      "id": 939,
+      "balls": [
+        7,
+        8,
+        10,
+        13
+      ],
+      "teamCode": "BOS",
+      "seq": 81,
+      "comboLabel": "7-8-10-13"
+    },
+    {
+      "id": 940,
+      "balls": [
+        7,
+        8,
+        10,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 89,
+      "comboLabel": "7-8-10-14"
+    },
+    {
+      "id": 941,
+      "balls": [
+        7,
+        8,
+        11,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 171,
+      "comboLabel": "7-8-11-12"
+    },
+    {
+      "id": 942,
+      "balls": [
+        7,
+        8,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 172,
+      "comboLabel": "7-8-11-13"
+    },
+    {
+      "id": 943,
+      "balls": [
+        7,
+        8,
+        11,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 57,
+      "comboLabel": "7-8-11-14"
+    },
+    {
+      "id": 944,
+      "balls": [
+        7,
+        8,
+        12,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 90,
+      "comboLabel": "7-8-12-13"
+    },
+    {
+      "id": 945,
+      "balls": [
+        7,
+        8,
+        12,
+        14
+      ],
+      "teamCode": "NYI",
+      "seq": 34,
+      "comboLabel": "7-8-12-14"
+    },
+    {
+      "id": 946,
+      "balls": [
+        7,
+        8,
+        13,
+        14
+      ],
+      "teamCode": "DET",
+      "seq": 25,
+      "comboLabel": "7-8-13-14"
+    },
+    {
+      "id": 947,
+      "balls": [
+        7,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "BOS",
+      "seq": 82,
+      "comboLabel": "7-9-10-11"
+    },
+    {
+      "id": 948,
+      "balls": [
+        7,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "SJS",
+      "seq": 173,
+      "comboLabel": "7-9-10-12"
+    },
+    {
+      "id": 949,
+      "balls": [
+        7,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 109,
+      "comboLabel": "7-9-10-13"
+    },
+    {
+      "id": 950,
+      "balls": [
+        7,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 61,
+      "comboLabel": "7-9-10-14"
+    },
+    {
+      "id": 951,
+      "balls": [
+        7,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "CHI",
+      "seq": 128,
+      "comboLabel": "7-9-11-12"
+    },
+    {
+      "id": 952,
+      "balls": [
+        7,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 174,
+      "comboLabel": "7-9-11-13"
+    },
+    {
+      "id": 953,
+      "balls": [
+        7,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 62,
+      "comboLabel": "7-9-11-14"
+    },
+    {
+      "id": 954,
+      "balls": [
+        7,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 175,
+      "comboLabel": "7-9-12-13"
+    },
+    {
+      "id": 955,
+      "balls": [
+        7,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 110,
+      "comboLabel": "7-9-12-14"
+    },
+    {
+      "id": 956,
+      "balls": [
+        7,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 129,
+      "comboLabel": "7-9-13-14"
+    },
+    {
+      "id": 957,
+      "balls": [
+        7,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 48,
+      "comboLabel": "7-10-11-12"
+    },
+    {
+      "id": 958,
+      "balls": [
+        7,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 130,
+      "comboLabel": "7-10-11-13"
+    },
+    {
+      "id": 959,
+      "balls": [
+        7,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 176,
+      "comboLabel": "7-10-11-14"
+    },
+    {
+      "id": 960,
+      "balls": [
+        7,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 58,
+      "comboLabel": "7-10-12-13"
+    },
+    {
+      "id": 961,
+      "balls": [
+        7,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 111,
+      "comboLabel": "7-10-12-14"
+    },
+    {
+      "id": 962,
+      "balls": [
+        7,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "NSH",
+      "seq": 112,
+      "comboLabel": "7-10-13-14"
+    },
+    {
+      "id": 963,
+      "balls": [
+        7,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "NYI",
+      "seq": 35,
+      "comboLabel": "7-11-12-13"
+    },
+    {
+      "id": 964,
+      "balls": [
+        7,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 131,
+      "comboLabel": "7-11-12-14"
+    },
+    {
+      "id": 965,
+      "balls": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 63,
+      "comboLabel": "7-11-13-14"
+    },
+    {
+      "id": 966,
+      "balls": [
+        7,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 177,
+      "comboLabel": "7-12-13-14"
+    },
+    {
+      "id": 967,
+      "balls": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "teamCode": "CHI",
+      "seq": 132,
+      "comboLabel": "8-9-10-11"
+    },
+    {
+      "id": 968,
+      "balls": [
+        8,
+        9,
+        10,
+        12
+      ],
+      "teamCode": "NSH",
+      "seq": 113,
+      "comboLabel": "8-9-10-12"
+    },
+    {
+      "id": 969,
+      "balls": [
+        8,
+        9,
+        10,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 114,
+      "comboLabel": "8-9-10-13"
+    },
+    {
+      "id": 970,
+      "balls": [
+        8,
+        9,
+        10,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 178,
+      "comboLabel": "8-9-10-14"
+    },
+    {
+      "id": 971,
+      "balls": [
+        8,
+        9,
+        11,
+        12
+      ],
+      "teamCode": "PIT",
+      "seq": 49,
+      "comboLabel": "8-9-11-12"
+    },
+    {
+      "id": 972,
+      "balls": [
+        8,
+        9,
+        11,
+        13
+      ],
+      "teamCode": "PHI",
+      "seq": 91,
+      "comboLabel": "8-9-11-13"
+    },
+    {
+      "id": 973,
+      "balls": [
+        8,
+        9,
+        11,
+        14
+      ],
+      "teamCode": "NYR",
+      "seq": 29,
+      "comboLabel": "8-9-11-14"
+    },
+    {
+      "id": 974,
+      "balls": [
+        8,
+        9,
+        12,
+        13
+      ],
+      "teamCode": "ANA",
+      "seq": 59,
+      "comboLabel": "8-9-12-13"
+    },
+    {
+      "id": 975,
+      "balls": [
+        8,
+        9,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 92,
+      "comboLabel": "8-9-12-14"
+    },
+    {
+      "id": 976,
+      "balls": [
+        8,
+        9,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 179,
+      "comboLabel": "8-9-13-14"
+    },
+    {
+      "id": 977,
+      "balls": [
+        8,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "SEA",
+      "seq": 75,
+      "comboLabel": "8-10-11-12"
+    },
+    {
+      "id": 978,
+      "balls": [
+        8,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 180,
+      "comboLabel": "8-10-11-13"
+    },
+    {
+      "id": 979,
+      "balls": [
+        8,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 64,
+      "comboLabel": "8-10-11-14"
+    },
+    {
+      "id": 980,
+      "balls": [
+        8,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "PIT",
+      "seq": 50,
+      "comboLabel": "8-10-12-13"
+    },
+    {
+      "id": 981,
+      "balls": [
+        8,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 181,
+      "comboLabel": "8-10-12-14"
+    },
+    {
+      "id": 982,
+      "balls": [
+        8,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 182,
+      "comboLabel": "8-10-13-14"
+    },
+    {
+      "id": 983,
+      "balls": [
+        8,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "NSH",
+      "seq": 115,
+      "comboLabel": "8-11-12-13"
+    },
+    {
+      "id": 984,
+      "balls": [
+        8,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 83,
+      "comboLabel": "8-11-12-14"
+    },
+    {
+      "id": 985,
+      "balls": [
+        8,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "ANA",
+      "seq": 60,
+      "comboLabel": "8-11-13-14"
+    },
+    {
+      "id": 986,
+      "balls": [
+        8,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 133,
+      "comboLabel": "8-12-13-14"
+    },
+    {
+      "id": 987,
+      "balls": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "teamCode": "BOS",
+      "seq": 84,
+      "comboLabel": "9-10-11-12"
+    },
+    {
+      "id": 988,
+      "balls": [
+        9,
+        10,
+        11,
+        13
+      ],
+      "teamCode": "CGY",
+      "seq": 4,
+      "comboLabel": "9-10-11-13"
+    },
+    {
+      "id": 989,
+      "balls": [
+        9,
+        10,
+        11,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 93,
+      "comboLabel": "9-10-11-14"
+    },
+    {
+      "id": 990,
+      "balls": [
+        9,
+        10,
+        12,
+        13
+      ],
+      "teamCode": "CGY",
+      "seq": 5,
+      "comboLabel": "9-10-12-13"
+    },
+    {
+      "id": 991,
+      "balls": [
+        9,
+        10,
+        12,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 183,
+      "comboLabel": "9-10-12-14"
+    },
+    {
+      "id": 992,
+      "balls": [
+        9,
+        10,
+        13,
+        14
+      ],
+      "teamCode": "NYR",
+      "seq": 30,
+      "comboLabel": "9-10-13-14"
+    },
+    {
+      "id": 993,
+      "balls": [
+        9,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "SJS",
+      "seq": 184,
+      "comboLabel": "9-11-12-13"
+    },
+    {
+      "id": 994,
+      "balls": [
+        9,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 94,
+      "comboLabel": "9-11-12-14"
+    },
+    {
+      "id": 995,
+      "balls": [
+        9,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "BUF",
+      "seq": 65,
+      "comboLabel": "9-11-13-14"
+    },
+    {
+      "id": 996,
+      "balls": [
+        9,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "CHI",
+      "seq": 134,
+      "comboLabel": "9-12-13-14"
+    },
+    {
+      "id": 997,
+      "balls": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "teamCode": "CHI",
+      "seq": 135,
+      "comboLabel": "10-11-12-13"
+    },
+    {
+      "id": 998,
+      "balls": [
+        10,
+        11,
+        12,
+        14
+      ],
+      "teamCode": "PHI",
+      "seq": 95,
+      "comboLabel": "10-11-12-14"
+    },
+    {
+      "id": 999,
+      "balls": [
+        10,
+        11,
+        13,
+        14
+      ],
+      "teamCode": "BOS",
+      "seq": 85,
+      "comboLabel": "10-11-13-14"
+    },
+    {
+      "id": 1000,
+      "balls": [
+        10,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "SJS",
+      "seq": 185,
+      "comboLabel": "10-12-13-14"
+    },
+    {
+      "id": 1001,
+      "balls": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "teamCode": "REDRAW",
+      "seq": 1,
+      "comboLabel": "11-12-13-14"
+    }
+  ]
+}

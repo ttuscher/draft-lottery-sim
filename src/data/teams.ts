@@ -1,0 +1,43 @@
+// src/data/teams.ts
+import { Team } from './types';
+
+export const NHL_TEAMS: Record<string, Team> = {
+  ANA: { abbreviation: 'ANA', city: 'Anaheim', name: 'Ducks', logoLight: '/logos/20252026_ANA_Logo_Light.PNG', logoDark: '/logos/20252026_ANA_Logo_Dark.PNG' },
+  BOS: { abbreviation: 'BOS', city: 'Boston', name: 'Bruins', logoLight: '/logos/20252026_BOS_Logo_Light.PNG', logoDark: '/logos/20252026_BOS_Logo_Dark.PNG' },
+  BUF: { abbreviation: 'BUF', city: 'Buffalo', name: 'Sabres', logoLight: '/logos/20252026_BUF_Logo_Light.PNG', logoDark: '/logos/20252026_BUF_Logo_Dark.PNG' },
+  CGY: { abbreviation: 'CGY', city: 'Calgary', name: 'Flames', logoLight: '/logos/20252026_CGY_Logo_Light.PNG', logoDark: '/logos/20252026_CGY_Logo_Dark.PNG' },
+  CAR: { abbreviation: 'CAR', city: 'Carolina', name: 'Hurricanes', logoLight: '/logos/20252026_CAR_Logo_Light.PNG', logoDark: '/logos/20252026_CAR_Logo_Dark.PNG' },
+  CHI: { abbreviation: 'CHI', city: 'Chicago', name: 'Blackhawks', logoLight: '/logos/20252026_CHI_Logo_Light.PNG', logoDark: '/logos/20252026_CHI_Logo_Dark.PNG' },
+  COL: { abbreviation: 'COL', city: 'Colorado', name: 'Avalanche', logoLight: '/logos/20252026_COL_Logo_Light.PNG', logoDark: '/logos/20252026_COL_Logo_Dark.PNG' },
+  CBJ: { abbreviation: 'CBJ', city: 'Columbus', name: 'Blue Jackets', logoLight: '/logos/20252026_CBJ_Logo_Light.PNG', logoDark: '/logos/20252026_CBJ_Logo_Dark.PNG' },
+  DAL: { abbreviation: 'DAL', city: 'Dallas', name: 'Stars', logoLight: '/logos/20252026_DAL_Logo_Light.PNG', logoDark: '/logos/20252026_DAL_Logo_Dark.PNG' },
+  DET: { abbreviation: 'DET', city: 'Detroit', name: 'Red Wings', logoLight: '/logos/20252026_DET_Logo_Light.PNG', logoDark: '/logos/20252026_DET_Logo_Dark.PNG' },
+  EDM: { abbreviation: 'EDM', city: 'Edmonton', name: 'Oilers', logoLight: '/logos/20252026_EDM_Logo_Light.PNG', logoDark: '/logos/20252026_EDM_Logo_Dark.PNG' },
+  FLA: { abbreviation: 'FLA', city: 'Florida', name: 'Panthers', logoLight: '/logos/20252026_FLA_Logo_Light.PNG', logoDark: '/logos/20252026_FLA_Logo_Dark.PNG' },
+  LAK: { abbreviation: 'LAK', city: 'Los Angeles', name: 'Kings', logoLight: '/logos/20252026_LAK_Logo_Light.PNG', logoDark: '/logos/20252026_LAK_Logo_Dark.PNG' },
+  MIN: { abbreviation: 'MIN', city: 'Minnesota', name: 'Wild', logoLight: '/logos/20252026_MIN_Logo_Light.PNG', logoDark: '/logos/20252026_MIN_Logo_Dark.PNG' },
+  MTL: { abbreviation: 'MTL', city: 'Montreal', name: 'Canadiens', logoLight: '/logos/20252026_MTL_Logo_Light.PNG', logoDark: '/logos/20252026_MTL_Logo_Dark.PNG' },
+  NSH: { abbreviation: 'NSH', city: 'Nashville', name: 'Predators', logoLight: '/logos/20252026_NSH_Logo_Light.PNG', logoDark: '/logos/20252026_NSH_Logo_Dark.PNG' },
+  NJD: { abbreviation: 'NJD', city: 'New Jersey', name: 'Devils', logoLight: '/logos/20252026_NJD_Logo_Light.PNG', logoDark: '/logos/20252026_NJD_Logo_Dark.PNG' },
+  NYI: { abbreviation: 'NYI', city: 'New York', name: 'Islanders', logoLight: '/logos/20252026_NYI_Logo_Light.PNG', logoDark: '/logos/20252026_NYI_Logo_Dark.PNG' },
+  NYR: { abbreviation: 'NYR', city: 'New York', name: 'Rangers', logoLight: '/logos/20252026_NYR_Logo_Light.PNG', logoDark: '/logos/20252026_NYR_Logo_Dark.PNG' },
+  OTT: { abbreviation: 'OTT', city: 'Ottawa', name: 'Senators', logoLight: '/logos/20252026_OTT_Logo_Light.PNG', logoDark: '/logos/20252026_OTT_Logo_Dark.PNG' },
+  PHI: { abbreviation: 'PHI', city: 'Philadelphia', name: 'Flyers', logoLight: '/logos/20252026_PHI_Logo_Light.PNG', logoDark: '/logos/20252026_PHI_Logo_Dark.PNG' },
+  PIT: { abbreviation: 'PIT', city: 'Pittsburgh', name: 'Penguins', logoLight: '/logos/20252026_PIT_Logo_Light.PNG', logoDark: '/logos/20252026_PIT_Logo_Dark.PNG' },
+  SJS: { abbreviation: 'SJS', city: 'San Jose', name: 'Sharks', logoLight: '/logos/20252026_SJS_Logo_Light.PNG', logoDark: '/logos/20252026_SJS_Logo_Dark.PNG' },
+  SEA: { abbreviation: 'SEA', city: 'Seattle', name: 'Kraken', logoLight: '/logos/20252026_SEA_Logo_Light.PNG', logoDark: '/logos/20252026_SEA_Logo_Dark.PNG' },
+  STL: { abbreviation: 'STL', city: 'St. Louis', name: 'Blues', logoLight: '/logos/20252026_STL_Logo_Light.PNG', logoDark: '/logos/20252026_STL_Logo_Dark.PNG' },
+  TBL: { abbreviation: 'TBL', city: 'Tampa Bay', name: 'Lightning', logoLight: '/logos/20252026_TBL_Logo_Light.PNG', logoDark: '/logos/20252026_TBL_Logo_Dark.PNG' },
+  TOR: { abbreviation: 'TOR', city: 'Toronto', name: 'Maple Leafs', logoLight: '/logos/20252026_TOR_Logo_Light.PNG', logoDark: '/logos/20252026_TOR_Logo_Dark.PNG' },
+  UTA: { abbreviation: 'UTA', city: 'Utah', name: 'Hockey Club', logoLight: '/logos/20252026_UTA_Logo_Light.PNG', logoDark: '/logos/20252026_UTA_Logo_Dark.PNG' },
+  VAN: { abbreviation: 'VAN', city: 'Vancouver', name: 'Canucks', logoLight: '/logos/20252026_VAN_Logo_Light.PNG', logoDark: '/logos/20252026_VAN_Logo_Dark.PNG' },
+  VGK: { abbreviation: 'VGK', city: 'Vegas', name: 'Golden Knights', logoLight: '/logos/20252026_VGK_Logo_Light.PNG', logoDark: '/logos/20252026_VGK_Logo_Dark.PNG' },
+  WSH: { abbreviation: 'WSH', city: 'Washington', name: 'Capitals', logoLight: '/logos/20252026_WSH_Logo_Light.PNG', logoDark: '/logos/20252026_WSH_Logo_Dark.PNG' },
+  WPG: { abbreviation: 'WPG', city: 'Winnipeg', name: 'Jets', logoLight: '/logos/20252026_WPG_Logo_Light.PNG', logoDark: '/logos/20252026_WPG_Logo_Dark.PNG' },
+};
+
+export const getTeam = (abbreviation: string): Team => {
+  const team = NHL_TEAMS[abbreviation];
+  if (!team) throw new Error(`Team with abbreviation ${abbreviation} not found.`);
+  return team;
+};
