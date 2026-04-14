@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { NHL_TEAMS } from '../data/teams';
 import lotteryData from '../data/lottery-2025.json';
 
-// Standard, mathematically exact 2025 NHL Draft 2nd Overall Odds
 const secondOverallOdds: Record<string, number> = {
   'SJS': 18.8, 'CHI': 14.1, 'NSH': 11.2, 'PHI': 9.6, 'BOS': 8.6,
   'SEA': 7.8, 'BUF': 6.8, 'ANA': 6.3, 'PIT': 5.4, 'NYI': 3.8,
@@ -14,12 +13,15 @@ const secondOverallOdds: Record<string, number> = {
 };
 
 export default function LandingPage() {
-  // SAFETY CHECK: If the JSON import fails, show an error message instead of crashing
+  // DEBUG CHECK: If data is missing, show a diagnostic screen
   if (!lotteryData || !lotteryData.teamOrder) {
     return (
-      <div className="p-10 text-center bg-white retro-border m-10" style={{ fontFamily: 'var(--font-press-start)' }}>
-        <h2 className="text-red-600 mb-4">SYSTEM ERROR: DATA NOT FOUND</h2>
-        <p className="text-xs">Ensure lottery-2025.json is in src/data/</p>
+      <div className="min-h-screen flex items-center justify-center bg-black text-white p-10" style={{ fontFamily: 'var(--font-press-start)' }}>
+        <div className="border-4 border-red-600 p-8 text-center max-w-2xl">
+          <h2 className="text-red-600 text-xl mb-6">! SYSTEM HALTED !</h2>
+          <p className="text-xs leading-loose mb-4">CRITICAL DATA MISSING: lottery-2025.json</p>
+          <p className="text-[10px] text-gray-400">CHECK: src/data/lottery-2025.json</p>
+        </div>
       </div>
     );
   }
@@ -64,7 +66,10 @@ export default function LandingPage() {
                           alt={row.team.abbreviation}
                           className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-[3px_3px_0_rgba(0,0,0,1)] saturate-[2.5] contrast-[1.5] brightness-110 sepia-[.15]"
                           style={{ imageRendering: 'pixelated' }}
-                          onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                          onError={(e) => {
+                            console.error(`Failed to load logo: ${row.team.logoLight}`);
+                            e.currentTarget.style.display = 'none';
+                          }} 
                         />
                       )}
                       <span className="uppercase whitespace-nowrap">{row.team.city} {row.team.name}</span>
