@@ -41,18 +41,44 @@ export default function LandingPage() {
 
   return (
     <main className="min-h-screen py-12 px-4 flex flex-col items-center" style={{ fontFamily: 'var(--font-press-start)' }}>
+      
+      {/* Global Navigation Menu - Hoisted to the cyan background */}
+      <div className="flex flex-row justify-center w-full max-w-5xl gap-2 md:gap-4 mb-8">
+        {/* Active State (Current Page) */}
+        <Link 
+          href="/" 
+          className="bg-black text-white px-2 md:px-6 py-3 border-4 border-black uppercase text-[8px] md:text-xs tracking-widest flex items-center justify-center text-center flex-1 cursor-default shadow-[4px_4px_0px_rgba(0,0,0,0.2)]"
+        >
+          Lottery Odds
+        </Link>
+        
+        <Link 
+          href="/lotterysimulator" 
+          className="bg-white text-black px-2 md:px-6 py-3 border-4 border-black hover:bg-black hover:text-white transition-all uppercase text-[8px] md:text-xs tracking-widest flex items-center justify-center text-center flex-1 shadow-[4px_4px_0px_rgba(0,0,0,0.2)]"
+        >
+          Simulate Lottery
+        </Link>
+
+        <Link 
+          href="/prospects" 
+          className="bg-white text-black px-2 md:px-6 py-3 border-4 border-black hover:bg-black hover:text-white transition-all uppercase text-[8px] md:text-xs tracking-widest flex items-center justify-center text-center flex-1 shadow-[4px_4px_0px_rgba(0,0,0,0.2)]"
+        >
+          Prospect Rankings
+        </Link>
+      </div>
+
+      {/* Main White Content Box */}
       <div className="w-full max-w-5xl bg-white retro-border p-4 md:p-8 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]">
         
-        {/* Explicitly applying the Press Start 2P font to the header here */}
         <h2 className="text-lg md:text-2xl mb-6 text-center border-b-4 border-black pb-4 text-[#E2231A] uppercase tracking-wider" style={{ fontFamily: 'var(--font-press-start)' }}>
-          DRAFT ORDER
+          2026 DRAFT LOTTERY ODDS
         </h2>
         
         <div className="overflow-x-auto mb-10">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[10px]">
-                <th className="p-3 text-center">PICK</th>
+                <th className="p-3 text-center w-16">PICK</th>
                 <th className="p-3">TEAM</th>
                 <th className="p-3 text-right">1ST OVR</th>
                 <th className="p-3 text-right">2ND OVR</th>
@@ -67,7 +93,7 @@ export default function LandingPage() {
                       <img 
                         src={row.team.logoLight} 
                         alt=""
-                        className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-[2px_2px_0_rgba(0,0,0,1)] saturate-[2.2] contrast-[1.4] brightness-110"
+                        className="w-6 h-6 md:w-9 md:h-9 object-contain drop-shadow-[2px_2px_0_rgba(0,0,0,1)] saturate-[2.2] contrast-[1.4] brightness-110"
                         style={{ imageRendering: 'pixelated' }}
                         onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
                       />
@@ -82,11 +108,6 @@ export default function LandingPage() {
           </table>
         </div>
 
-        <div className="flex justify-center">
-          <Link href="/lotterysimulator" className="bg-[#E2231A] text-white px-8 py-4 border-4 border-black hover:bg-black hover:text-white transition-all uppercase text-xs tracking-widest">
-            Commence Lottery
-          </Link>
-        </div>
       </div>
     </main>
   );

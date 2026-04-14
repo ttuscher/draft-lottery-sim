@@ -23,13 +23,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* Added pb-16 (padding-bottom) so the ticker doesn't overlap page content */}
       <body className={`${pressStart2P.variable} font-retro antialiased min-h-screen flex flex-col pb-16`}>
         
         {/* Global Header */}
-        <header className="bg-black text-white p-4 border-b-8 border-[#E2231A] uppercase tracking-widest text-center shadow-lg relative z-10">
-          <h1 className="text-xl md:text-2xl" style={{ fontFamily: 'var(--font-press-start)' }}>
-            2026 NHL Draft Lottery Simulator
+        <header className="bg-black p-4 border-b-8 border-[#E2231A] uppercase tracking-widest text-center shadow-lg relative z-10">
+          <h1 
+            className="text-2xl md:text-4xl text-white" 
+            style={{ 
+              fontFamily: 'var(--font-press-start)',
+              WebkitTextStroke: '1px #96EDF6',
+              textShadow: '2px 2px 0 #96EDF6'
+            }}
+          >
+            NHL Draft Lottery Simulator
           </h1>
         </header>
 

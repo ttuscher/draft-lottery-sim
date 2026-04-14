@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { runSimulation } from '../lib/engine';
+import { runSimulation, MAX_MOVE_UP } from '../lib/engine';
 import { NHL_TEAMS } from '../data/teams';
 import { SeededTeam, LotteryCombo, SimulationResult } from '../data/types';
 import lotteryData from '../data/lottery-2025.json';
@@ -31,7 +31,7 @@ export default function RetroBoard() {
   const handleQuickDraw = () => {
     // Pass the standings, the literal 1001 combinations from the JSON, and the 10-spot rule
     const combos = lotteryData.entries as LotteryCombo[];
-    const simResult = runSimulation(initialStandings, combos, 10);
+    const simResult = runSimulation(initialStandings, combos, MAX_MOVE_UP);
     
     setResult(simResult);
     setBoard(simResult.finalOrder);
@@ -57,7 +57,7 @@ export default function RetroBoard() {
               onClick={handleQuickDraw}
               className="bg-[#E2231A] text-white px-6 py-3 retro-border hover:bg-black transition-colors text-sm"
             >
-              QUICK DRAW
+              SIMULATE
             </button>
           ) : (
             <button 

@@ -6,6 +6,7 @@ import { NHL_TEAMS } from '../data/teams';
 import { SeededTeam, LotteryCombo } from '../data/types';
 import lotteryData from '../data/lottery-2025.json';
 import { calculateLiveOdds, getFullBallImpacts } from '../lib/analytics';
+import { resolveDraftOrder, MAX_MOVE_UP } from '../lib/engine';
 
 const initialStandings: SeededTeam[] = lotteryData.teamOrder.map((teamCode: string, index: number) => ({
   seed: index + 1,
@@ -70,34 +71,9 @@ export default function FullDrawBoard() {
     }
   };
 
-  const finalOrder = useMemo(() => {
+  const finalOrder = useMemo<SeededTeam[]>(() => {
     if (phase !== 'COMPLETE' || !draw1Winner || !draw2Winner) return [];
-    
-    const maxMove = 10;
-    const d1OriginalIndex = initialStandings.findIndex(t => t.team.abbreviation === draw1Winner.team.abbreviation);
-    const d2OriginalIndex = initialStandings.findIndex(t => t.team.abbreviation === draw2Winner.team.abbreviation);
-
-    const d1TargetIndex = Math.max(0, d1OriginalIndex - maxMove);
-    let d2TargetIndex = Math.max(0, d2OriginalIndex - maxMove);
-    if (d2TargetIndex === d1TargetIndex) d2TargetIndex += 1;
-
-    const remainingTeams = initialStandings.filter(t => 
-      t.team.abbreviation !== draw1Winner.team.abbreviation && 
-      t.team.abbreviation !== draw2Winner.team.abbreviation
-    );
-
-    const board = new Array(16).fill(null);
-    board[d1TargetIndex] = draw1Winner;
-    board[d2TargetIndex] = draw2Winner;
-
-    let rIdx = 0;
-    for (let i = 0; i < 16; i++) {
-      if (!board[i]) {
-        board[i] = remainingTeams[rIdx];
-        rIdx++;
-      }
-    }
-    return board;
+    return resolveDraftOrder(initialStandings, draw1Winner, draw2Winner, MAX_MOVE_UP);
   }, [phase, draw1Winner, draw2Winner]);
 
   if (phase === 'COMPLETE') {
@@ -178,7 +154,7 @@ export default function FullDrawBoard() {
         
         {/* Left Column: Live Leaderboard (Wider) */}
         <div className="lg:col-span-3 bg-white retro-border p-4 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] flex flex-col h-full">
-          <h3 className="text-xs md:text-sm mb-4 border-b-4 border-black pb-2 uppercase text-[#E2231A]">Live Leaderboard</h3>
+          <h3 className="text-xs md:text-sm mb-4 border-b-4 border-black pb-2 uppercase text-[#E2231A]">Live Odds</h3>
           
           {phase === 'DRAW_2' && draw1Winner && (
             <div className="bg-[#E2231A] text-white p-3 mb-4 border-2 border-black text-[10px] md:text-xs flex justify-between items-center uppercase">
@@ -224,7 +200,7 @@ export default function FullDrawBoard() {
 
         {/* Right Column: Target Team Analysis (Narrower) */}
         <div className="lg:col-span-2 bg-[#B8F6FA] retro-border p-4 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] flex flex-col h-full">
-          <h3 className="text-xs md:text-sm mb-4 border-b-4 border-black pb-2 uppercase text-[#E2231A]">Team Intel</h3>
+          <h3 className="text-xs md:text-sm mb-4 border-b-4 border-black pb-2 uppercase text-[#E2231A]">Team View</h3>
           
           <div className="bg-white border-2 border-black p-3 text-center mb-4">
             <span className="text-[10px] text-gray-500 uppercase tracking-widest block mb-1">Selected Team</span>
