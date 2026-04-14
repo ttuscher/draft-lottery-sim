@@ -1,7 +1,7 @@
 // src/app/page.tsx
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { NHL_TEAMS } from '../data/teams';
 import lotteryData from '../data/lottery-2025.json';
@@ -13,29 +13,23 @@ const secondOverallOdds: Record<string, number> = {
 };
 
 export default function LandingPage() {
-  
-  // LOGO DIAGNOSTIC: Check the console (F12) to see why images fail
-  useEffect(() => {
-    console.log("System Check: Checking Data Integrity...");
-    if (!lotteryData) console.error("CRITICAL: lottery-2025.json not found in src/data/");
-    if (!lotteryData.teamOrder) console.error("CRITICAL: teamOrder undefined in JSON file");
-  }, []);
+  const teamOrder = lotteryData?.teamOrder || [];
+  const teamsData = lotteryData?.teams || {};
 
-  if (!lotteryData || !lotteryData.teamOrder) {
+  if (teamOrder.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white p-10" style={{ fontFamily: 'var(--font-press-start)' }}>
         <div className="border-4 border-red-600 p-8 text-center">
-          <h2 className="text-red-600 text-xl mb-6">! SYSTEM HALTED !</h2>
-          <p className="text-xs leading-loose">DATA SOURCE MISSING: lottery-2025.json</p>
-          <p className="text-[10px] mt-4 text-gray-500">Check src/data/ directory</p>
+          <h2 className="text-red-600 text-xl mb-6 uppercase tracking-tighter">! System Error !</h2>
+          <p className="text-[10px] leading-loose">Verify JSON source at: src/data/lottery-2025.json</p>
         </div>
       </div>
     );
   }
 
-  const standings = lotteryData.teamOrder.map((teamCode: string, index: number) => {
+  const standings = teamOrder.map((teamCode: string, index: number) => {
     const teamInfo = NHL_TEAMS[teamCode];
-    const lotteryInfo = (lotteryData.teams as Record<string, any>)[teamCode];
+    const lotteryInfo = (teamsData as Record<string, any>)[teamCode];
     
     return {
       seed: index + 1,
@@ -48,41 +42,35 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen py-12 px-4 flex flex-col items-center" style={{ fontFamily: 'var(--font-press-start)' }}>
       <div className="w-full max-w-5xl bg-white retro-border p-4 md:p-8 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]">
-        
         <h2 className="text-lg md:text-2xl mb-6 text-center border-b-4 border-black pb-4 text-[#E2231A] uppercase tracking-wider">
           Current Standings
         </h2>
-
+        
         <div className="overflow-x-auto mb-10">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#B8F6FA] border-b-4 border-black text-[10px] md:text-xs">
-                <th className="p-3 text-center w-12 md:w-16">SEED</th>
+              <tr className="bg-[#B8F6FA] border-b-4 border-black text-[10px]">
+                <th className="p-3 text-center">SEED</th>
                 <th className="p-3">TEAM</th>
-                <th className="p-3 text-right">1ST OVERALL</th>
-                <th className="p-3 text-right">2ND OVERALL</th>
+                <th className="p-3 text-right">1ST %</th>
+                <th className="p-3 text-right">2ND %</th>
               </tr>
             </thead>
             <tbody>
               {standings.map((row) => (
-                <tr key={row.team.abbreviation} className="border-b-2 border-gray-200 text-[10px] md:text-xs hover:bg-[#96EDF6]">
+                <tr key={row.team.abbreviation} className="border-b-2 border-gray-100 text-[10px] hover:bg-gray-50 transition-colors">
                   <td className="p-3 text-center font-bold text-[#E2231A]">{row.seed}</td>
-                  <td className="p-2 md:p-3">
-                    <div className="flex items-center gap-3 md:gap-4">
-                      {row.team.logoLight && (
-                        <img 
-                          src={row.team.logoLight} 
-                          alt={row.team.abbreviation}
-                          className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-[3px_3px_0_rgba(0,0,0,1)] saturate-[2.5] contrast-[1.5] brightness-110 sepia-[.15]"
-                          style={{ imageRendering: 'pixelated' }}
-                          onError={(e) => {
-                            console.error(`404: Missing Logo at ${row.team.logoLight}`);
-                            e.currentTarget.style.display = 'none';
-                          }} 
-                        />
-                      )}
-                      <span className="uppercase whitespace-nowrap">{row.team.city} {row.team.name}</span>
-                    </div>
+                  <td className="p-2 flex items-center gap-4">
+                    {row.team.logoLight && (
+                      <img 
+                        src={row.team.logoLight} 
+                        alt=""
+                        className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-[2px_2px_0_rgba(0,0,0,1)] saturate-[2.2] contrast-[1.4] brightness-110"
+                        style={{ imageRendering: 'pixelated' }}
+                        onError={(e) => { e.currentTarget.style.visibility = 'hidden'; }}
+                      />
+                    )}
+                    <span className="uppercase">{row.team.city} {row.team.name}</span>
                   </td>
                   <td className="p-3 text-right font-bold">{row.odds1 > 0 ? `${row.odds1.toFixed(1)}%` : '-'}</td>
                   <td className="p-3 text-right font-bold">{row.odds2 > 0 ? `${row.odds2.toFixed(1)}%` : '-'}</td>
@@ -93,10 +81,7 @@ export default function LandingPage() {
         </div>
 
         <div className="flex justify-center">
-          <Link 
-            href="/lotterysimulator" 
-            className="bg-[#E2231A] text-white px-10 py-5 border-4 border-black hover:bg-black hover:text-[#96EDF6] transition-all shadow-[6px_6px_0px_rgba(0,0,0,0.2)] uppercase tracking-widest text-sm"
-          >
+          <Link href="/lotterysimulator" className="bg-[#E2231A] text-white px-8 py-4 border-4 border-black hover:bg-black hover:text-white transition-all uppercase text-xs tracking-widest">
             Commence Lottery
           </Link>
         </div>
