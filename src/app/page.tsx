@@ -20,7 +20,7 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white p-10" style={{ fontFamily: 'var(--font-press-start)' }}>
         <div className="border-4 border-red-600 p-8 text-center">
-          <h2 className="text-red-600 text-xl mb-6 uppercase tracking-tighter">! System Error !</h2>
+          <h2 className="text-red-600 text-xl mb-6 uppercase tracking-tighter" style={{ fontFamily: 'var(--font-press-start)' }}>! System Error !</h2>
           <p className="text-[10px] leading-loose">Verify JSON source at: src/data/lottery-2025.json</p>
         </div>
       </div>
@@ -42,18 +42,20 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen py-12 px-4 flex flex-col items-center" style={{ fontFamily: 'var(--font-press-start)' }}>
       <div className="w-full max-w-5xl bg-white retro-border p-4 md:p-8 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]">
-        <h2 className="text-lg md:text-2xl mb-6 text-center border-b-4 border-black pb-4 text-[#E2231A] uppercase tracking-wider">
-          Current Standings
+        
+        {/* Explicitly applying the Press Start 2P font to the header here */}
+        <h2 className="text-lg md:text-2xl mb-6 text-center border-b-4 border-black pb-4 text-[#E2231A] uppercase tracking-wider" style={{ fontFamily: 'var(--font-press-start)' }}>
+          DRAFT ORDER
         </h2>
         
         <div className="overflow-x-auto mb-10">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[10px]">
-                <th className="p-3 text-center">SEED</th>
+                <th className="p-3 text-center">PICK</th>
                 <th className="p-3">TEAM</th>
-                <th className="p-3 text-right">1ST %</th>
-                <th className="p-3 text-right">2ND %</th>
+                <th className="p-3 text-right">1ST OVR</th>
+                <th className="p-3 text-right">2ND OVR</th>
               </tr>
             </thead>
             <tbody>
