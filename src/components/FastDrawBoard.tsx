@@ -80,6 +80,8 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
   // On desktop (md:), always show expanded columns. On mobile, toggle via expanded state.
   const expandedColClass = expanded ? '' : 'hidden md:table-cell';
+  // Post-sim + expanded: hide 2ND OVR on mobile to make room for trade partner column
+  const hide2ndOvrClass = (result && expanded) ? 'hidden md:table-cell' : '';
 
   return (
     <div className="w-full pb-2">
@@ -109,12 +111,13 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs">
                 <th className={`py-2 px-1 text-center w-8 sm:w-12 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
                 <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap ${stickyTeamHeadClass}`}>TEAM</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>DRAW 1</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>1ST OVR</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>2ND OVR</th>
+                <th className={`py-2 px-0 sm:px-1 text-left whitespace-nowrap ${expanded ? 'md:hidden' : 'hidden'}`}></th>
                 {result && (
                   <th className="py-2 px-2 text-center w-14 sm:w-20 md:w-[10%] whitespace-nowrap">CHANGE</th>
                 )}
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>DRAW 1</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>1ST OVR</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass} ${hide2ndOvrClass}`}>2ND OVR</th>
                 <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>PTS</th>
                 <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>RW</th>
                 <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>ROW</th>
@@ -161,10 +164,12 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                   }
                 }
 
-                const tooltipText = isResolved
+                const tooltipText = isResolved && result
+                  ? `FROM ${abbrev}`
+                  : isResolved
                   ? `TRADE CONDITIONS RESOLVED.`
                   : isConditional && conditionalResolved && conditionalTransferred
-                  ? `TO ${(trade as { acquirer: string }).acquirer}`
+                  ? `FROM ${abbrev}`
                   : isConditional && conditionalResolved && !conditionalTransferred
                   ? null
                   : isConditional
@@ -232,7 +237,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}{tooltipText ? '*' : ''}</span>
                           {tooltipText ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
@@ -275,15 +280,22 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </div>
                     </td>
 
-                    {/* Odds columns — cyan fill, gold for winners */}
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
-                      {teamOdds.d1 > 0 ? `${teamOdds.d1.toFixed(1)}%` : '—'}
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
-                      {teamOdds.firstOvr > 0 ? `${teamOdds.firstOvr.toFixed(1)}%` : '—'}
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
-                      {teamOdds.secondOvr > 0 ? `${teamOdds.secondOvr.toFixed(1)}%` : '—'}
+                    {/* Mobile-only trade partner cell (hidden until + expanded) */}
+                    <td className={`py-1.5 px-0 sm:px-1 ${expanded ? 'md:hidden' : 'hidden'}`}>
+                      {(() => {
+                        const mPartnerAbbrev = shouldFlip
+                          ? abbrev
+                          : (isResolved ? (trade as { owner: string }).owner : isConditional ? (trade as { acquirer: string }).acquirer : null);
+                        const mPartnerTeam = mPartnerAbbrev ? NHL_TEAMS[mPartnerAbbrev] : null;
+                        if (!mPartnerTeam) return null;
+                        const mGreyed = shouldFlip || (!isResolved && isConditional);
+                        return (
+                          <div className="flex items-center gap-1.5">
+                            <CroppedLogo src={mPartnerTeam.logoLight} alt={mPartnerTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8" wrapperClass={`shrink-0${mGreyed ? ' opacity-40 grayscale' : ''}`} />
+                            <span className={`font-bold text-[10px] sm:text-[11px] uppercase tracking-tight ${mGreyed ? 'text-gray-400' : ''}`}>{mPartnerTeam.abbreviation}</span>
+                          </div>
+                        );
+                      })()}
                     </td>
 
                     {result && (
@@ -295,6 +307,17 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                         </div>
                       </td>
                     )}
+
+                    {/* Odds columns — cyan fill, gold for winners */}
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                      {teamOdds.d1 > 0 ? `${teamOdds.d1.toFixed(1)}%` : '—'}
+                    </td>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                      {teamOdds.firstOvr > 0 ? `${teamOdds.firstOvr.toFixed(1)}%` : '—'}
+                    </td>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${hide2ndOvrClass}`}>
+                      {teamOdds.secondOvr > 0 ? `${teamOdds.secondOvr.toFixed(1)}%` : '—'}
+                    </td>
 
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${statsColorClass}`}>
                       {stats?.points ?? '—'}
@@ -329,7 +352,9 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 const pTrade = PICK_OWNERSHIP[abbrev];
                 const pIsResolved = pTrade?.type === 'resolved';
                 const pIsConditional = pTrade?.type === 'conditional';
-                const pTooltipText = pIsResolved
+                const pTooltipText = pIsResolved && result
+                  ? `FROM ${abbrev}`
+                  : pIsResolved
                   ? `TRADE CONDITIONS RESOLVED.`
                   : pIsConditional
                   ? `${(pTrade as { protection: string }).protection}. UNRESOLVED.`
@@ -364,7 +389,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0 text-gray-400">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}{pTooltipText ? '*' : ''}</span>
                           {pTooltipText ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${pMainGreyed ? 'text-gray-300' : 'text-gray-400'}`}>{pMainTeam.city}</span>
@@ -406,15 +431,22 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </div>
                     </td>
 
-                    {/* Odds columns — cyan fill, dashes for playoff teams */}
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass}`}>
-                      —
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass}`}>
-                      —
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass}`}>
-                      —
+                    {/* Mobile-only trade partner cell (hidden until + expanded) */}
+                    <td className={`py-1.5 px-0 sm:px-1 ${expanded ? 'md:hidden' : 'hidden'}`}>
+                      {(() => {
+                        const mPartnerAbbrev = pShouldFlip
+                          ? abbrev
+                          : (pIsResolved ? (pTrade as { owner: string }).owner : pIsConditional ? (pTrade as { acquirer: string }).acquirer : null);
+                        const mPartnerTeam = mPartnerAbbrev ? NHL_TEAMS[mPartnerAbbrev] : null;
+                        if (!mPartnerTeam) return null;
+                        const mGreyed = pShouldFlip || (!pIsResolved && pIsConditional);
+                        return (
+                          <div className="flex items-center gap-1.5">
+                            <CroppedLogo src={mPartnerTeam.logoLight} alt={mPartnerTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8" wrapperClass={`shrink-0${mGreyed ? ' opacity-40 grayscale' : ''}`} />
+                            <span className={`font-bold text-[10px] sm:text-[11px] uppercase tracking-tight ${mGreyed ? 'text-gray-400' : ''}`}>{mPartnerTeam.abbreviation}</span>
+                          </div>
+                        );
+                      })()}
                     </td>
 
                     {result && (
@@ -424,6 +456,17 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                         </div>
                       </td>
                     )}
+
+                    {/* Odds columns — cyan fill, dashes for playoff teams */}
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass}`}>
+                      —
+                    </td>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass}`}>
+                      —
+                    </td>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${hide2ndOvrClass}`}>
+                      —
+                    </td>
 
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${pIsResolved ? 'text-gray-300' : 'text-gray-500'}`}>
                       {stats?.points ?? '—'}
