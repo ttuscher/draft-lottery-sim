@@ -2,11 +2,12 @@
 
 # Draft Lottery Simulator - Project State
 
-## Master Snapshot: `snapshot-master-2026-04-16/`
-35 files saved. This is the canonical rollback point. Restore with:
+## Master Snapshot: `snapshot-master-2026-04-17/`
+v2 master. This is the canonical rollback point. Restore with:
 ```
-cp snapshot-master-2026-04-16/src/FILE src/FILE
+cp snapshot-master-2026-04-17/src/FILE src/FILE
 ```
+Previous snapshot: `snapshot-master-2026-04-16/` (pre-v2)
 
 ## Architecture
 - **Next.js 16** / React 19 / TypeScript / Tailwind CSS v4

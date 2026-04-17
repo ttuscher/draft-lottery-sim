@@ -87,14 +87,14 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
         {/* Header + Expand Button */}
         <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
           <div className="flex-1" />
-          <h2 className="text-sm sm:text-base md:text-xl text-center text-[#E2231A] uppercase tracking-wider whitespace-nowrap">
+          <h2 className="text-sm sm:text-base md:text-xl text-center text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
             {result ? '2026 SIMULATED DRAFT ORDER' : '2026 DRAFT LOTTERY ODDS'}
           </h2>
           <div className="flex-1 flex justify-end">
             <button
               type="button"
               onClick={() => setExpanded(prev => !prev)}
-              className="w-7 h-7 sm:w-8 sm:h-8 bg-black text-white border-2 border-black shadow-[3px_3px_0px_rgba(0,0,0,1)] flex md:hidden items-center justify-center transition-all hover:translate-y-[2px] hover:shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none text-sm sm:text-base font-bold leading-none cursor-pointer"
+              className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-400 text-white border-2 border-gray-500 shadow-[2px_2px_0px_rgba(0,0,0,0.3)] flex md:hidden items-center justify-center transition-all hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] active:translate-y-1 active:shadow-none text-xs sm:text-sm font-bold leading-none cursor-pointer"
             >
               {expanded ? '-' : '+'}
             </button>

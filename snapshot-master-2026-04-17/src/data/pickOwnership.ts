@@ -21,6 +21,7 @@ const RESOLVED_TRADES: Record<string, PickTrade> = {
   MIN: { type: 'resolved', owner: 'VAN', from: 'MIN' },
   TBL: { type: 'resolved', owner: 'SEA', from: 'TBL' },
   COL: { type: 'resolved', owner: 'STL', from: 'COL' },
+  FLA: { type: 'resolved', owner: 'CHI', from: 'FLA' },
   // DAL pick goes to NYR (resolved by triangle trade logic below)
   DAL: { type: 'resolved', owner: 'NYR', from: 'DAL' },
 };
@@ -32,7 +33,6 @@ const RESOLVED_TRADES: Record<string, PickTrade> = {
  */
 const CONDITIONAL_TRADES: Record<string, PickTrade> = {
   TOR: { type: 'conditional', originalTeam: 'TOR', acquirer: 'BOS', protection: 'TOP 5 PROTECTED', protectionThreshold: 5 },
-  FLA: { type: 'conditional', originalTeam: 'FLA', acquirer: 'CHI', protection: 'TOP 10 PROTECTED', protectionThreshold: 10 },
 };
 
 /** Combined lookup: all traded picks keyed by the team whose record earns the slot. */

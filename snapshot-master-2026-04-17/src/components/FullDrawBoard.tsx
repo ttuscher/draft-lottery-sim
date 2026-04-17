@@ -223,8 +223,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
       {/* THE DRAW TABLE */}
       {phase !== 'COMPLETE' && (
-        <div className="w-full bg-white border-4 border-black p-3 md:p-6 mb-8 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap">
+        <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 mb-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
             LIVE DRAW AND RESULTS
           </h2>
 
@@ -247,19 +247,25 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 {history.map((row, idx) => {
                   let line1 = '';
                   let line2 = '';
+                  let mobileLine1 = '';
+                  let mobileLine2 = '';
 
                   const isRedraw = row.result === 'REDRAW';
                   const resultTeam = (!isRedraw && row.result) ? (row.result as SeededTeam) : null;
 
                   if (isRedraw) {
                     line1 = 'RE-DRAW';
+                    mobileLine1 = 'RE-DRAW';
                   } else if (resultTeam) {
                     const pickNum = currentOrder.findIndex(t => t.team.abbreviation === resultTeam.team.abbreviation) + 1;
                     const isDraw2 = history.slice(0, idx).some(h => h.result && h.result !== 'REDRAW');
                     const drawNum = isDraw2 ? 2 : 1;
-                    const winnerCity = NHL_TEAMS[resultTeam.team.abbreviation]?.city || resultTeam.team.abbreviation;
-                    line1 = `${winnerCity} WINS DRAW ${drawNum}`;
-                    line2 = `OWNS #${pickNum} PICK`;
+                    const winnerAbbrev = resultTeam.team.abbreviation;
+                    const winnerCity = NHL_TEAMS[winnerAbbrev]?.city || winnerAbbrev;
+                    mobileLine1 = `${winnerAbbrev} WINS!`;
+                    mobileLine2 = `OWNS #${pickNum} PICK`;
+                    line1 = `${winnerCity} WINS DRAW ${drawNum}!`;
+                    line2 = `OWNS PICK #${pickNum}`;
                   }
 
                   return (
@@ -290,10 +296,18 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                 <CroppedLogo src={resultTeam.team.logoLight} sizeClass="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" wrapperClass="shrink-0" />
                               )}
                               <div className="flex flex-col md:flex-row md:items-center text-left justify-center md:gap-1.5">
-                                <span className="font-bold text-[9px] sm:text-[10px] md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
-                                  {line1}<span className="hidden md:inline">,</span>
+                                {/* Mobile text */}
+                                <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
+                                  {mobileLine1 || line1}
                                 </span>
-                                <span className="font-bold text-[9px] sm:text-[10px] md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
+                                <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
+                                  {mobileLine2 || line2}
+                                </span>
+                                {/* Desktop text */}
+                                <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
+                                  {line1}
+                                </span>
+                                <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
                                   {line2}
                                 </span>
                               </div>
@@ -352,11 +366,11 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
       {/* LEAGUE VIEW + TEAM VIEW: Shown during active draws only */}
       {phase !== 'COMPLETE' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">
 
           {/* ===== LEAGUE VIEW: Live Odds Leaderboard ===== */}
           <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap">
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
               LEAGUE VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
             </h3>
 
@@ -449,7 +463,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
           {/* ===== TEAM VIEW: Per-Ball Intel Panel ===== */}
           <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap">
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
               TEAM VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
             </h3>
 
@@ -649,8 +663,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
       {/* COMPLETE PHASE: Full Draft Order */}
       {phase === 'COMPLETE' && (
-        <div className="w-full bg-white border-4 border-black p-3 md:p-6 mb-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] animate-in fade-in">
-          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap">
+        <div className="w-full bg-white border-4 border-black p-3 md:p-6 mb-2 shadow-[8px_8px_0px_rgba(0,0,0,1)] animate-in fade-in">
+          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
             2026 SIMULATED DRAFT ORDER
           </h2>
 

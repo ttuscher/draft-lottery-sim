@@ -1,2 +1,5 @@
-// DELETED: Duplicate of prospects/page.tsx. Safe to remove from repo.
-export {};
+import { redirect } from 'next/navigation';
+
+export default function ProspectRankingsRedirect() {
+  redirect('/prospects');
+}

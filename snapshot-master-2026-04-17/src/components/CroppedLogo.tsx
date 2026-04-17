@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 /**
  * Per-team scale overrides for logos whose shape doesn't crop well at 1.45x.
@@ -35,22 +36,26 @@ export default function CroppedLogo({
   retro = true,
   onError,
 }: CroppedLogoProps) {
+  const resolvedScale = (() => {
+    for (const [key, s] of Object.entries(LOGO_SCALE_OVERRIDES)) {
+      if (src.includes(key)) return s;
+    }
+    return scale;
+  })();
+
   return (
-    <div className={`${sizeClass} overflow-hidden rounded-sm ${wrapperClass}`}>
-      <img
+    <div className={`${sizeClass} overflow-hidden rounded-sm ${wrapperClass} relative`}>
+      <Image
         src={src}
         alt={alt}
-        className={`w-full h-full object-contain ${
+        fill
+        sizes="48px"
+        className={`object-contain ${
           retro ? 'saturate-[2.2] contrast-[1.4] brightness-110 drop-shadow-[1px_1px_0_rgba(0,0,0,1)]' : ''
         }`}
         style={{
           imageRendering: 'pixelated',
-          transform: `scale(${(() => {
-            for (const [key, s] of Object.entries(LOGO_SCALE_OVERRIDES)) {
-              if (src.includes(key)) return s;
-            }
-            return scale;
-          })()})`,
+          transform: `scale(${resolvedScale})`,
         }}
         onError={onError || ((e) => { e.currentTarget.style.visibility = 'hidden'; })}
       />
