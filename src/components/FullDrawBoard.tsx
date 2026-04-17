@@ -305,7 +305,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                 </span>
                                 {/* Desktop text */}
                                 <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
-                                  {line1}<span className="hidden md:inline">,</span>
+                                  {line1}
                                 </span>
                                 <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
                                   {line2}

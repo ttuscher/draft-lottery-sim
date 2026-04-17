@@ -113,8 +113,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 )}
                 {expanded && (
                   <>
-                    <th className="py-2 px-2 text-center whitespace-nowrap">GP</th>
-                    <th className="py-2 px-2 text-center whitespace-nowrap">RECORD</th>
                     <th className="py-2 px-2 text-center whitespace-nowrap">PTS</th>
                     <th className="py-2 px-2 text-center whitespace-nowrap">PTS%</th>
                     <th className="py-2 px-2 text-center whitespace-nowrap">RW</th>
@@ -224,12 +222,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                     {expanded && (
                       <>
-                        <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm">
-                          {stats?.gamesPlayed ?? '—'}
-                        </td>
-                        <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm whitespace-nowrap">
-                          {stats?.record ?? '—'}
-                        </td>
                         <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold">
                           {stats?.points ?? '—'}
                         </td>
@@ -311,12 +303,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                     {expanded && (
                       <>
-                        <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-500">
-                          {stats?.gamesPlayed ?? '—'}
-                        </td>
-                        <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm whitespace-nowrap text-gray-500">
-                          {stats?.record ?? '—'}
-                        </td>
                         <td className="py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold text-gray-500">
                           {stats?.points ?? '—'}
                         </td>
