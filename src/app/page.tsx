@@ -31,7 +31,7 @@ export default function LotterySimulatorPage() {
   }, [mode]);
 
   return (
-    <section className="w-full pt-3 pb-8">
+    <section className="w-full pt-3 pb-2">
       <div className="max-w-5xl mx-auto px-4">
 
         <SimulatorNav
