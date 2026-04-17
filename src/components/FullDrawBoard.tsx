@@ -247,19 +247,25 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 {history.map((row, idx) => {
                   let line1 = '';
                   let line2 = '';
+                  let mobileLine1 = '';
+                  let mobileLine2 = '';
 
                   const isRedraw = row.result === 'REDRAW';
                   const resultTeam = (!isRedraw && row.result) ? (row.result as SeededTeam) : null;
 
                   if (isRedraw) {
                     line1 = 'RE-DRAW';
+                    mobileLine1 = 'RE-DRAW';
                   } else if (resultTeam) {
                     const pickNum = currentOrder.findIndex(t => t.team.abbreviation === resultTeam.team.abbreviation) + 1;
                     const isDraw2 = history.slice(0, idx).some(h => h.result && h.result !== 'REDRAW');
                     const drawNum = isDraw2 ? 2 : 1;
-                    const winnerCity = NHL_TEAMS[resultTeam.team.abbreviation]?.city || resultTeam.team.abbreviation;
-                    line1 = `${winnerCity} WINS DRAW ${drawNum}`;
-                    line2 = `OWNS #${pickNum} PICK`;
+                    const winnerAbbrev = resultTeam.team.abbreviation;
+                    const winnerCity = NHL_TEAMS[winnerAbbrev]?.city || winnerAbbrev;
+                    mobileLine1 = `${winnerAbbrev} WINS!`;
+                    mobileLine2 = `OWNS #${pickNum} PICK`;
+                    line1 = `${winnerCity} WINS DRAW ${drawNum}!`;
+                    line2 = `OWNS PICK #${pickNum}`;
                   }
 
                   return (
@@ -290,10 +296,18 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                 <CroppedLogo src={resultTeam.team.logoLight} sizeClass="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" wrapperClass="shrink-0" />
                               )}
                               <div className="flex flex-col md:flex-row md:items-center text-left justify-center md:gap-1.5">
-                                <span className="font-bold text-[9px] sm:text-[10px] md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
+                                {/* Mobile text */}
+                                <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
+                                  {mobileLine1 || line1}
+                                </span>
+                                <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
+                                  {mobileLine2 || line2}
+                                </span>
+                                {/* Desktop text */}
+                                <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
                                   {line1}<span className="hidden md:inline">,</span>
                                 </span>
-                                <span className="font-bold text-[9px] sm:text-[10px] md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
+                                <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
                                   {line2}
                                 </span>
                               </div>
