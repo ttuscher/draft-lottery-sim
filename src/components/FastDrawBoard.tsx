@@ -82,7 +82,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
   return (
     <div className="w-full pb-2">
-      <div className="w-full bg-white border-4 border-black p-3 md:p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] mx-auto max-w-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
+      <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] mx-auto max-w-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
 
         {/* Header + Expand Button */}
         <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
