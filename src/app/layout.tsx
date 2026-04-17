@@ -47,7 +47,7 @@ export default function RootLayout({
         <Ticker />
 
         {/* Legal Disclaimer */}
-        <footer className="w-full max-w-5xl mx-auto px-4 pb-12 md:pb-14 pt-3 text-center">
+        <footer className="w-full max-w-5xl mx-auto px-4 pb-14 md:pb-16 pt-1 text-center">
           <p className="text-[7px] sm:text-[9px] md:text-[11px] leading-relaxed text-black/50" style={{ fontFamily: 'var(--font-press-start)' }}>
             NHL and the NHL Shield are registered trademarks of the National Hockey League.<br className="hidden md:inline" /> All NHL logos and marks are property of the NHL and its teams.<br className="hidden md:inline" /> This site is not affiliated with or endorsed by the NHL.
           </p>
