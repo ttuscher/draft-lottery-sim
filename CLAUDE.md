@@ -88,12 +88,12 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 - Red headers: `wordSpacing: '-0.5em'`
 
 ## Pick Ownership Data (`pickOwnership.ts`)
-**EXISTS but NOT IMPORTED by any component yet.** Previous integration attempt broke layout; reverted.
+**DET→STL now integrated in FastDrawBoard** (desktop only, pre-sim). Other trades not yet wired up.
 
 ### Resolved Trades (unconditional)
 - DET → STL, ANA → WSH, EDM → SJS, VGK → CGY, MIN → VAN, TBL → SEA, COL → STL
-- FLA → CHI (condition resolved: pick fell outside top 10 protection)
 - DAL → NYR
+- FLA: condition resolved — Florida KEEPS their pick (fell inside top 10 protection). Removed from trades.
 
 ### Conditional Trades
 - TOR: Top 5 protected → BOS

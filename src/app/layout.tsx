@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pressStart2P.variable} font-retro antialiased min-h-screen flex flex-col bg-[#96EDF6]`}>
+      <body className={`${pressStart2P.variable} font-retro antialiased min-h-screen flex flex-col bg-[#96EDF6]`} style={{ wordSpacing: '-0.3em' }}>
 
         {/* Global Header */}
         <header className="bg-black p-3 border-b-[7px] border-[#E2231A] uppercase tracking-widest text-center shadow-lg sticky top-0 z-50">

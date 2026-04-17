@@ -8,6 +8,7 @@ import { useNHLStandings, NHLTeamStanding } from '../hooks/useNHLStandings';
 import { buildDynamicLotteryData } from '../lib/dynamicCombos';
 import { computeDynamicPickSlotOdds, computeDraw1Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
+import { PICK_OWNERSHIP } from '../data/pickOwnership';
 // ThreeStars modal is only used in FullDrawBoard
 
 interface FastDrawBoardProps {
@@ -139,6 +140,39 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 const stats = getStats(abbrev);
                 const teamOdds = getTeamOdds(abbrev);
 
+                // Pick trade resolution (desktop only)
+                const trade = PICK_OWNERSHIP[abbrev];
+                const isResolved = trade?.type === 'resolved';
+                const isConditional = trade?.type === 'conditional';
+                const ownerTeam = isResolved ? NHL_TEAMS[(trade as { owner: string }).owner] : null;
+
+                // For conditional trades post-sim, resolve whether pick transferred
+                let conditionalResolved = false;
+                let conditionalTransferred = false;
+                let conditionalOwnerTeam: typeof ownerTeam = null;
+                if (isConditional && result) {
+                  conditionalResolved = true;
+                  const threshold = (trade as { protectionThreshold: number }).protectionThreshold;
+                  if (pickNum <= threshold) {
+                    conditionalTransferred = false; // protected, original team keeps it
+                  } else {
+                    conditionalTransferred = true;
+                    conditionalOwnerTeam = NHL_TEAMS[(trade as { acquirer: string }).acquirer] ?? null;
+                  }
+                }
+
+                const tooltipText = isResolved
+                  ? `TRADE CONDITIONS RESOLVED.`
+                  : isConditional && conditionalResolved && conditionalTransferred
+                  ? `TO ${(trade as { acquirer: string }).acquirer}`
+                  : isConditional && conditionalResolved && !conditionalTransferred
+                  ? null
+                  : isConditional
+                  ? `${(trade as { protection: string }).protection}. UNRESOLVED.`
+                  : abbrev === 'OTT'
+                  ? 'PENALTY PICK.'
+                  : null;
+
                 const isDraw1Winner = result?.draw1Winner?.team?.abbreviation === abbrev;
                 const isDraw2Winner = result?.draw2Winner?.team?.abbreviation === abbrev;
                 const isWinner = isDraw1Winner || isDraw2Winner;
@@ -169,6 +203,14 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 const rowBg = isWinner ? 'bg-[#FFFDE5]' : 'bg-white';
                 const oddsCellBg = isWinner ? 'bg-[#FFFDE5]' : cyanCellClass;
 
+                // Grey out stats for resolved trades + conditional trades that transferred
+                const statsColorClass = (isResolved || conditionalTransferred) ? 'text-gray-300' : '';
+
+                // Post-sim: flip display — show owner as primary, original team as greyed secondary
+                const shouldFlip = !!result && (isResolved || conditionalTransferred);
+                const mainTeam = shouldFlip ? (ownerTeam ?? conditionalOwnerTeam ?? slot.team) : slot.team;
+                const mainGreyed = !shouldFlip && isResolved;
+
                 return (
                   <tr
                     key={abbrev}
@@ -184,16 +226,52 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                     <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
-                        {slot.team.logoLight ? (
-                          <CroppedLogo src={slot.team.logoLight} alt={abbrev} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass="shrink-0" />
+                        {mainTeam.logoLight ? (
+                          <CroppedLogo src={mainTeam.logoLight} alt={mainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass={`shrink-0${mainGreyed ? ' opacity-40 grayscale' : ''}`} />
                         ) : (
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{abbrev}</span>
-                          <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-500">{slot.team.city}</span>
-                          <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight">{slot.team.name}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}</span>
+                          {tooltipText ? (
+                            <>
+                              <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
+                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.name}*</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-500">{mainTeam.city}</span>
+                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight">{mainTeam.name}</span>
+                            </>
+                          )}
                         </div>
+                        {/* Trade partner / original team logo (desktop only), right-aligned, with tooltip on hover */}
+                        {tooltipText && (() => {
+                          // Post-sim flipped: secondary is the original team (greyed). Pre-sim: secondary is the owner/acquirer.
+                          const secondaryAbbrev = shouldFlip
+                            ? abbrev
+                            : (isResolved ? (trade as { owner: string }).owner : isConditional ? (trade as { acquirer: string }).acquirer : null);
+                          const secondaryTeam = secondaryAbbrev ? NHL_TEAMS[secondaryAbbrev] : null;
+                          const secondaryGreyClass = shouldFlip ? ' opacity-40 grayscale' : (isResolved ? '' : ' opacity-50');
+                          if (secondaryTeam?.logoLight) {
+                            return (
+                              <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default">
+                                <CroppedLogo src={secondaryTeam.logoLight} alt={secondaryTeam.abbreviation} sizeClass="w-10 h-10" wrapperClass={`shrink-0${secondaryGreyClass}`} />
+                                <span className={`pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 ${isResolved || shouldFlip ? 'bg-black' : 'bg-[#E2231A]'} text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30`} style={{ wordSpacing: 'normal' }}>
+                                  {tooltipText}
+                                </span>
+                              </span>
+                            );
+                          }
+                          // No partner logo (e.g. OTT penalty pick) — invisible hover target with tooltip
+                          return (
+                            <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default self-stretch min-w-[40px]">
+                              <span className={`pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 mr-1 px-2 py-1 bg-[#E2231A] text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30`} style={{ wordSpacing: 'normal' }}>
+                                {tooltipText}
+                              </span>
+                            </span>
+                          );
+                        })()}
                       </div>
                     </td>
 
@@ -218,13 +296,13 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </td>
                     )}
 
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${statsColorClass}`}>
                       {stats?.points ?? '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
                       {stats?.regulationWins ?? '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
                       {stats?.regulationPlusOtWins ?? '—'}
                     </td>
                   </tr>
@@ -247,6 +325,24 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 const abbrev = slot.team.abbreviation;
                 const stats = getStats(abbrev);
 
+                // Pick trade resolution (desktop only)
+                const pTrade = PICK_OWNERSHIP[abbrev];
+                const pIsResolved = pTrade?.type === 'resolved';
+                const pIsConditional = pTrade?.type === 'conditional';
+                const pTooltipText = pIsResolved
+                  ? `TRADE CONDITIONS RESOLVED.`
+                  : pIsConditional
+                  ? `${(pTrade as { protection: string }).protection}. UNRESOLVED.`
+                  : abbrev === 'OTT'
+                  ? 'PENALTY PICK.'
+                  : null;
+
+                // Post-sim: flip display — show owner as primary, original team as greyed secondary
+                const pShouldFlip = !!result && pIsResolved;
+                const pOwnerTeam = pIsResolved ? NHL_TEAMS[(pTrade as { owner: string }).owner] : null;
+                const pMainTeam = pShouldFlip ? (pOwnerTeam ?? slot.team) : slot.team;
+                const pMainGreyed = !pShouldFlip && pIsResolved;
+
                 return (
                   <tr
                     key={abbrev}
@@ -262,16 +358,51 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                     <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
-                        {slot.team.logoLight ? (
-                          <CroppedLogo src={slot.team.logoLight} alt={abbrev} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass="shrink-0 opacity-60" />
+                        {pMainTeam.logoLight ? (
+                          <CroppedLogo src={pMainTeam.logoLight} alt={pMainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass={`shrink-0 ${pMainGreyed ? 'opacity-30 grayscale' : 'opacity-60'}`} />
                         ) : (
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0 text-gray-400">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{abbrev}</span>
-                          <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-400">{slot.team.city}</span>
-                          <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight text-gray-500">{slot.team.name}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}</span>
+                          {pTooltipText ? (
+                            <>
+                              <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${pMainGreyed ? 'text-gray-300' : 'text-gray-400'}`}>{pMainTeam.city}</span>
+                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight ${pMainGreyed ? 'text-gray-300' : 'text-gray-500'}`}>{pMainTeam.name}*</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-400">{pMainTeam.city}</span>
+                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight text-gray-500">{pMainTeam.name}</span>
+                            </>
+                          )}
                         </div>
+                        {/* Trade partner / original team logo (desktop only), right-aligned */}
+                        {pTooltipText && (() => {
+                          const pSecondaryAbbrev = pShouldFlip
+                            ? abbrev
+                            : (pIsResolved ? (pTrade as { owner: string }).owner : pIsConditional ? (pTrade as { acquirer: string }).acquirer : null);
+                          const pSecondaryTeam = pSecondaryAbbrev ? NHL_TEAMS[pSecondaryAbbrev] : null;
+                          const pSecondaryGreyClass = pShouldFlip ? ' opacity-40 grayscale' : (pIsResolved ? '' : ' opacity-50');
+                          if (pSecondaryTeam?.logoLight) {
+                            return (
+                              <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default">
+                                <CroppedLogo src={pSecondaryTeam.logoLight} alt={pSecondaryTeam.abbreviation} sizeClass="w-10 h-10" wrapperClass={`shrink-0${pSecondaryGreyClass}`} />
+                                <span className={`pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 ${pIsResolved || pShouldFlip ? 'bg-black' : 'bg-[#E2231A]'} text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30`} style={{ wordSpacing: 'normal' }}>
+                                  {pTooltipText}
+                                </span>
+                              </span>
+                            );
+                          }
+                          // No partner logo (e.g. OTT penalty pick) — invisible hover target with tooltip
+                          return (
+                            <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default self-stretch min-w-[40px]">
+                              <span className={`pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 mr-1 px-2 py-1 bg-[#E2231A] text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30`} style={{ wordSpacing: 'normal' }}>
+                                {pTooltipText}
+                              </span>
+                            </span>
+                          );
+                        })()}
                       </div>
                     </td>
 
@@ -294,13 +425,13 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </td>
                     )}
 
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold text-gray-500 ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${pIsResolved ? 'text-gray-300' : 'text-gray-500'}`}>
                       {stats?.points ?? '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-500 ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${pIsResolved ? 'text-gray-300' : 'text-gray-500'}`}>
                       {stats?.regulationWins ?? '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-500 ${expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${pIsResolved ? 'text-gray-300' : 'text-gray-500'}`}>
                       {stats?.regulationPlusOtWins ?? '—'}
                     </td>
                   </tr>

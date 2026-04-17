@@ -21,9 +21,7 @@ const RESOLVED_TRADES: Record<string, PickTrade> = {
   MIN: { type: 'resolved', owner: 'VAN', from: 'MIN' },
   TBL: { type: 'resolved', owner: 'SEA', from: 'TBL' },
   COL: { type: 'resolved', owner: 'STL', from: 'COL' },
-  FLA: { type: 'resolved', owner: 'CHI', from: 'FLA' },
-  // DAL pick goes to NYR (resolved by triangle trade logic below)
-  DAL: { type: 'resolved', owner: 'NYR', from: 'DAL' },
+  // FLA: condition resolved — Florida KEEPS their pick (pick fell inside top 10 protection)
 };
 
 /**
@@ -33,6 +31,9 @@ const RESOLVED_TRADES: Record<string, PickTrade> = {
  */
 const CONDITIONAL_TRADES: Record<string, PickTrade> = {
   TOR: { type: 'conditional', originalTeam: 'TOR', acquirer: 'BOS', protection: 'TOP 5 PROTECTED', protectionThreshold: 5 },
+  // Triangle trade: NYR gets the better of DAL/CAR 1st round picks (threshold 32 = never auto-resolves)
+  DAL: { type: 'conditional', originalTeam: 'DAL', acquirer: 'NYR', protection: 'NYR TO KEEP BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
+  CAR: { type: 'conditional', originalTeam: 'CAR', acquirer: 'NYR', protection: 'NYR TO KEEP BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
 };
 
 /** Combined lookup: all traded picks keyed by the team whose record earns the slot. */

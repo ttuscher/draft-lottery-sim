@@ -29,7 +29,7 @@ export const NHL_TEAMS: Record<string, Team> = {
   STL: { abbreviation: 'STL', city: 'St. Louis', name: 'Blues', logoLight: '/logos/20252026_STL_Logo_Light.png', logoDark: '/logos/20252026_STL_Logo_Dark.png' },
   TBL: { abbreviation: 'TBL', city: 'Tampa Bay', name: 'Lightning', logoLight: '/logos/20252026_TBL_Logo_Light.png', logoDark: '/logos/20252026_TBL_Logo_Dark.png' },
   TOR: { abbreviation: 'TOR', city: 'Toronto', name: 'Maple Leafs', logoLight: '/logos/20252026_TOR_Logo_Light.png', logoDark: '/logos/20252026_TOR_Logo_Dark.png' },
-  UTA: { abbreviation: 'UTA', city: 'Utah', name: 'Hockey Club', logoLight: '/logos/20252026_UTA_Logo_Light.png', logoDark: '/logos/20252026_UTA_Logo_Dark.png' },
+  UTA: { abbreviation: 'UTA', city: 'Utah', name: 'Mammoth', logoLight: '/logos/20252026_UTA_Logo_Light.png', logoDark: '/logos/20252026_UTA_Logo_Dark.png' },
   VAN: { abbreviation: 'VAN', city: 'Vancouver', name: 'Canucks', logoLight: '/logos/20252026_VAN_Logo_Light.png', logoDark: '/logos/20252026_VAN_Logo_Dark.png' },
   VGK: { abbreviation: 'VGK', city: 'Vegas', name: 'Golden Knights', logoLight: '/logos/20252026_VGK_Logo_Light.png', logoDark: '/logos/20252026_VGK_Logo_Dark.png' },
   WSH: { abbreviation: 'WSH', city: 'Washington', name: 'Capitals', logoLight: '/logos/20252026_WSH_Logo_Light.png', logoDark: '/logos/20252026_WSH_Logo_Dark.png' },
