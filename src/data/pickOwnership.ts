@@ -32,8 +32,8 @@ const RESOLVED_TRADES: Record<string, PickTrade> = {
 const CONDITIONAL_TRADES: Record<string, PickTrade> = {
   TOR: { type: 'conditional', originalTeam: 'TOR', acquirer: 'BOS', protection: 'TOP 5 PROTECTED', protectionThreshold: 5 },
   // Triangle trade: NYR gets the better of DAL/CAR 1st round picks (threshold 32 = never auto-resolves)
-  DAL: { type: 'conditional', originalTeam: 'DAL', acquirer: 'NYR', protection: 'NYR TO KEEP BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
-  CAR: { type: 'conditional', originalTeam: 'CAR', acquirer: 'NYR', protection: 'NYR TO KEEP BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
+  DAL: { type: 'conditional', originalTeam: 'DAL', acquirer: 'NYR', protection: 'NYR TO GET BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
+  CAR: { type: 'conditional', originalTeam: 'CAR', acquirer: 'NYR', protection: 'NYR TO GET BETTER OF DAL/CAR 1ST RD PICK', protectionThreshold: 32 },
 };
 
 /** Combined lookup: all traded picks keyed by the team whose record earns the slot. */

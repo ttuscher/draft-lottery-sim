@@ -5,6 +5,33 @@ import { SeededTeam, LotteryCombo, SimulationResult } from '../data/types';
 export const MAX_MOVE_UP = 10;
 
 /**
+ * When the Draw 1 winner can't reach pick #1 (due to the 10-spot cap),
+ * the team that gets locked into #1 by default is also ineligible for Draw 2.
+ * Returns that team's abbreviation, or undefined if the D1 winner took #1.
+ */
+export function getLockedFirstPickTeam(
+  originalTeams: SeededTeam[],
+  d1WinnerCode: string,
+  maxMove: number = MAX_MOVE_UP
+): string | undefined {
+  const d1OrigIdx = originalTeams.findIndex(
+    t => t.team.abbreviation === d1WinnerCode
+  );
+  if (d1OrigIdx < 0) return undefined;
+
+  const d1Target = Math.max(0, d1OrigIdx - maxMove);
+  if (d1Target === 0) return undefined; // D1 winner took #1, no one else locked
+
+  // The team that ends up at index 0 after removing D1 winner and reinserting at d1Target
+  const post = originalTeams.filter(
+    t => t.team.abbreviation !== d1WinnerCode
+  );
+  // post[0] is the team that was seed 1 (or seed 2 if D1 winner was seed 1, but
+  // if D1 winner was seed 1 they'd always reach #1, so post[0] is always the worst-record team)
+  return post[0]?.team.abbreviation;
+}
+
+/**
  * Randomly draws 4 ping-pong balls out of 14 using a Fisher-Yates shuffle.
  */
 export function drawFourBalls(): number[] {
@@ -49,13 +76,18 @@ export function runSimulation(
     }
   }
 
+  // If D1 winner can't reach #1, the team locked at #1 is also ineligible for Draw 2
+  const lockedFirstPick = getLockedFirstPickTeam(teams, draw1WinnerTeam.team.abbreviation, maxMoveUp);
+  const draw2Excluded = new Set<string>([draw1WinnerTeam.team.abbreviation]);
+  if (lockedFirstPick) draw2Excluded.add(lockedFirstPick);
+
   let draw2WinnerTeam: SeededTeam;
   while (true) {
     const balls = drawFourBalls();
     const winningCombo = getWinner(allCombos, balls);
 
     if (winningCombo && winningCombo.teamCode !== 'REDRAW') {
-      if (winningCombo.teamCode !== draw1WinnerTeam.team.abbreviation) {
+      if (!draw2Excluded.has(winningCombo.teamCode)) {
         const team = teams.find(t => t.team.abbreviation === winningCombo.teamCode);
         if (team) {
           draw2WinnerTeam = team;

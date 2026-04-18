@@ -30,12 +30,12 @@ interface DrawHistoryEntry {
   result: SeededTeam | 'REDRAW' | null;
 }
 
-interface FullDrawBoardProps {
+interface LiveDrawBoardProps {
   setActionText?: (text: string) => void;
   triggerRef?: React.MutableRefObject<() => void>;
 }
 
-export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoardProps) {
+export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoardProps) {
   // Dynamic standings from NHL API data
   const { lotteryTeams: lotteryStandings, playoffTeams: playoffStandings } = useNHLStandings();
   const dynamicData = useMemo(
@@ -63,6 +63,9 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
   const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
   const [mobileViewerTab, setMobileViewerTab] = useState<'league' | 'team'>('league');
 
+  // Live Draw: 4 ball slots for manual entry via dropdowns
+  const [inputBalls, setInputBalls] = useState<(number | null)[]>([null, null, null, null]);
+
   const allTeamCodes = useMemo(
     () => initialStandings.map(t => t.team.abbreviation),
     [initialStandings]
@@ -80,12 +83,11 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
     return lockedFirstPick ? [lockedFirstPick] : undefined;
   }, [lockedFirstPick]);
 
-  // The pick number the D1 winner is locked into
   const d1WinnerPickNum = useMemo(() => {
     if (!draw1WinnerCode) return undefined;
     const d1OrigIdx = initialStandings.findIndex(t => t.team.abbreviation === draw1WinnerCode);
     if (d1OrigIdx < 0) return undefined;
-    return Math.max(0, d1OrigIdx - MAX_MOVE_UP) + 1; // 1-indexed
+    return Math.max(0, d1OrigIdx - MAX_MOVE_UP) + 1;
   }, [draw1WinnerCode, initialStandings]);
 
   // Precomputed combo lookup for O(1) resolution on fourth ball
@@ -106,13 +108,19 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
     return counts;
   }, [combos]);
 
+  // Live balls: combine any valid inputBalls being typed with no prior activeBalls needed
+  // This makes odds update in real-time as each ball is entered
+  const liveBalls = useMemo(() => {
+    return inputBalls.filter((b): b is number => b !== null);
+  }, [inputBalls]);
+
   const liveOdds = useMemo(() => {
-    return calculateLiveOdds(combos, activeBalls, allTeamCodes, draw1WinnerCode, additionalExcluded);
-  }, [combos, activeBalls, allTeamCodes, draw1WinnerCode, additionalExcluded]);
+    return calculateLiveOdds(combos, liveBalls, allTeamCodes, draw1WinnerCode, additionalExcluded);
+  }, [combos, liveBalls, allTeamCodes, draw1WinnerCode, additionalExcluded]);
 
   const impact = useMemo(() => {
-    return getFullBallImpacts(combos, activeBalls, selectedTeam, draw1WinnerCode, additionalExcluded);
-  }, [combos, activeBalls, selectedTeam, draw1WinnerCode, additionalExcluded]);
+    return getFullBallImpacts(combos, liveBalls, selectedTeam, draw1WinnerCode, additionalExcluded);
+  }, [combos, liveBalls, selectedTeam, draw1WinnerCode, additionalExcluded]);
 
   // Baseline odds for computing deltas in the CHANGE column
   const baselineOdds = useMemo(() => {
@@ -141,8 +149,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
   // D1 winner's "match probability" (chance their combo is drawn, triggering redraw)
   const d1WinnerMatchProb = useMemo(() => {
     if (!draw1WinnerCode || phase === 'DRAW_1') return 0;
-    return probabilityOfWin(combos, activeBalls, draw1WinnerCode) * 100;
-  }, [combos, draw1WinnerCode, activeBalls, phase]);
+    return probabilityOfWin(combos, liveBalls, draw1WinnerCode) * 100;
+  }, [combos, draw1WinnerCode, liveBalls, phase]);
 
   const currentOrder = useMemo<SeededTeam[]>(() => {
     if (!draw1Winner) return initialStandings;
@@ -162,6 +170,63 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
     return resolveDraftOrder(initialStandings, draw1Winner, draw2Winner, MAX_MOVE_UP);
   }, [initialStandings, draw1Winner, draw2Winner]);
 
+  // Check if all 4 input balls are valid
+  const allInputsValid = useMemo(() => {
+    const filled = inputBalls.filter((b): b is number => b !== null);
+    if (filled.length !== 4) return false;
+    // Check all unique
+    return new Set(filled).size === 4;
+  }, [inputBalls]);
+
+  const handleSubmitBalls = useCallback(() => {
+    const filled = inputBalls.filter((b): b is number => b !== null);
+    if (filled.length !== 4 || new Set(filled).size !== 4) return;
+
+    const sortedBalls = [...filled].sort((a, b) => a - b).join(',');
+    const comboMatch = comboByBalls.get(sortedBalls) ?? null;
+
+    let isRedraw = false;
+    let winnerTeam: SeededTeam | null = null;
+
+    if (!comboMatch) {
+      isRedraw = true;
+    } else {
+      const teamCode = (comboMatch as any).teamCode || (comboMatch as any).team;
+      winnerTeam = initialStandings.find(t => t.team.abbreviation === teamCode) || null;
+
+      if (!winnerTeam || teamCode === 'REDRAW') {
+        isRedraw = true;
+      } else if (draw1Winner && winnerTeam.team.abbreviation === draw1Winner.team.abbreviation) {
+        isRedraw = true;
+      } else if (lockedFirstPick && winnerTeam.team.abbreviation === lockedFirstPick) {
+        isRedraw = true;
+      }
+    }
+
+    const finishedEntry: DrawHistoryEntry = {
+      balls: filled,
+      result: isRedraw ? 'REDRAW' : winnerTeam
+    };
+
+    setActiveBalls(filled);
+    setHistory(prev => [...prev, finishedEntry]);
+    setInputBalls([null, null, null, null]);
+
+    if (!isRedraw && winnerTeam) {
+      if (phase === 'DRAW_1') {
+        setDraw1Winner(winnerTeam);
+        setPhase('DRAW_2');
+        const nextBest = initialStandings.find(t => t.team.abbreviation !== winnerTeam!.team.abbreviation)!.team.abbreviation;
+        setSelectedTeam(nextBest);
+      } else {
+        setDraw2Winner(winnerTeam);
+        setPhase('COMPLETE');
+        setShowStars(true);
+      }
+    }
+
+  }, [inputBalls, comboByBalls, draw1Winner, lockedFirstPick, phase, initialStandings]);
+
   const handleNextStep = useCallback(() => {
     if (phase === 'COMPLETE') {
       setPhase('DRAW_1');
@@ -170,58 +235,13 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
       setDraw2Winner(null);
       setHistory([]);
       setShowStars(false);
+      setInputBalls([null, null, null, null]);
       return;
     }
 
-    const availableBalls = Array.from({length: 14}, (_, i) => i + 1).filter(b => !activeBalls.includes(b));
-
-    if (activeBalls.length < 3) {
-      const nextBall = availableBalls[Math.floor(Math.random() * availableBalls.length)];
-      setActiveBalls([...activeBalls, nextBall]);
-    } else if (activeBalls.length === 3) {
-      const nextBall = availableBalls[Math.floor(Math.random() * availableBalls.length)];
-      const finalBalls = [...activeBalls, nextBall];
-      const sortedBalls = [...finalBalls].sort((a,b) => a-b).join(',');
-      const comboMatch = comboByBalls.get(sortedBalls) ?? null;
-
-      let isRedraw = false;
-      let winnerTeam: SeededTeam | null = null;
-
-      if (!comboMatch) {
-        isRedraw = true;
-      } else {
-        const teamCode = (comboMatch as any).teamCode || (comboMatch as any).team;
-        winnerTeam = initialStandings.find(t => t.team.abbreviation === teamCode) || null;
-
-        if (!winnerTeam || teamCode === 'REDRAW') {
-          isRedraw = true;
-        } else if (draw1Winner && winnerTeam.team.abbreviation === draw1Winner.team.abbreviation) {
-          isRedraw = true;
-        }
-      }
-
-      const finishedEntry: DrawHistoryEntry = {
-        balls: finalBalls,
-        result: isRedraw ? 'REDRAW' : winnerTeam
-      };
-
-      setHistory(prev => [...prev, finishedEntry]);
-      setActiveBalls([]);
-
-      if (!isRedraw) {
-        if (phase === 'DRAW_1') {
-          setDraw1Winner(winnerTeam);
-          setPhase('DRAW_2');
-          const nextBest = initialStandings.find(t => t.team.abbreviation !== winnerTeam!.team.abbreviation)!.team.abbreviation;
-          setSelectedTeam(nextBest);
-        } else {
-          setDraw2Winner(winnerTeam);
-          setPhase('COMPLETE');
-          setShowStars(true);
-        }
-      }
-    }
-  }, [activeBalls, comboByBalls, draw1Winner, phase, initialStandings]);
+    // In Live Draw mode, the button submits the entered balls
+    handleSubmitBalls();
+  }, [phase, handleSubmitBalls]);
 
   useEffect(() => {
     if (triggerRef) {
@@ -237,22 +257,12 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
       return;
     }
 
-    const numBalls = activeBalls.length;
-
-    if (numBalls === 0) {
-      if (history.length === 0) {
-        setActionText("PUSH TO\nSTART");
-      } else if (history[history.length - 1].result === 'REDRAW') {
-        setActionText("START\nREDRAW");
-      } else {
-        setActionText("START\nNEXT DRAW");
-      }
-    } else if (numBalls === 1 || numBalls === 2) {
-      setActionText("NEXT\nBALL");
-    } else if (numBalls === 3) {
-      setActionText("FINAL\nBALL");
+    if (allInputsValid) {
+      setActionText("SUBMIT\nBALLS");
+    } else {
+      setActionText("ENTER\nBALLS");
     }
-  }, [activeBalls.length, phase, history, setActionText]);
+  }, [phase, allInputsValid, setActionText]);
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -332,14 +342,12 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                 <CroppedLogo src={resultTeam.team.logoLight} sizeClass="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" wrapperClass="shrink-0" />
                               )}
                               <div className="flex flex-col md:flex-row md:items-center text-left justify-center md:gap-1.5">
-                                {/* Mobile text */}
                                 <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
                                   {mobileLine1 || line1}
                                 </span>
                                 <span className="md:hidden font-bold text-[9px] sm:text-[10px] uppercase text-black whitespace-nowrap leading-tight">
                                   {mobileLine2 || line2}
                                 </span>
-                                {/* Desktop text */}
                                 <span className="hidden md:inline font-bold md:text-xs lg:text-sm uppercase text-black whitespace-nowrap leading-tight">
                                   {line1}
                                 </span>
@@ -355,45 +363,88 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                   );
                 })}
 
-                {/* Active Draw Row */}
+                {/* Active Draw Row — sequential ball entry with arcade cursor */}
                 <tr className="border-b-2 border-gray-200 bg-[#E5FCFD] h-[44px] md:h-[52px] transition-colors">
                   <td className="py-1 px-1 sm:px-2 border-r-2 border-transparent">
                     <div className="flex justify-center items-center h-full">
                       <div className="font-bold text-xs sm:text-sm md:text-base text-black [text-shadow:2px_2px_0_#fff] animate-pulse">
-                        {history.length + 1}
+                        {history.filter(h => h.result && h.result !== 'REDRAW').length + 1}
                       </div>
                     </div>
                   </td>
                   <td className="py-1 px-1 sm:px-4 border-r-2 border-transparent">
                     <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                       {[0, 1, 2, 3].map((slotIndex) => {
-                        const ball = activeBalls[slotIndex];
-                        if (ball) {
+                        const val = inputBalls[slotIndex];
+                        const usedBalls = inputBalls.filter((b, i) => i !== slotIndex && b !== null) as number[];
+                        // First null slot is the active one; slots after it are locked
+                        const firstEmptyIdx = inputBalls.findIndex(b => b === null);
+                        const isActive = val === null && slotIndex === firstEmptyIdx;
+                        const isLocked = val === null && slotIndex > firstEmptyIdx;
+
+                        // Filled: gold ball
+                        if (val !== null) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-white bg-white text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-in zoom-in duration-200">
-                              {ball}
-                            </div>
-                          );
-                        } else {
-                          return (
-                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-solid border-gray-400 bg-transparent text-gray-400 font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_8px_rgba(156,163,175,0.8)]">
-                              ?
+                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]" style={{ fontFamily: 'var(--font-press-start)' }}>
+                              {val}
                             </div>
                           );
                         }
+
+                        // Active: blinking arcade cursor block with dropdown
+                        if (isActive) {
+                          return (
+                            <div key={`slot-${slotIndex}`} className="relative w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 arcade-cursor">
+                              <select
+                                value=""
+                                onChange={(e) => {
+                                  const num = parseInt(e.target.value, 10);
+                                  if (!isNaN(num)) {
+                                    setInputBalls(prev => { const next = [...prev]; next[slotIndex] = num; return next; });
+                                  }
+                                }}
+                                className="w-full h-full font-bold text-sm sm:text-base md:text-lg text-center appearance-none cursor-pointer outline-none bg-transparent text-transparent relative z-10"
+                                style={{ fontFamily: 'var(--font-press-start)' }}
+                              >
+                                <option value="" className="text-[#96EDF6] bg-black"></option>
+                                {Array.from({ length: 14 }, (_, i) => i + 1)
+                                  .filter(n => !usedBalls.includes(n))
+                                  .map(n => (
+                                    <option key={n} value={n} className="text-[#96EDF6] bg-black">{n}</option>
+                                  ))
+                                }
+                              </select>
+                            </div>
+                          );
+                        }
+
+                        // Locked: dim empty placeholder
+                        return (
+                          <div key={`slot-${slotIndex}`} className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 border-2 md:border-3 border-gray-300/40 rounded-sm" />
+                        );
                       })}
                     </div>
                   </td>
                   <td className="py-1 px-1 sm:px-4">
                     <div className="flex items-center justify-end w-full h-full pr-1 md:pr-4">
-                      {activeBalls.length === 0 ? (
-                         <span className="text-gray-400 font-bold text-[9px] sm:text-[11px] md:text-sm uppercase tracking-widest animate-pulse">READY TO BEGIN...</span>
+                      {allInputsValid ? (
+                        <button
+                          type="button"
+                          onClick={handleSubmitBalls}
+                          className="bg-[#E2231A] text-white font-bold text-[9px] sm:text-[10px] md:text-xs uppercase px-3 py-1.5 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none transition-all"
+                          style={{ fontFamily: 'var(--font-press-start)' }}
+                        >
+                          {phase === 'DRAW_1' ? 'COMPLETE DRAW 1' : 'COMPLETE DRAW 2'}
+                        </button>
                       ) : (
-                         <span className="text-gray-400 font-bold text-[9px] sm:text-[11px] md:text-sm uppercase tracking-widest animate-pulse">DRAWING...</span>
+                        <span className="text-gray-400 font-bold text-[8px] sm:text-[9px] md:text-[11px] uppercase tracking-widest animate-pulse" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
+                          MANUALLY ENTER COMBINATIONS...
+                        </span>
                       )}
                     </div>
                   </td>
                 </tr>
+
               </tbody>
             </table>
           </div>
@@ -458,7 +509,6 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 <tbody>
                   {(() => {
                     let rank = 0;
-                    // Sort: locked #1 first, then D1 winner, then everyone else by win% desc
                     const sortedOdds = [...liveOdds].sort((a, b) => {
                       const aLocked = a.teamCode === lockedFirstPick ? 0 : a.isDraw1Winner ? 1 : 2;
                       const bLocked = b.teamCode === lockedFirstPick ? 0 : b.isDraw1Winner ? 1 : 2;
@@ -879,6 +929,17 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 })}
               </tbody>
             </table>
+          </div>
+
+          <div className="flex justify-center mt-4">
+            <button
+              type="button"
+              onClick={handleNextStep}
+              className="px-6 py-2 border-4 border-black bg-[#E2231A] text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all"
+              style={{ fontFamily: 'var(--font-press-start)' }}
+            >
+              TRY AGAIN
+            </button>
           </div>
         </div>
       )}

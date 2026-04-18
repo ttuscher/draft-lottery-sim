@@ -4,6 +4,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import SimulatorNav, { SimulatorMode } from '../components/SimulatorNav';
 import FastDrawBoard from '../components/FastDrawBoard';
 import FullDrawBoard from '../components/FullDrawBoard';
+import LiveDrawBoard from '../components/LiveDrawBoard';
 
 export default function LotterySimulatorPage() {
   const [mode, setMode] = useState<SimulatorMode>('QUICK');
@@ -15,7 +16,8 @@ export default function LotterySimulatorPage() {
   const handleAction = useCallback(() => {
     const startsNewAttempt =
       mode === 'QUICK' ||
-      (mode === 'FULL' && actionText === 'PUSH TO\nSTART');
+      (mode === 'FULL' && actionText === 'PUSH TO\nSTART') ||
+      (mode === 'LIVE' && actionText === 'PUSH TO\nTRY AGAIN');
 
     if (startsNewAttempt) {
       setAttempts(prev => prev + 1);
@@ -24,10 +26,10 @@ export default function LotterySimulatorPage() {
     triggerSimulationRef.current?.();
   }, [mode, actionText]);
 
-  // Reset state when changing between QUICK and FULL
+  // Reset state when changing modes
   useEffect(() => {
     setAttempts(0);
-    setActionText('PUSH TO\nSTART');
+    setActionText(mode === 'LIVE' ? 'ENTER\nBALLS' : 'PUSH TO\nSTART');
   }, [mode]);
 
   return (
@@ -51,6 +53,12 @@ export default function LotterySimulatorPage() {
         {mode === 'FULL' && (
           <div className="animate-in fade-in duration-300">
             <FullDrawBoard setActionText={setActionText} triggerRef={triggerSimulationRef} />
+          </div>
+        )}
+
+        {mode === 'LIVE' && (
+          <div className="animate-in fade-in duration-300">
+            <LiveDrawBoard setActionText={setActionText} triggerRef={triggerSimulationRef} />
           </div>
         )}
 

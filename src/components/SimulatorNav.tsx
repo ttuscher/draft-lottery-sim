@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-export type SimulatorMode = "QUICK" | "FULL";
+export type SimulatorMode = "QUICK" | "FULL" | "LIVE";
 
 interface SimulatorNavProps {
   currentMode: SimulatorMode;
@@ -23,6 +23,7 @@ export default function SimulatorNav({
   const modes = [
     { value: "QUICK" as const, label: "FAST DRAW" },
     { value: "FULL" as const, label: "FULL DRAW" },
+    { value: "LIVE" as const, label: "LIVE DRAW" },
   ];
 
   const currentLabel =
@@ -32,8 +33,8 @@ export default function SimulatorNav({
     <div className="w-full mb-6">
       <div className="grid grid-cols-3 gap-3 md:gap-4 h-full">
 
-        {/* Mode Dropdown (spans 2 cols, keeps current compact design) */}
-        <div className="relative w-full h-full col-span-2 flex items-center">
+        {/* Mode Dropdown */}
+        <div className="relative w-full h-full flex items-center col-span-2">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
             className="w-full h-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
@@ -66,15 +67,15 @@ export default function SimulatorNav({
           )}
         </div>
 
-        {/* Action Button: SQUARE retro button (no rounded-full) with pressed-state effect */}
-        <div className="w-full h-full relative flex flex-col items-center justify-center col-span-1">
+        {/* Action Button: hidden in LIVE mode */}
+        <div className={`w-full h-full relative flex flex-col items-center justify-center col-span-1 ${currentMode === 'LIVE' ? 'invisible' : ''}`}>
           <button
             onClick={onAction}
             className="w-full h-full bg-[#E2231A] hover:bg-[#C41E17] text-white border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center px-2 md:px-5 py-1.5 transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
             style={{ fontFamily: 'var(--font-press-start)' }}
           >
             <span className="text-[9px] md:text-[11px] lg:text-sm leading-snug text-center">
-              {currentMode === "FULL" && actionText ? (
+              {(currentMode === "FULL" || currentMode === "LIVE") && actionText ? (
                 actionText.split('\n').map((line, idx, arr) => (
                   <React.Fragment key={idx}>
                     {line}
@@ -93,7 +94,7 @@ export default function SimulatorNav({
 
           {attempts > 0 && (
             <div
-              className="absolute top-full mt-1.5 md:mt-2 w-full text-center text-[7px] sm:text-[9px] text-black drop-shadow-[1px_1px_0_#fff] font-bold tracking-widest uppercase"
+              className="absolute top-full mt-[0.525rem] md:mt-2 w-full text-center text-[7px] sm:text-[9px] text-black drop-shadow-[1px_1px_0_#fff] font-bold tracking-widest uppercase"
               style={{ fontFamily: 'var(--font-press-start)' }}
             >
               ATTEMPTS: {attempts}

@@ -320,7 +320,7 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                   <div className="flex-1" />
 
                   {/* Stat block — fixed width so metrics align across rows */}
-                  <div className="w-[80px] sm:w-[100px] md:w-[140px] flex flex-col items-center justify-center shrink-0">
+                  <div className="w-[100px] sm:w-[120px] md:w-[140px] flex flex-col items-center justify-center shrink-0">
                     <span className={`font-bold leading-none whitespace-nowrap ${
                       isSorry
                         ? 'text-[#E2231A] [text-shadow:2px_2px_0_#7f1d1d] text-lg sm:text-xl md:text-3xl'

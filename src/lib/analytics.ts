@@ -83,12 +83,17 @@ export function probabilityOfWin(
   allCombos: LotteryCombo[],
   drawnBalls: number[],
   targetTeam: string,
-  draw1WinnerCode?: string
+  draw1WinnerCode?: string,
+  additionalExcluded?: string[]
 ): number {
   if (targetTeam === draw1WinnerCode) return 0;
+  if (additionalExcluded?.includes(targetTeam)) return 0;
 
   const redrawTriggers = new Set<string>([REDRAW_CODE]);
   if (draw1WinnerCode) redrawTriggers.add(draw1WinnerCode);
+  if (additionalExcluded) {
+    for (const code of additionalExcluded) redrawTriggers.add(code);
+  }
 
   let N_D = 0;    // all combos containing drawnBalls
   let X_D = 0;    // redraw-triggering combos containing drawnBalls
@@ -131,7 +136,8 @@ export function calculateLiveOdds(
   allCombos: LotteryCombo[],
   drawnBalls: number[],
   teamCodes: string[],
-  draw1WinnerCode?: string
+  draw1WinnerCode?: string,
+  additionalExcluded?: string[]
 ): LiveOdds[] {
   // Pre-index target combos for efficiency.
   const comboByTeam: Record<string, LotteryCombo[]> = {};
@@ -146,7 +152,8 @@ export function calculateLiveOdds(
         allCombos,
         drawnBalls,
         teamCode,
-        draw1WinnerCode
+        draw1WinnerCode,
+        additionalExcluded
       ) * 100;
       const remainingCombos = (comboByTeam[teamCode] ?? []).filter(c =>
         containsAll(c, drawnBalls)
@@ -180,31 +187,51 @@ export function getFullBallImpacts(
   allCombos: LotteryCombo[],
   drawnBalls: number[],
   targetTeam: string,
-  draw1WinnerCode?: string
+  draw1WinnerCode?: string,
+  additionalExcluded?: string[]
 ): DetailedBallImpact[] {
   const impacts: DetailedBallImpact[] = [];
 
-  // If the selected team already won Draw 1, every ball is a no-op:
-  // their probability is 0 everywhere and there is no impact to compute.
-  if (targetTeam === draw1WinnerCode) {
+  const isExcluded = targetTeam === draw1WinnerCode || (additionalExcluded?.includes(targetTeam) ?? false);
+
+  // If the selected team is excluded (won Draw 1 or locked at #1), compute accurate ball statuses
+  // (which balls matched their combos) but with 0 odds since they can't win Draw 2.
+  if (isExcluded) {
+    let aliveCombos = allCombos.filter(c => c.teamCode === targetTeam);
     drawnBalls.forEach((b, index) => {
-      impacts.push({
-        ball: b,
-        status: 'DRAWN_MISS',
-        displayProbability: 0,
-        oddsChange: 0,
-        combos: 0,
-        drawOrder: index,
-      });
+      const survives = aliveCombos.some(c => c.balls.includes(b));
+      if (survives) {
+        aliveCombos = aliveCombos.filter(c => c.balls.includes(b));
+        impacts.push({
+          ball: b,
+          status: 'DRAWN_MATCH',
+          displayProbability: 0,
+          oddsChange: 0,
+          combos: aliveCombos.length,
+          drawOrder: index,
+        });
+      } else {
+        aliveCombos = [];
+        impacts.push({
+          ball: b,
+          status: 'DRAWN_MISS',
+          displayProbability: 0,
+          oddsChange: 0,
+          combos: 0,
+          drawOrder: index,
+        });
+      }
     });
+    const teamCombosAll = allCombos.filter(c => c.teamCode === targetTeam);
     for (let b = 1; b <= 14; b++) {
       if (drawnBalls.includes(b)) continue;
+      const combosWithBall = teamCombosAll.filter(c => c.balls.includes(b)).length;
       impacts.push({
         ball: b,
-        status: 'REMAINING_DEAD',
+        status: combosWithBall > 0 ? 'REMAINING_ALIVE' : 'REMAINING_DEAD',
         displayProbability: 0,
         oddsChange: 0,
-        combos: 0,
+        combos: combosWithBall,
         drawOrder: 99,
       });
     }
@@ -215,7 +242,8 @@ export function getFullBallImpacts(
     allCombos,
     drawnBalls,
     targetTeam,
-    draw1WinnerCode
+    draw1WinnerCode,
+    additionalExcluded
   );
 
   // --- Drawn balls: replay in chronological order --------------------------
@@ -255,7 +283,8 @@ export function getFullBallImpacts(
       allCombos,
       hypotheticalDraw,
       targetTeam,
-      draw1WinnerCode
+      draw1WinnerCode,
+      additionalExcluded
     );
     const combos = targetCombosAll.filter(c => containsAll(c, hypotheticalDraw)).length;
 
