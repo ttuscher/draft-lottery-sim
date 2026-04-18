@@ -60,6 +60,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
   const [selectedTeam, setSelectedTeam] = useState<string>(initialStandings[0].team.abbreviation);
   const [teamDropdownOpen, setTeamDropdownOpen] = useState(false);
+  const [mobileViewerTab, setMobileViewerTab] = useState<'league' | 'team'>('league');
 
   const allTeamCodes = useMemo(
     () => initialStandings.map(t => t.team.abbreviation),
@@ -377,13 +378,47 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
       {/* LEAGUE VIEW + TEAM VIEW: Shown during active draws only */}
       {phase !== 'COMPLETE' && (
+        <>
+        {/* Mobile toggle buttons */}
+        <div className="flex md:hidden gap-2 mb-4">
+          <button
+            type="button"
+            onClick={() => setMobileViewerTab('league')}
+            className={`flex-1 py-2 px-3 border-4 border-black text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all ${
+              mobileViewerTab === 'league'
+                ? 'bg-black text-[#96EDF6]'
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+            style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}
+          >
+            LEAGUE VIEW
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileViewerTab('team')}
+            className={`flex-1 py-2 px-3 border-4 border-black text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all ${
+              mobileViewerTab === 'team'
+                ? 'bg-black text-[#96EDF6]'
+                : 'bg-white text-black hover:bg-gray-100'
+            }`}
+            style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}
+          >
+            TEAM VIEW
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">
 
           {/* ===== LEAGUE VIEW: Live Odds Leaderboard ===== */}
-          <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
-              LEAGUE VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
-            </h3>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] ${mobileViewerTab !== 'league' ? 'hidden md:block' : ''}`}>
+            <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
+              <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
+                LEAGUE VIEW
+              </h3>
+              <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
+                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+              </span>
+            </div>
 
             <div>
               <table className="w-full text-left border-collapse" style={{ tableLayout: 'fixed' }}>
@@ -473,10 +508,15 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           </div>
 
           {/* ===== TEAM VIEW: Per-Ball Intel Panel ===== */}
-          <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
-              TEAM VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
-            </h3>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col ${mobileViewerTab !== 'team' ? 'hidden md:flex' : ''}`}>
+            <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
+              <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
+                TEAM VIEW
+              </h3>
+              <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
+                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+              </span>
+            </div>
 
             {/* Team Selector Dropdown — full width, "Selected Team: CHI" + logo */}
             <div className="relative mb-2">
@@ -662,6 +702,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           </div>
 
         </div>
+        </>
       )}
 
       {/* 3 Stars of the Lottery — modal popup */}
