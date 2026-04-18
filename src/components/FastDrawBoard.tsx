@@ -128,19 +128,19 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
         </div>
 
         <div className="overflow-x-auto mb-2">
-          <table className="text-left border-collapse w-full md:min-w-[800px]">
+          <table className={`text-left border-collapse w-full ${result ? 'md:min-w-[960px]' : 'md:min-w-[800px]'}`}>
 
             <thead>
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
                 <th className={`py-2 px-1 text-center w-8 sm:w-12 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
                 <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[1%] ${stickyTeamHeadClass}`}>TEAM</th>
                 {result ? (
-                  <th className="py-2 pl-2 sm:pl-3 pr-0 text-left whitespace-nowrap">FROM</th>
+                  <th className="py-2 pl-2 sm:pl-3 pr-0 text-left whitespace-nowrap md:w-[1%]">FROM</th>
                 ) : (
                   <th className="py-2 pl-2 sm:pl-3 pr-0 text-left whitespace-nowrap md:hidden"></th>
                 )}
                 {result && (
-                  <th className="py-2 px-2 text-center w-14 sm:w-20 whitespace-nowrap">CHANGE</th>
+                  <th className="py-2 px-2 text-center w-14 sm:w-20 md:w-[8%] whitespace-nowrap">CHANGE</th>
                 )}
                 <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass} ${result ? 'hidden md:table-cell' : expandedColClass}`}>DRAW 1</th>
                 <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass} ${result ? 'hidden md:table-cell' : ''}`}>#1 OVR</th>
@@ -355,23 +355,21 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     </td>
 
                     {result && (
-                      <td className="py-1.5 px-2">
-                        <div className="flex justify-center items-center h-full">
-                          <span className={`font-bold text-[10px] sm:text-[11px] md:text-sm whitespace-nowrap ${changeColor}`}>
-                            {changeLabel}
-                          </span>
-                        </div>
+                      <td className="py-1.5 px-2 text-center md:w-[8%]">
+                        <span className={`font-bold text-[10px] sm:text-[11px] md:text-sm whitespace-nowrap ${changeColor}`}>
+                          {changeLabel}
+                        </span>
                       </td>
                     )}
 
                     {/* Odds columns — cyan fill, gold for winners */}
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : expandedColClass}`}>
                       {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : ''}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : ''}`}>
                       {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : hide2ndOvrClass}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${result ? 'hidden md:table-cell' : hide2ndOvrClass}`}>
                       {teamOdds.secondOvr > 0 ? <RetroNum value={teamOdds.secondOvr.toFixed(1)} /> : '—'}
                     </td>
 
@@ -537,21 +535,19 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     </td>
 
                     {result && (
-                      <td className="py-1.5 px-2">
-                        <div className="flex justify-center items-center h-full">
-                          <span className="font-bold text-[10px] sm:text-[11px] md:text-sm text-gray-400">—</span>
-                        </div>
+                      <td className="py-1.5 px-2 text-center md:w-[8%]">
+                        <span className="font-bold text-[10px] sm:text-[11px] md:text-sm text-gray-400">—</span>
                       </td>
                     )}
 
                     {/* Odds columns — cyan fill, dashes for playoff teams */}
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : expandedColClass}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : expandedColClass}`}>
                       —
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : ''}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : ''}`}>
                       —
                     </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : hide2ndOvrClass}`}>
+                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm text-gray-400 ${cyanCellClass} ${result ? 'hidden md:table-cell' : hide2ndOvrClass}`}>
                       —
                     </td>
 

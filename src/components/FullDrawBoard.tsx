@@ -10,6 +10,7 @@ import { buildDynamicLotteryData } from '../lib/dynamicCombos';
 import { computeDraw1Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import ThreeStars, { computeThreeStars } from './ThreeStars';
+import { PICK_OWNERSHIP } from '../data/pickOwnership';
 
 /** Renders a number with a tightened decimal point */
 const RetroNum = ({ value, prefix = '', suffix = '' }: { value: string; prefix?: string; suffix?: string }) => {
@@ -467,14 +468,33 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                             {isD1Winner ? 'D1' : rank}
                           </td>
                           <td className="py-[7px] pl-2 sm:pl-3 md:pl-4 pr-0.5">
-                            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
-                              {teamInfo?.logoLight && (
-                                <CroppedLogo src={teamInfo.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
-                              )}
-                              <span className={`uppercase font-bold tracking-tight truncate team-name ${isD1Winner ? 'text-gray-400' : ''}`}>
-                                {teamInfo?.city || odds.teamCode}
-                              </span>
-                            </div>
+                            {(() => {
+                              const trade = PICK_OWNERSHIP[odds.teamCode];
+                              const isResolved = trade?.type === 'resolved';
+                              const ownerAbbrev = isResolved ? (trade as { owner: string }).owner : null;
+                              const ownerTeam = ownerAbbrev ? NHL_TEAMS[ownerAbbrev] : null;
+
+                              if (isResolved && ownerTeam) {
+                                return (
+                                  <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
+                                    <CroppedLogo src={ownerTeam.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
+                                    <span className={`uppercase font-bold tracking-tight team-name ${isD1Winner ? 'text-gray-400' : ''}`}>
+                                      {ownerAbbrev}<br /><span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px]">FROM {odds.teamCode}</span>
+                                    </span>
+                                  </div>
+                                );
+                              }
+                              return (
+                                <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
+                                  {teamInfo?.logoLight && (
+                                    <CroppedLogo src={teamInfo.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
+                                  )}
+                                  <span className={`uppercase font-bold tracking-tight truncate team-name ${isD1Winner ? 'text-gray-400' : ''}`}>
+                                    {odds.teamCode}
+                                  </span>
+                                </div>
+                              );
+                            })()}
                           </td>
                           <td className={`py-[7px] px-0.5 sm:px-1 text-center font-bold ${isD1Winner ? 'text-gray-400' : ''}`}>
                             {odds.remainingCombos}
@@ -525,12 +545,23 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 className="w-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
               >
                 <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
-                  SELECTED TEAM: {NHL_TEAMS[selectedTeam]?.city || selectedTeam}
+                  {(() => {
+                    const selTrade = PICK_OWNERSHIP[selectedTeam];
+                    const selIsResolved = selTrade?.type === 'resolved';
+                    const selOwner = selIsResolved ? (selTrade as { owner: string }).owner : null;
+                    if (selOwner) {
+                      return <>{NHL_TEAMS[selOwner]?.city || selOwner} <span className="text-[#96EDF6]/60">(FROM {selectedTeam})</span></>;
+                    }
+                    return <>{NHL_TEAMS[selectedTeam]?.city || selectedTeam}</>;
+                  })()}
                 </span>
                 <div className="flex items-center gap-2 ml-2 flex-shrink-0">
-                  {NHL_TEAMS[selectedTeam]?.logoDark && (
-                    <CroppedLogo src={NHL_TEAMS[selectedTeam].logoDark} sizeClass="w-5 h-5 sm:w-6 sm:h-6" />
-                  )}
+                  {(() => {
+                    const selTrade = PICK_OWNERSHIP[selectedTeam];
+                    const selOwner = selTrade?.type === 'resolved' ? (selTrade as { owner: string }).owner : null;
+                    const displayLogo = selOwner ? NHL_TEAMS[selOwner]?.logoDark : NHL_TEAMS[selectedTeam]?.logoDark;
+                    return displayLogo ? <CroppedLogo src={displayLogo} sizeClass="w-5 h-5 sm:w-6 sm:h-6" /> : null;
+                  })()}
                   <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6]">▼</span>
                 </div>
               </button>
@@ -550,13 +581,30 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                           }}
                           className="group text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-[9px] sm:text-[11px] md:text-sm lg:text-xs py-2 px-4 border-b-2 border-gray-800 last:border-none transition-colors flex items-center justify-between"
                         >
-                          <span className="uppercase font-bold tracking-tight truncate team-name">
-                            {NHL_TEAMS[code]?.city || code}
-                          </span>
+                          {(() => {
+                            const ddTrade = PICK_OWNERSHIP[code];
+                            const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
+                            const ddOwnerTeam = ddOwner ? NHL_TEAMS[ddOwner] : null;
+                            if (ddOwnerTeam) {
+                              return (
+                                <span className="uppercase font-bold tracking-tight truncate team-name">
+                                  {ddOwnerTeam.city} <span className="text-[#96EDF6]/60 group-hover:text-black/40">(FROM {code})</span>
+                                </span>
+                              );
+                            }
+                            return (
+                              <span className="uppercase font-bold tracking-tight truncate team-name">
+                                {NHL_TEAMS[code]?.city || code}
+                              </span>
+                            );
+                          })()}
                           <div className="flex items-center gap-2 ml-2 flex-shrink-0">
-                            {t?.logoDark && (
-                              <CroppedLogo src={t.logoDark} sizeClass="w-4 h-4 sm:w-5 sm:h-5" />
-                            )}
+                            {(() => {
+                              const ddTrade = PICK_OWNERSHIP[code];
+                              const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
+                              const ddLogo = ddOwner ? NHL_TEAMS[ddOwner]?.logoDark : t?.logoDark;
+                              return ddLogo ? <CroppedLogo src={ddLogo} sizeClass="w-4 h-4 sm:w-5 sm:h-5" /> : null;
+                            })()}
                             <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block">
                               {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
                             </span>
