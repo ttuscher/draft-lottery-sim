@@ -307,7 +307,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     </td>
 
                     {/* FROM / trade partner column */}
-                    <td className="py-1.5 pl-2 sm:pl-3 pr-0">
+                    <td className={`py-1.5 pl-2 sm:pl-3 pr-0 ${result ? '' : 'md:hidden'}`}>
                       {(() => {
                         if (result) {
                           // Post-sim: show original team as FROM
@@ -490,7 +490,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     </td>
 
                     {/* FROM / trade partner column */}
-                    <td className="py-1.5 pl-2 sm:pl-3 pr-0">
+                    <td className={`py-1.5 pl-2 sm:pl-3 pr-0 ${result ? '' : 'md:hidden'}`}>
                       {(() => {
                         if (result) {
                           if (!pShouldFlip) return null;
