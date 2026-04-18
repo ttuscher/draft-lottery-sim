@@ -502,11 +502,11 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
         {/* Footnotes */}
         <div className="px-2 md:px-4 pt-3 md:pt-4 pb-0 space-y-0.5">
-          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: 'normal' }}>
+          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.4em' }}>
             *Original pick owner&apos;s season results shown.
           </p>
-          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: 'normal' }}>
-            **Ottawa to pick 32nd overall as the result of a penalty sanction.
+          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.4em' }}>
+            **OTT to pick 32nd due to penalty sanction.
           </p>
         </div>
 

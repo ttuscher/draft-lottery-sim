@@ -55,7 +55,7 @@ export default function RootLayout({
 
         {/* Legal Disclaimer */}
         <footer className="w-full max-w-5xl mx-auto px-4 pb-14 md:pb-16 pt-1 text-center">
-          <p className="text-[7px] sm:text-[9px] md:text-[11px] leading-relaxed text-black/50" style={{ fontFamily: 'var(--font-press-start)' }}>
+          <p className="text-[8px] sm:text-[9px] md:text-[11px] leading-relaxed text-black/60" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.4em' }}>
             NHL and the NHL Shield are registered trademarks of the National Hockey League.<br className="hidden md:inline" /> All NHL logos and marks are property of the NHL and its teams.<br className="hidden md:inline" /> This site is not affiliated with or endorsed by the NHL.
           </p>
         </footer>
