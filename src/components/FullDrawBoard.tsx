@@ -694,12 +694,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
                   const change = slot.seed - pickNum;
 
-                  let numClass = 'text-black [text-shadow:2px_2px_0_#fff]';
-                  if (change > 0) {
-                    numClass = 'text-black [text-shadow:2px_2px_0_#22c55e]';
-                  } else if (change < 0) {
-                    numClass = 'text-black [text-shadow:2px_2px_0_#E2231A]';
-                  }
+                  const numClass = 'text-black [text-shadow:2px_2px_0_#fff]';
                   let changeLabel = '';
                   let changeColor = 'text-gray-400';
                   if (change > 0) {

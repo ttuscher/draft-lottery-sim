@@ -37,9 +37,9 @@ function findConditionalLoser(
       if (!usedTeams.has(trade.acquirer)) {
         return {
           abbrev: trade.acquirer,
-          label: 'SORRY',
+          label: 'SORRY!',
           rightBig: `TOP ${trade.protectionThreshold}`,
-          rightSmall: 'BLOCKED',
+          rightSmall: `${teamAbbrev} KEEPS\nTHE PICK`,
         };
       }
     } else {
@@ -49,7 +49,7 @@ function findConditionalLoser(
           abbrev: teamAbbrev,
           label: 'SORRY',
           rightBig: `#${pickNum}`,
-          rightSmall: `PICK LOST\nTO ${trade.acquirer}`,
+          rightSmall: `${trade.acquirer} GETS\nTHE PICK`,
         };
       }
     }
