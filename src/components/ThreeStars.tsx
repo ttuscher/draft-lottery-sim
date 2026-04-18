@@ -49,7 +49,7 @@ function findConditionalLoser(
           abbrev: teamAbbrev,
           label: 'SORRY',
           rightBig: `#${pickNum}`,
-          rightSmall: 'PICK LOST',
+          rightSmall: `PICK LOST\nTO ${trade.acquirer}`,
         };
       }
     }
@@ -86,37 +86,39 @@ export function computeThreeStars(finalOrder: SeededTeam[]): [StarEntry, StarEnt
     rightSmall: 'OVERALL',
   };
 
-  // ★★★ Biggest faller (different team)
+  // ★★★ Biggest loser — conditional trade losers take priority, then biggest faller
   const usedTeams = new Set([first.team.abbreviation, second.team.abbreviation]);
-
-  let worstDrop = 0;
-  let worstDropper: { slot: SeededTeam; pickNum: number } | null = null;
-
-  finalOrder.forEach((slot, index) => {
-    const pickNum = index + 1;
-    const change = slot.seed - pickNum;
-    if (!usedTeams.has(slot.team.abbreviation) && change < worstDrop) {
-      worstDrop = change;
-      worstDropper = { slot, pickNum };
-    }
-  });
 
   let thirdStar: StarEntry;
 
-  if (worstDropper && worstDrop < 0) {
-    const wd = worstDropper as { slot: SeededTeam; pickNum: number };
-    const dropCount = Math.abs(worstDrop);
-    thirdStar = {
-      abbrev: wd.slot.team.abbreviation,
-      label: 'SORRY',
-      rightBig: `${dropCount}`,
-      rightSmall: dropCount === 1 ? 'SPOT LOST' : 'SPOTS LOST',
-      pickNum: wd.pickNum,
-    };
+  // Priority 1: Conditional trade loser (e.g. BOS missing TOR's protected pick)
+  const conditional = findConditionalLoser(finalOrder, usedTeams);
+  if (conditional) {
+    thirdStar = conditional;
   } else {
-    const conditional = findConditionalLoser(finalOrder, usedTeams);
-    if (conditional) {
-      thirdStar = conditional;
+    // Priority 2: Biggest faller
+    let worstDrop = 0;
+    let worstDropper: { slot: SeededTeam; pickNum: number } | null = null;
+
+    finalOrder.forEach((slot, index) => {
+      const pickNum = index + 1;
+      const change = slot.seed - pickNum;
+      if (!usedTeams.has(slot.team.abbreviation) && change < worstDrop) {
+        worstDrop = change;
+        worstDropper = { slot, pickNum };
+      }
+    });
+
+    if (worstDropper && worstDrop < 0) {
+      const wd = worstDropper as { slot: SeededTeam; pickNum: number };
+      const dropCount = Math.abs(worstDrop);
+      thirdStar = {
+        abbrev: wd.slot.team.abbreviation,
+        label: 'SORRY',
+        rightBig: `${dropCount}`,
+        rightSmall: dropCount === 1 ? 'SPOT LOST' : 'SPOTS LOST',
+        pickNum: wd.pickNum,
+      };
     } else {
       // Final fallback: last lottery pick not already used
       thirdStar = { abbrev: finalOrder[finalOrder.length - 1].team.abbreviation, label: 'SORRY', rightBig: '0', rightSmall: 'SPOTS LOST', pickNum: finalOrder.length };
@@ -219,7 +221,7 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
       <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative w-[94vw] max-w-[420px] md:max-w-[600px] lg:max-w-[680px] mx-auto">
+      <div className="relative w-[96vw] max-w-[520px] md:max-w-[720px] lg:max-w-[780px] mx-auto">
 
         {/* CRT scanline overlay */}
         <div
@@ -234,14 +236,14 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
 
           {/* === HEADER ZONE === */}
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-              <span className="text-[#FFCC00] text-2xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
-              <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-4xl uppercase tracking-wider [text-shadow:3px_3px_0_#E2231A]">
+            <div className="flex items-center gap-1 sm:gap-3 md:gap-4">
+              <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
+              <span className="text-[#FFCC00] text-base sm:text-3xl md:text-4xl uppercase tracking-wide sm:tracking-wider [text-shadow:3px_3px_0_#E2231A] whitespace-nowrap">
                 STARS OF
               </span>
-              <span className="text-[#FFCC00] text-2xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
+              <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
             </div>
-            <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-4xl uppercase tracking-wider [text-shadow:3px_3px_0_#E2231A] mt-1 sm:mt-2">
+            <span className="text-[#FFCC00] text-base sm:text-3xl md:text-4xl uppercase tracking-wide sm:tracking-wider [text-shadow:3px_3px_0_#E2231A] mt-1 sm:mt-2 whitespace-nowrap">
               THE LOTTERY
             </span>
           </div>
@@ -249,8 +251,8 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
           {/* Divider */}
           <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#96EDF6]/50 to-transparent my-3 sm:my-4 md:my-6" />
 
-          {/* === STAR ROWS — 3-column grid === */}
-          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mx-2 sm:mx-3 md:mx-5">
+          {/* === STAR ROWS === */}
+          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mx-1 sm:mx-2 md:mx-5">
             {[0, 1, 2].map((starIdx) => {
               const star = stars[starIdx];
               const team = NHL_TEAMS[star.abbrev];
@@ -260,7 +262,7 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
               return (
                 <div
                   key={starIdx}
-                  className={`grid grid-cols-[0.8fr_1.8fr_1fr] items-center px-1 sm:px-2 md:px-3 py-2 sm:py-3 md:py-4 transition-all duration-700 ${
+                  className={`flex items-center gap-3 sm:gap-4 md:gap-5 px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 transition-all duration-700 ${
                     isVisible
                       ? 'opacity-100 translate-y-0 scale-100'
                       : 'opacity-0 translate-y-6 scale-95'
@@ -271,58 +273,62 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                     : 'border border-[#96EDF6]/10'
                   }`}
                 >
-                  {/* LEFT PANEL: Star symbols — nudged up to visually center */}
-                  <div className="flex justify-center items-center self-center -mt-2 sm:-mt-2.5 md:-mt-3">
-                    <div className={`text-[#FFCC00] text-3xl sm:text-4xl md:text-5xl leading-[1] flex flex-col items-center ${
-                      starIdx === 0 ? '[text-shadow:2px_2px_0_#E2231A] animate-pulse' : ''
-                    }`}>
-                      {starIdx === 2 ? (
-                        <>
-                          <span className="leading-[0.7]">★★</span>
-                          <span className="leading-[0.7]">★</span>
-                        </>
-                      ) : (
-                        <span>{starLabels[starIdx]}</span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* CENTER PANEL: Logo + text — fixed sub-grid for alignment */}
-                  <div className="grid grid-cols-[auto_1fr] items-center gap-x-2 sm:gap-x-3 md:gap-x-4">
-                    {team?.logoLight && (
-                      <div className="flex items-center justify-center w-14 h-14 sm:w-18 sm:h-18 md:w-24 md:h-24">
-                        <CroppedLogo
-                          src={team.logoLight}
-                          alt={star.abbrev}
-                          sizeClass="w-14 h-14 sm:w-18 sm:h-18 md:w-24 md:h-24"
-                          wrapperClass=""
-                        />
+                  {/* Star symbols — fixed width so logos align across rows */}
+                  <div className={`w-8 sm:w-10 md:w-16 shrink-0 flex justify-center text-[#FFCC00] text-xl sm:text-2xl md:text-4xl leading-[1] ${
+                    starIdx === 0 ? '[text-shadow:2px_2px_0_#E2231A] animate-pulse' : ''
+                  }`}>
+                    {starIdx === 2 ? (
+                      <div className="flex flex-col items-center">
+                        <span className="leading-[0.7] text-lg sm:text-xl md:text-3xl">★★</span>
+                        <span className="leading-[0.7] text-lg sm:text-xl md:text-3xl">★</span>
                       </div>
+                    ) : (
+                      <span>{starLabels[starIdx]}</span>
                     )}
-                    <div className="flex flex-col justify-center">
-                      <span className="font-bold text-lg sm:text-xl md:text-3xl uppercase leading-tight text-white">
-                        {star.abbrev}
-                      </span>
-                      <span className={`text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 ${
-                        starIdx === 0 ? 'text-[#FFCC00]'
-                        : isSorry ? 'text-[#E2231A]/70'
-                        : 'text-[#96EDF6]'
-                      }`}>
-                        {subLabels[starIdx]}
-                      </span>
-                    </div>
                   </div>
 
-                  {/* RIGHT PANEL: Stat block — centered */}
-                  <div className="flex flex-col items-center justify-center">
+                  {/* Spacer — pushes logo+name toward center */}
+                  <div className="flex-1" />
+
+                  {/* Logo */}
+                  {team?.logoLight && (
+                    <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 shrink-0">
+                      <CroppedLogo
+                        src={team.logoLight}
+                        alt={star.abbrev}
+                        sizeClass="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24"
+                        wrapperClass=""
+                      />
+                    </div>
+                  )}
+
+                  {/* Abbrev + sub-label — fixed width so text aligns across rows */}
+                  <div className="w-[70px] sm:w-[90px] md:w-[140px] shrink-0 flex flex-col justify-center">
+                    <span className="font-bold text-lg sm:text-xl md:text-3xl uppercase leading-tight text-white whitespace-nowrap">
+                      {star.abbrev}
+                    </span>
+                    <span className={`text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 whitespace-nowrap ${
+                      starIdx === 0 ? 'text-[#FFCC00]'
+                      : isSorry ? 'text-[#E2231A]/70'
+                      : 'text-[#96EDF6]'
+                    }`}>
+                      {subLabels[starIdx]}
+                    </span>
+                  </div>
+
+                  {/* Spacer — pushes metrics to the right */}
+                  <div className="flex-1" />
+
+                  {/* Stat block — fixed width so metrics align across rows */}
+                  <div className="w-[80px] sm:w-[100px] md:w-[140px] flex flex-col items-center justify-center shrink-0">
                     <span className={`font-bold leading-none whitespace-nowrap ${
                       isSorry
                         ? 'text-[#E2231A] [text-shadow:2px_2px_0_#7f1d1d] text-lg sm:text-xl md:text-3xl'
-                        : 'text-[#FFCC00] [text-shadow:2px_2px_0_#E2231A] text-xl sm:text-2xl md:text-4xl'
+                        : 'text-[#FFCC00] [text-shadow:2px_2px_0_#E2231A] text-lg sm:text-xl md:text-3xl'
                     }`}>
                       {star.rightBig}
                     </span>
-                    <span className={`uppercase tracking-wider mt-1 md:mt-1.5 text-center ${
+                    <span className={`uppercase tracking-wider mt-1 md:mt-1.5 text-center ${star.rightSmall.includes('\n') ? 'whitespace-pre-line' : 'whitespace-nowrap'} ${
                       isSorry
                         ? 'text-[#E2231A]/70 text-[9px] sm:text-[11px] md:text-sm'
                         : 'text-[#FFCC00]/70 text-[9px] sm:text-[11px] md:text-sm'
@@ -330,7 +336,7 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                       {star.rightSmall}
                     </span>
                     {star.pickNum && (
-                      <span className="text-[#E2231A]/50 text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 text-center">
+                      <span className="text-[#E2231A]/50 text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 text-center whitespace-nowrap">
                         PICK #{star.pickNum}
                       </span>
                     )}

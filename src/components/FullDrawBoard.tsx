@@ -11,6 +11,17 @@ import { computeDraw1Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import ThreeStars, { computeThreeStars } from './ThreeStars';
 
+/** Renders a number with a tightened decimal point */
+const RetroNum = ({ value, prefix = '', suffix = '' }: { value: string; prefix?: string; suffix?: string }) => {
+  const idx = value.indexOf('.');
+  if (idx === -1) return <>{prefix}{value}{suffix}</>;
+  return (
+    <span className="retro-num">
+      {prefix}{value.slice(0, idx)}<span className="dec">.</span>{value.slice(idx + 1)}{suffix}
+    </span>
+  );
+};
+
 type Phase = 'DRAW_1' | 'DRAW_2' | 'COMPLETE';
 
 interface DrawHistoryEntry {
@@ -219,12 +230,12 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
   }, [activeBalls.length, phase, history, setActionText]);
 
   return (
-    <div className="max-w-5xl mx-auto" style={{ fontFamily: 'var(--font-press-start)' }}>
+    <div className="max-w-5xl mx-auto">
 
       {/* THE DRAW TABLE */}
       {phase !== 'COMPLETE' && (
         <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 mb-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
+          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
             LIVE DRAW AND RESULTS
           </h2>
 
@@ -236,7 +247,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 <col className="w-[50%] sm:w-[55%]" />
               </colgroup>
               <thead>
-                <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px] text-black">
+                <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px] text-black" style={{ fontFamily: 'var(--font-press-start)' }}>
                   <th className="py-2 px-1 sm:px-2 text-center whitespace-nowrap">DRAW</th>
                   <th className="py-2 px-2 sm:px-4 text-left" colSpan={2}>RESULT</th>
                 </tr>
@@ -370,7 +381,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
           {/* ===== LEAGUE VIEW: Live Odds Leaderboard ===== */}
           <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
               LEAGUE VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
             </h3>
 
@@ -384,7 +395,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                   <col className="w-[19%] md:w-[18%]" />
                 </colgroup>
                 <thead>
-                  <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[11px] md:text-xs">
+                  <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[11px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
                     <th className="py-1 px-1 text-center">RANK</th>
                     <th className="py-1 pl-2 sm:pl-3 md:pl-4 text-left">TEAM</th>
                     <th className="py-1 px-1 text-center">COMBOS</th>
@@ -425,7 +436,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                               {teamInfo?.logoLight && (
                                 <CroppedLogo src={teamInfo.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
                               )}
-                              <span className={`uppercase font-bold tracking-tight truncate ${isD1Winner ? 'text-gray-400' : ''}`}>
+                              <span className={`uppercase font-bold tracking-tight truncate team-name ${isD1Winner ? 'text-gray-400' : ''}`}>
                                 {teamInfo?.city || odds.teamCode}
                               </span>
                             </div>
@@ -437,7 +448,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                             {isD1Winner ? (
                               <span className="text-gray-400">—</span>
                             ) : displayWin > 0 ? (
-                              `${displayWin.toFixed(1)}%`
+                              <RetroNum value={displayWin.toFixed(1)} suffix="%" />
                             ) : (
                               <span className="text-gray-300">0%</span>
                             )}
@@ -446,9 +457,9 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                             {Math.abs(delta) < 0.05 ? (
                               <span className="text-gray-400">—</span>
                             ) : delta > 0 ? (
-                              <span className={isD1Winner ? 'text-gray-400' : 'text-green-600'}>+{delta.toFixed(1)}%</span>
+                              <span className={isD1Winner ? 'text-gray-400' : 'text-green-600'}><RetroNum value={delta.toFixed(1)} prefix="+" suffix="%" /></span>
                             ) : (
-                              <span className={isD1Winner ? 'text-gray-400' : 'text-[#E2231A]'}>{delta.toFixed(1)}%</span>
+                              <span className={isD1Winner ? 'text-gray-400' : 'text-[#E2231A]'}><RetroNum value={delta.toFixed(1)} suffix="%" /></span>
                             )}
                           </td>
                         </tr>
@@ -463,7 +474,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
 
           {/* ===== TEAM VIEW: Per-Ball Intel Panel ===== */}
           <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col">
-            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
+            <h3 className="text-xs sm:text-sm md:text-base lg:text-base mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
               TEAM VIEWER: {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
             </h3>
 
@@ -473,7 +484,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 onClick={() => setTeamDropdownOpen(!teamDropdownOpen)}
                 className="w-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
               >
-                <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase">
+                <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
                   SELECTED TEAM: {NHL_TEAMS[selectedTeam]?.city || selectedTeam}
                 </span>
                 <div className="flex items-center gap-2 ml-2 flex-shrink-0">
@@ -499,7 +510,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                           }}
                           className="group text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-[9px] sm:text-[11px] md:text-sm lg:text-xs py-2 px-4 border-b-2 border-gray-800 last:border-none transition-colors flex items-center justify-between"
                         >
-                          <span className="uppercase font-bold tracking-tight truncate">
+                          <span className="uppercase font-bold tracking-tight truncate team-name">
                             {NHL_TEAMS[code]?.city || code}
                           </span>
                           <div className="flex items-center gap-2 ml-2 flex-shrink-0">
@@ -507,7 +518,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                               <CroppedLogo src={t.logoDark} sizeClass="w-4 h-4 sm:w-5 sm:h-5" />
                             )}
                             <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block">
-                              {codeOdds ? `${codeOdds.winProbability.toFixed(1)}%` : '—'}
+                              {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
                             </span>
                           </div>
                         </button>
@@ -524,7 +535,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
               const currentWin = teamOdds?.winProbability ?? 0;
               const delta = currentWin - baseline;
               const deltaColor = Math.abs(delta) < 0.05 ? 'text-black' : delta > 0 ? 'text-green-600' : 'text-[#E2231A]';
-              const deltaStr = Math.abs(delta) < 0.05 ? '—' : delta > 0 ? `+${delta.toFixed(1)}%` : `${delta.toFixed(1)}%`;
+              const deltaNode = Math.abs(delta) < 0.05 ? <>—</> : delta > 0 ? <RetroNum value={delta.toFixed(1)} prefix="+" suffix="%" /> : <RetroNum value={delta.toFixed(1)} suffix="%" />;
               const ballsAlive = impact.filter(i => i.status === 'REMAINING_ALIVE').length;
               return (
                 <div className="flex mb-1 flex-grow">
@@ -533,11 +544,11 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                     <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight">BALLS ALIVE</span>
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
-                    <span className="text-sm md:text-lg font-bold text-black leading-tight">{currentWin.toFixed(1)}%</span>
+                    <span className="text-sm md:text-lg font-bold text-black leading-tight"><RetroNum value={currentWin.toFixed(1)} suffix="%" /></span>
                     <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight">CURRENT WIN %</span>
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
-                    <span className={`text-sm md:text-lg font-bold leading-tight ${deltaColor}`}>{deltaStr}</span>
+                    <span className={`text-sm md:text-lg font-bold leading-tight ${deltaColor}`}>{deltaNode}</span>
                     <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight">VS ORIGINAL</span>
                   </div>
                 </div>
@@ -554,7 +565,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                   <col className="w-[28%]" />
                 </colgroup>
                 <thead>
-                  <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]">
+                  <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]" style={{ fontFamily: 'var(--font-press-start)' }}>
                     <th className="py-1.5 px-1 text-center">BALL</th>
                     <th className="py-1.5 px-1 text-center">STATUS</th>
                     <th className="py-1.5 px-1 text-center">COMBOS</th>
@@ -591,18 +602,18 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                       statusColor = 'text-[#E2231A]';
                     }
 
-                    let changeDisplay = '';
+                    let changeDisplay: React.ReactNode = '';
                     let changeColor = 'text-gray-400';
                     if (isDrawn) {
                       changeDisplay = '—';
                     } else if (isRedrawPath) {
-                      changeDisplay = imp.oddsChange > 0 ? `+${imp.oddsChange.toFixed(1)}%` : `${imp.oddsChange.toFixed(1)}%`;
+                      changeDisplay = imp.oddsChange > 0 ? <RetroNum value={imp.oddsChange.toFixed(1)} prefix="+" suffix="%" /> : <RetroNum value={imp.oddsChange.toFixed(1)} suffix="%" />;
                       changeColor = 'text-gray-400';
                     } else if (imp.oddsChange > 0) {
-                      changeDisplay = `+${imp.oddsChange.toFixed(1)}%`;
+                      changeDisplay = <RetroNum value={imp.oddsChange.toFixed(1)} prefix="+" suffix="%" />;
                       changeColor = 'text-green-600';
                     } else if (imp.oddsChange < 0) {
-                      changeDisplay = `${imp.oddsChange.toFixed(1)}%`;
+                      changeDisplay = <RetroNum value={imp.oddsChange.toFixed(1)} suffix="%" />;
                       changeColor = 'text-[#E2231A]';
                     } else {
                       changeDisplay = '0%';
@@ -664,14 +675,14 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
       {/* COMPLETE PHASE: Full Draft Order */}
       {phase === 'COMPLETE' && (
         <div className="w-full bg-white border-4 border-black p-3 md:p-6 mb-2 shadow-[8px_8px_0px_rgba(0,0,0,1)] animate-in fade-in">
-          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
+          <h2 className="text-sm sm:text-base md:text-xl mb-3 text-center border-b-4 border-black pb-2 text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
             2026 SIMULATED DRAFT ORDER
           </h2>
 
           <div className="w-full mb-2">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]">
+                <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]" style={{ fontFamily: 'var(--font-press-start)' }}>
                   <th className="py-2 px-1 text-center w-10 sm:w-16 whitespace-nowrap">PICK</th>
                   <th className="py-2 px-1 sm:px-2 text-left">TEAM</th>
                   <th className="py-2 px-1 text-center w-16 sm:w-24 whitespace-nowrap">CHANGE</th>
@@ -721,7 +732,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                           )}
 
                           <div className="flex flex-col min-w-0">
-                            <span className="font-bold text-[10px] sm:text-[11px] md:text-xs uppercase tracking-tight truncate">
+                            <span className="font-bold text-[10px] sm:text-[11px] md:text-xs uppercase tracking-tight truncate team-name">
                               {slot.team.city} {slot.team.name}
                             </span>
                           </div>

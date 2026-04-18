@@ -9,6 +9,18 @@ import { buildDynamicLotteryData } from '../lib/dynamicCombos';
 import { computeDynamicPickSlotOdds, computeDraw1Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import { PICK_OWNERSHIP } from '../data/pickOwnership';
+
+/** Renders a percentage with a tightened decimal point */
+const RetroNum = ({ value, suffix = '%' }: { value: string; suffix?: string }) => {
+  const idx = value.indexOf('.');
+  if (idx === -1) return <>{value}{suffix}</>;
+  return (
+    <span className="retro-num">
+      {value.slice(0, idx)}<span className="dec">.</span>{value.slice(idx + 1)}{suffix}
+    </span>
+  );
+};
+
 // ThreeStars modal is only used in FullDrawBoard
 
 interface FastDrawBoardProps {
@@ -85,12 +97,12 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
   return (
     <div className="w-full pb-2">
-      <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] mx-auto max-w-5xl" style={{ fontFamily: 'var(--font-press-start)' }}>
+      <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] mx-auto max-w-5xl">
 
         {/* Header + Expand Button */}
         <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
           <div className="flex-1" />
-          <h2 className="text-sm sm:text-base md:text-xl text-center text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ wordSpacing: '-0.5em' }}>
+          <h2 className="text-sm sm:text-base md:text-xl text-center text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
             {result ? '2026 SIMULATED DRAFT ORDER' : '2026 DRAFT LOTTERY ODDS'}
           </h2>
           <div className="flex-1 flex justify-end">
@@ -108,19 +120,19 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
           <table className="text-left border-collapse w-full md:min-w-[800px]">
 
             <thead>
-              <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs">
+              <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
                 <th className={`py-2 px-1 text-center w-8 sm:w-12 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
-                <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap ${stickyTeamHeadClass}`}>TEAM</th>
+                <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[1%] ${stickyTeamHeadClass}`}>TEAM</th>
                 <th className={`py-2 px-0 sm:px-1 text-left whitespace-nowrap ${expanded ? 'md:hidden' : 'hidden'}`}></th>
                 {result && (
-                  <th className="py-2 px-2 text-center w-14 sm:w-20 md:w-[10%] whitespace-nowrap">CHANGE</th>
+                  <th className="py-2 px-2 text-center w-14 sm:w-20 whitespace-nowrap">CHANGE</th>
                 )}
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>DRAW 1</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass}`}>1ST OVR</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${cyanHeadClass} ${hide2ndOvrClass}`}>2ND OVR</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>PTS</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>RW</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[10%] ${expandedColClass}`}>ROW</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass}`}>DRAW 1</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass}`}>1ST OVR</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass} ${hide2ndOvrClass}`}>2ND OVR</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>PTS</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>RW</th>
+                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>ROW</th>
               </tr>
             </thead>
 
@@ -131,6 +143,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 <td
                   colSpan={99}
                   className="py-1.5 px-2 bg-gray-300 text-black text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest text-left border-b-2 border-black"
+                  style={{ fontFamily: 'var(--font-press-start)' }}
                 >
                   LOTTERY TEAMS
                 </td>
@@ -174,9 +187,10 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                   ? null
                   : isConditional
                   ? `${(trade as { protection: string }).protection}. UNRESOLVED.`
-                  : abbrev === 'OTT'
-                  ? 'PENALTY PICK.'
                   : null;
+
+                // Asterisk suffix: * for trades, ** for OTT penalty
+                const asterisk = abbrev === 'OTT' ? '**' : tooltipText ? '*' : '';
 
                 const isDraw1Winner = result?.draw1Winner?.team?.abbreviation === abbrev;
                 const isDraw2Winner = result?.draw2Winner?.team?.abbreviation === abbrev;
@@ -229,7 +243,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </div>
                     </td>
 
-                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none md:w-[1%]`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
                         {mainTeam.logoLight ? (
                           <CroppedLogo src={mainTeam.logoLight} alt={mainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass={`shrink-0${mainGreyed ? ' opacity-40 grayscale' : ''}`} />
@@ -237,16 +251,16 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}{tooltipText ? '*' : ''}</span>
-                          {tooltipText ? (
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}{asterisk}</span>
+                          {(tooltipText || asterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
-                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.name}*</span>
+                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight team-name ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.name}{asterisk}</span>
                             </>
                           ) : (
                             <>
                               <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-500">{mainTeam.city}</span>
-                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight">{mainTeam.name}</span>
+                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight team-name">{mainTeam.name}</span>
                             </>
                           )}
                         </div>
@@ -310,13 +324,13 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                     {/* Odds columns — cyan fill, gold for winners */}
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
-                      {teamOdds.d1 > 0 ? `${teamOdds.d1.toFixed(1)}%` : '—'}
+                      {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
                     </td>
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
-                      {teamOdds.firstOvr > 0 ? `${teamOdds.firstOvr.toFixed(1)}%` : '—'}
+                      {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
                     </td>
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${hide2ndOvrClass}`}>
-                      {teamOdds.secondOvr > 0 ? `${teamOdds.secondOvr.toFixed(1)}%` : '—'}
+                      {teamOdds.secondOvr > 0 ? <RetroNum value={teamOdds.secondOvr.toFixed(1)} /> : '—'}
                     </td>
 
                     <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${statsColorClass}`}>
@@ -337,6 +351,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 <td
                   colSpan={99}
                   className="py-1.5 px-2 bg-gray-300 text-black text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest text-left border-y-2 border-black"
+                  style={{ fontFamily: 'var(--font-press-start)' }}
                 >
                   PLAYOFF TEAMS
                 </td>
@@ -358,9 +373,9 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                   ? `TRADE CONDITIONS RESOLVED.`
                   : pIsConditional
                   ? `${(pTrade as { protection: string }).protection}. UNRESOLVED.`
-                  : abbrev === 'OTT'
-                  ? 'PENALTY PICK.'
                   : null;
+
+                const pAsterisk = abbrev === 'OTT' ? '**' : pTooltipText ? '*' : '';
 
                 // Post-sim: flip display — show owner as primary, original team as greyed secondary
                 const pShouldFlip = !!result && pIsResolved;
@@ -381,7 +396,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </div>
                     </td>
 
-                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} max-w-[120px] sm:max-w-[160px] md:max-w-none md:w-[1%]`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
                         {pMainTeam.logoLight ? (
                           <CroppedLogo src={pMainTeam.logoLight} alt={pMainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass={`shrink-0 ${pMainGreyed ? 'opacity-30 grayscale' : 'opacity-60'}`} />
@@ -389,16 +404,16 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0 text-gray-400">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}{pTooltipText ? '*' : ''}</span>
-                          {pTooltipText ? (
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}{pAsterisk}</span>
+                          {(pTooltipText || pAsterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${pMainGreyed ? 'text-gray-300' : 'text-gray-400'}`}>{pMainTeam.city}</span>
-                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight ${pMainGreyed ? 'text-gray-300' : 'text-gray-500'}`}>{pMainTeam.name}*</span>
+                              <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight team-name ${pMainGreyed ? 'text-gray-300' : 'text-gray-500'}`}>{pMainTeam.name}{pAsterisk}</span>
                             </>
                           ) : (
                             <>
                               <span className="hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap text-gray-400">{pMainTeam.city}</span>
-                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight text-gray-500">{pMainTeam.name}</span>
+                              <span className="hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight team-name text-gray-500">{pMainTeam.name}</span>
                             </>
                           )}
                         </div>
@@ -483,6 +498,16 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
             </tbody>
           </table>
+        </div>
+
+        {/* Footnotes */}
+        <div className="px-2 md:px-4 pt-3 md:pt-4 pb-0 space-y-0.5">
+          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: 'normal' }}>
+            *Original pick owner&apos;s season results shown.
+          </p>
+          <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: 'normal' }}>
+            **Ottawa to pick 32nd overall as the result of a penalty sanction.
+          </p>
         </div>
 
       </div>

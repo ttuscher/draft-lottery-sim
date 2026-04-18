@@ -1,14 +1,21 @@
 // src/app/layout.tsx
-import { Press_Start_2P } from "next/font/google";
+import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
 import Ticker from "../components/Ticker";
 import NavTabs from "../components/NavTabs";
 
-// Configure the 8-bit font
+// Brand font: headers, logos, big buttons
 const pressStart2P = Press_Start_2P({
   weight: '400',
   subsets: ["latin"],
   variable: '--font-press-start',
+});
+
+// Data font: tables, stats, long text, tooltips
+const vt323 = VT323({
+  weight: '400',
+  subsets: ["latin"],
+  variable: '--font-vt323',
 });
 
 export default function RootLayout({
@@ -18,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${pressStart2P.variable} font-retro antialiased min-h-screen flex flex-col bg-[#96EDF6]`} style={{ wordSpacing: '-0.3em' }}>
+      <body className={`${pressStart2P.variable} ${vt323.variable} min-h-screen flex flex-col bg-[#96EDF6]`} style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
 
         {/* Global Header */}
         <header className="bg-black p-3 border-b-[7px] border-[#E2231A] uppercase tracking-widest text-center shadow-lg sticky top-0 z-50">

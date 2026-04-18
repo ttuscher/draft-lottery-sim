@@ -16,6 +16,7 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 - NHL API data fetched via `useNHLStandings` hook
 - **Deployed on Vercel** — auto-deploys on push to `main`
 - Logos optimized: `next/image` with compressed PNGs (44MB → 672KB)
+- Global `wordSpacing: '-0.3em'` on `<body>`, `-0.5em` on headers
 
 ## Key Files
 
@@ -43,7 +44,7 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 ### Data & Logic
 | File | Purpose |
 |------|---------|
-| `src/data/pickOwnership.ts` | 2026 trade data + ownership resolution helpers (NOT yet imported by any component) |
+| `src/data/pickOwnership.ts` | 2026 trade data + ownership resolution helpers (**integrated into FastDrawBoard**) |
 | `src/data/nhl-standings-2026.json` | **Final 2025-26 standings** (all 82 GP complete, fetched 2026-04-17) |
 | `src/data/teams.ts` | NHL team metadata (logos, names, abbreviations) |
 | `src/data/types.ts` | Shared TypeScript types |
@@ -76,6 +77,28 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 - "LOTTERY TEAMS" - grey background, black text
 - "PLAYOFF TEAMS" - grey background, black text
 
+### Pick Ownership Display (desktop only)
+**Pre-sim (odds view):**
+- Resolved trades: original team greyed (`opacity-40 grayscale`) + name with asterisk, owner logo right-aligned (full color), black tooltip "TRADE CONDITIONS RESOLVED." on hover
+- Conditional trades (TOR→BOS): original team shown normally + asterisk, acquirer logo right-aligned (`opacity-50`), red tooltip "TOP 5 PROTECTED. UNRESOLVED."
+- Triangle trade (DAL/CAR→NYR): original team + asterisk, NYR logo right-aligned (`opacity-50`), red tooltip "NYR TO KEEP BETTER OF DAL/CAR 1ST RD PICK. UNRESOLVED."
+- OTT penalty: asterisk + red tooltip "PENALTY PICK." (no partner logo, invisible hover target with `self-stretch min-w-[40px]`)
+- Stats greyed (`text-gray-300`) for resolved trades
+
+**Post-sim (draft order) — FLIPPED:**
+- `shouldFlip = !!result && (isResolved || conditionalTransferred)`
+- Resolved trades: OWNER shown as primary (full color logo + name + asterisk), original team greyed as secondary right-aligned, black tooltip
+- Conditional transferred: acquirer as primary, original greyed as secondary
+- Conditional protected (TOR top 5): no flip, original team shown normally, no asterisk
+- OTT penalty: same as pre-sim
+- Stats remain greyed for resolved/transferred
+
+**Tooltip styling:**
+- Resolved/flipped: `bg-black` (black tooltip)
+- Conditional/unresolved: `bg-[#E2231A]` (red tooltip)
+- All tooltips: `text-[8px] font-bold uppercase`, `wordSpacing: 'normal'`, `group-hover:opacity-100`
+- Positioned: `absolute left-full top-1/2 -translate-y-1/2 ml-2` (next to logo)
+
 ## Current FullDrawBoard State
 - Three phases: DRAW_1, DRAW_2, COMPLETE
 - Live draw table with ball-by-ball animation
@@ -88,15 +111,18 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 - Red headers: `wordSpacing: '-0.5em'`
 
 ## Pick Ownership Data (`pickOwnership.ts`)
-**DET→STL now integrated in FastDrawBoard** (desktop only, pre-sim). Other trades not yet wired up.
 
 ### Resolved Trades (unconditional)
 - DET → STL, ANA → WSH, EDM → SJS, VGK → CGY, MIN → VAN, TBL → SEA, COL → STL
-- DAL → NYR
 - FLA: condition resolved — Florida KEEPS their pick (fell inside top 10 protection). Removed from trades.
 
 ### Conditional Trades
-- TOR: Top 5 protected → BOS
+- TOR: Top 5 protected → BOS (`protectionThreshold: 5`)
+- DAL: Triangle trade → NYR (`protectionThreshold: 32`, never auto-resolves)
+- CAR: Triangle trade → NYR (`protectionThreshold: 32`, never auto-resolves)
+
+### Special Cases
+- OTT: "PENALTY PICK." — handled directly in FastDrawBoard via `abbrev === 'OTT'` check (not in pickOwnership.ts)
 
 ### Helper Functions
 - `resolvePickOwner(teamAbbrev, finalPickNum?)` - returns owning team abbreviation
@@ -104,6 +130,7 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 
 ## Layout (`layout.tsx`)
 - Header: "PUCKSON.NET" — sticky (`sticky top-0 z-50`), clickable link to `/`
+- Body: `wordSpacing: '-0.3em'` globally
 - Disclaimer: 3-line desktop layout with `<br className="hidden md:inline" />`, font `text-[7px] sm:text-[9px] md:text-[11px]`
 - Footer padding: `pb-14 md:pb-16 pt-1` to center between content and ticker
 - Panel top padding: `p-3` on all sizes (desktop sides/bottom: `md:px-6 md:pb-6`)
@@ -122,13 +149,15 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 3. Mobile font sizes should remain small (`text-[10px]`). Only desktop (`md:`) should be bumped.
 4. The pixel font renders differently relative to viewport width. Mobile text appearing larger than desktop is a known characteristic.
 5. Files on the mounted filesystem cannot be deleted via sandbox. Use Write to empty them with a deletion marker instead.
-6. Git index.lock may get stuck on the mounted filesystem. User must run `Remove-Item ".git\index.lock" -Force` in PowerShell.
+6. Git index.lock may get stuck on the mounted filesystem. User must run `New-Item ".git\index.lock" -Force | Remove-Item -Force` in PowerShell.
 7. Snapshot folders must be excluded from TypeScript: `"exclude": ["node_modules", "snapshot-master-*"]` in tsconfig.json.
 8. League/Team viewer tables align vertically via matching row padding (`py-[7px]`) and logo sizes (`md:w-7 md:h-7`).
+9. Tooltip `wordSpacing` must be set to `'normal'` inline to override the global `-0.3em`.
+10. Standalone tooltips (no partner logo, e.g. OTT) need `self-stretch min-w-[40px]` on the hover target span to be hoverable.
 
 ## Pending Work
-- [ ] Pick ownership integration into FastDrawBoard UI (data file ready, UI reverted)
+- [x] Pick ownership integration into FastDrawBoard UI (all trades + post-sim flip)
 - [ ] Pick ownership integration into FullDrawBoard UI
 - [ ] Playoff ordering logic (picks 17-28 by regular season tiebreakers, 29-32 by playoff result)
 - [ ] Ottawa always picks 32 regardless of standings
-- [ ] DAL/CAR/NYR triangle trade logic (NYR gets better of DAL/CAR picks)
+- [ ] DAL/CAR/NYR triangle trade resolution post-sim (compare final pick numbers, NYR keeps better)

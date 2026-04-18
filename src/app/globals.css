@@ -34,6 +34,25 @@ body {
     );
   background-size: 100% 4px, 100% 100%;
   color: var(--rewind-black);
+
+  /* Sharp pixel font rendering — no smoothing */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+  image-rendering: pixelated;
+}
+
+/* Team name word spacing — tighter than global -0.3em */
+.team-name {
+  word-spacing: -0.6em;
+}
+
+/* Tighten spacing around decimal points in pixel font numbers */
+.retro-num .dec {
+  letter-spacing: -0.12em;
+  margin-left: -0.05em;
+  margin-right: -0.05em;
 }
 
 /* ========== Reusable Retro Design System ========== */
@@ -112,6 +131,8 @@ body {
   white-space: nowrap;
   z-index: 100;
   box-shadow: 0 0 15px rgba(226,35,26,0.3);
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
