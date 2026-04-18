@@ -262,26 +262,27 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate relative">
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">
                             {shouldFlip ? mainTeam.abbreviation : abbrev}
-                            {asterisk && (
-                              <span
-                                className="text-[#E2231A] cursor-pointer"
-                                onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
-                              >
-                                {asterisk}
-                              </span>
-                            )}
-                            {mobileTooltip === abbrev && mTipText && (
-                              <span
-                                className="absolute left-0 top-full mt-1 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
-                                style={{ wordSpacing: 'normal' }}
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                {mTipText}
-                              </span>
-                            )}
                           </span>
+                          {asterisk && (
+                            <button
+                              type="button"
+                              className="md:hidden text-[#E2231A] font-bold text-[10px] sm:text-[11px] px-1 py-1 -ml-0.5 relative"
+                              onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
+                            >
+                              {asterisk}
+                              {mobileTooltip === abbrev && mTipText && (
+                                <span
+                                  className="absolute left-0 top-full mt-0.5 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+                                  style={{ wordSpacing: 'normal' }}
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {mTipText}
+                                </span>
+                              )}
+                            </button>
+                          )}
                           {(tooltipText || asterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
@@ -435,26 +436,27 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0 text-gray-400">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500 relative">
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">
                             {pShouldFlip ? pMainTeam.abbreviation : abbrev}
-                            {pAsterisk && (
-                              <span
-                                className="text-[#E2231A] cursor-pointer"
-                                onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
-                              >
-                                {pAsterisk}
-                              </span>
-                            )}
-                            {mobileTooltip === abbrev && pMTipText && (
-                              <span
-                                className="absolute left-0 top-full mt-1 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
-                                style={{ wordSpacing: 'normal' }}
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                {pMTipText}
-                              </span>
-                            )}
                           </span>
+                          {pAsterisk && (
+                            <button
+                              type="button"
+                              className="md:hidden text-[#E2231A] font-bold text-[10px] sm:text-[11px] px-1 py-1 -ml-0.5 relative"
+                              onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
+                            >
+                              {pAsterisk}
+                              {mobileTooltip === abbrev && pMTipText && (
+                                <span
+                                  className="absolute left-0 top-full mt-0.5 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+                                  style={{ wordSpacing: 'normal' }}
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  {pMTipText}
+                                </span>
+                              )}
+                            </button>
+                          )}
                           {(pTooltipText || pAsterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${pMainGreyed ? 'text-gray-300' : 'text-gray-400'}`}>{pMainTeam.city}</span>
