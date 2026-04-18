@@ -32,6 +32,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
   const [expanded, setExpanded] = useState(false);
   const [result, setResult] = useState<SimulationResult | null>(null);
   const [board, setBoard] = useState<SeededTeam[] | null>(null);
+  const [mobileTooltip, setMobileTooltip] = useState<string | null>(null);
 
   const dynamicData = useMemo(() => {
     return buildDynamicLotteryData(lotteryStandings, playoffStandings);
@@ -64,6 +65,14 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
       triggerRef.current = handleFastDraw;
     }
   }, [triggerRef, handleFastDraw]);
+
+  // Dismiss mobile tooltip on tap outside
+  useEffect(() => {
+    if (!mobileTooltip) return;
+    const dismiss = () => setMobileTooltip(null);
+    document.addEventListener('click', dismiss);
+    return () => document.removeEventListener('click', dismiss);
+  }, [mobileTooltip]);
 
   const { lotteryTeams, playoffTeams, standingsMap } = dynamicData;
   const displayLotteryTeams = board || lotteryTeams;
@@ -191,6 +200,8 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
                 // Asterisk suffix: * for trades, ** for OTT penalty
                 const asterisk = abbrev === 'OTT' ? '**' : tooltipText ? '*' : '';
+                // Mobile tap tooltip (includes OTT which has no desktop hover tooltip)
+                const mTipText = tooltipText ?? (abbrev === 'OTT' ? 'PENALTY SANCTION. PICK 32ND.' : null);
 
                 const isDraw1Winner = result?.draw1Winner?.team?.abbreviation === abbrev;
                 const isDraw2Winner = result?.draw2Winner?.team?.abbreviation === abbrev;
@@ -251,7 +262,26 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate">{shouldFlip ? mainTeam.abbreviation : abbrev}{asterisk}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate relative">
+                            {shouldFlip ? mainTeam.abbreviation : abbrev}
+                            {asterisk && (
+                              <span
+                                className="text-[#E2231A] cursor-pointer"
+                                onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
+                              >
+                                {asterisk}
+                              </span>
+                            )}
+                            {mobileTooltip === abbrev && mTipText && (
+                              <span
+                                className="absolute left-0 top-full mt-1 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+                                style={{ wordSpacing: 'normal' }}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {mTipText}
+                              </span>
+                            )}
+                          </span>
                           {(tooltipText || asterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
@@ -376,6 +406,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                   : null;
 
                 const pAsterisk = abbrev === 'OTT' ? '**' : pTooltipText ? '*' : '';
+                const pMTipText = pTooltipText ?? (abbrev === 'OTT' ? 'PENALTY SANCTION. PICK 32ND.' : null);
 
                 // Post-sim: flip display — show owner as primary, original team as greyed secondary
                 const pShouldFlip = !!result && pIsResolved;
@@ -404,7 +435,26 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                           <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0 text-gray-400">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
-                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500">{pShouldFlip ? pMainTeam.abbreviation : abbrev}{pAsterisk}</span>
+                          <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate text-gray-500 relative">
+                            {pShouldFlip ? pMainTeam.abbreviation : abbrev}
+                            {pAsterisk && (
+                              <span
+                                className="text-[#E2231A] cursor-pointer"
+                                onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
+                              >
+                                {pAsterisk}
+                              </span>
+                            )}
+                            {mobileTooltip === abbrev && pMTipText && (
+                              <span
+                                className="absolute left-0 top-full mt-1 px-2 py-1 bg-black text-white text-[8px] font-bold uppercase tracking-tight whitespace-nowrap rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+                                style={{ wordSpacing: 'normal' }}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {pMTipText}
+                              </span>
+                            )}
+                          </span>
                           {(pTooltipText || pAsterisk) ? (
                             <>
                               <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${pMainGreyed ? 'text-gray-300' : 'text-gray-400'}`}>{pMainTeam.city}</span>
