@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { runSimulation, MAX_MOVE_UP } from '../lib/engine';
 import { NHL_TEAMS } from '../data/teams';
 import { SeededTeam, LotteryCombo, SimulationResult } from '../data/types';
-import { useNHLStandings, NHLTeamStanding } from '../hooks/useNHLStandings';
+import { useNHLStandings } from '../hooks/useNHLStandings';
 import { buildDynamicLotteryData } from '../lib/dynamicCombos';
 import { computeDynamicPickSlotOdds, computeDraw1Odds, computeConditionalDraw2Odds, computeConditionalPick2Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
@@ -91,7 +91,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
     return () => document.removeEventListener('click', dismiss);
   }, [mobileTooltip]);
 
-  const { lotteryTeams, playoffTeams, standingsMap } = dynamicData;
+  const { lotteryTeams } = dynamicData;
   const displayLotteryTeams = board || lotteryTeams;
 
   const getTeamOdds = (abbrev: string) => {
@@ -102,15 +102,12 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
     return { firstOvr, secondOvr, d1, d2 };
   };
 
-  const getStats = (abbrev: string): NHLTeamStanding | null => {
-    return standingsMap[abbrev] || null;
-  };
-
-  // Sticky column styles
+  // Sticky column styles. Left offsets must match PICK column width
+  // (w-8 = 32px base, md:w-14 = 56px at md+).
   const stickyPickClass = "sticky left-0 z-10 bg-inherit";
-  const stickyTeamClass = "sticky left-[32px] sm:left-[48px] z-10 bg-inherit";
+  const stickyTeamClass = "sticky left-8 md:left-14 z-10 bg-inherit";
   const stickyPickHeadClass = "sticky left-0 z-20 bg-[#B8F6FA]";
-  const stickyTeamHeadClass = "sticky left-[32px] sm:left-[48px] z-20 bg-[#B8F6FA]";
+  const stickyTeamHeadClass = "sticky left-8 md:left-14 z-20 bg-[#B8F6FA]";
 
   // Cyan fill for odds columns
   const cyanCellClass = "bg-[#E5FCFD]";
@@ -118,18 +115,18 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
   // On desktop (md:), always show expanded columns. On mobile, toggle via expanded state.
   const expandedColClass = expanded ? '' : 'hidden md:table-cell';
-  // Data column width: 6 pre-sim or 5 post-sim columns share the same total space (~66%)
+  // Data column width: 3 pre-sim or 5 post-sim columns share the same total space (~66%)
   // PICK ~6% + TEAM ~28% + data ~66% = 100%
-  const dataColWidth = result ? 'md:w-[13.2%]' : 'md:w-[11%]';
+  const dataColWidth = result ? 'md:w-[13.2%]' : 'md:w-[22%]';
 
   return (
     <div className="w-full pb-2">
-      <div className="w-full bg-white border-4 border-black p-3 md:px-6 md:pb-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] mx-auto max-w-5xl">
+      <div className="panel p-3 md:px-6 md:pb-6 mx-auto max-w-5xl">
 
         {/* Header + Expand Button */}
         <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
           <div className="flex-1" />
-          <h2 className="text-sm sm:text-base md:text-xl text-center text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
+          <h2 className="text-title text-[#E2231A] text-center whitespace-nowrap">
             {result ? '2026 SIMULATED DRAFT ORDER' : '2026 DRAFT LOTTERY ODDS'}
           </h2>
           <div className="flex-1 flex justify-end">
@@ -137,7 +134,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
               <button
                 type="button"
                 onClick={() => setExpanded(prev => !prev)}
-                className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-400 text-white border-2 border-gray-500 shadow-[2px_2px_0px_rgba(0,0,0,0.3)] flex md:hidden items-center justify-center transition-all hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] active:translate-y-1 active:shadow-none text-xs sm:text-sm font-bold leading-none cursor-pointer"
+                className="w-5 h-5 md:w-6 md:h-6 bg-gray-400 text-white border-2 border-gray-500 shadow-[2px_2px_0px_rgba(0,0,0,0.3)] flex md:hidden items-center justify-center transition-all hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(0,0,0,0.3)] active:translate-y-1 active:shadow-none text-body font-bold leading-none cursor-pointer"
               >
                 {expanded ? '-' : '+'}
               </button>
@@ -146,14 +143,14 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
         </div>
 
         <div className="overflow-x-auto mb-2">
-          <table className="text-left border-collapse w-full md:min-w-[800px]">
+          <table className="text-left border-collapse w-full">
 
             <thead>
-              <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
-                <th className={`py-2 px-1 text-center w-8 sm:w-12 md:w-14 whitespace-nowrap ${stickyPickHeadClass}`}>{result ? 'PICK' : 'SEED'}</th>
-                <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[28%] md:min-w-[28%] md:max-w-[28%] ${stickyTeamHeadClass}`}>TEAM</th>
-                {/* Secondary logo column (mobile only, hidden desktop) */}
-                <th className="py-2 pl-0 pr-0 text-left whitespace-nowrap md:hidden"></th>
+              <tr className="bg-[#B8F6FA] border-b-4 border-black text-label">
+                <th className={`py-2 px-1 text-center w-8 md:w-14 whitespace-nowrap ${stickyPickHeadClass}`}>{result ? 'PICK' : 'SEED'}</th>
+                <th className={`py-2 px-1 md:px-2 text-left whitespace-nowrap md:w-[22%] md:min-w-[22%] md:max-w-[22%] ${stickyTeamHeadClass}`}>TEAM</th>
+                {/* Trade partner / FROM logo column — visible at all breakpoints */}
+                <th className="py-2 pl-0 pr-0 md:pl-1 md:pr-1 text-left whitespace-nowrap md:w-[6%]"></th>
                 {result ? (
                   <>
                     <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>DRAW 1</th>
@@ -167,9 +164,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>DRAW 1</th>
                     <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass}`}>#1 OVR</th>
                     <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass}`}>#2 OVR</th>
-                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>PTS</th>
-                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>RW</th>
-                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>ROW</th>
                   </>
                 )}
               </tr>
@@ -181,7 +175,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
               {displayLotteryTeams.map((slot, index) => {
                 const pickNum = index + 1;
                 const abbrev = slot.team.abbreviation;
-                const stats = getStats(abbrev);
                 const teamOdds = getTeamOdds(abbrev);
 
                 // Pick trade resolution (desktop only)
@@ -256,9 +249,6 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                 const rowBg = isWinner ? 'bg-[#FFFDE5]' : 'bg-white';
                 const oddsCellBg = isWinner ? 'bg-[#FFFDE5]' : cyanCellClass;
 
-                // Grey out stats for resolved trades + conditional trades that transferred
-                const statsColorClass = (isResolved || conditionalTransferred) ? 'text-gray-300' : '';
-
                 // Resolved trades always show owner as primary (pre-sim and post-sim)
                 // Conditional trades flip only post-sim when transferred
                 const shouldFlip = isResolved || (!!result && conditionalTransferred);
@@ -270,103 +260,82 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     key={abbrev}
                     className={`border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors ${rowBg}`}
                   >
-                    <td className={`py-1.5 px-1 w-8 sm:w-12 md:w-14 ${stickyPickClass}`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-1 w-8 md:w-14 ${stickyPickClass}`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex justify-center items-center h-full">
-                        <div className={`font-bold text-xs sm:text-sm md:text-base transition-all duration-300 ${numClass}`}>
+                        <div className={`text-num transition-all duration-300 ${numClass}`}>
                           {pickNum}
                         </div>
                       </div>
                     </td>
 
-                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} md:w-[28%] md:min-w-[28%] md:max-w-[28%]`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-0 md:px-1 ${stickyTeamClass} md:w-[22%] md:min-w-[22%] md:max-w-[22%]`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
                         {mainTeam.logoLight ? (
-                          <CroppedLogo src={mainTeam.logoLight} alt={mainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass="shrink-0" />
+                          <CroppedLogo src={mainTeam.logoLight} alt={mainTeam.abbreviation} sizeClass="w-6 h-6 md:w-10 md:h-10" wrapperClass="shrink-0" />
                         ) : (
-                          <span className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center text-[8px] shrink-0">?</span>
+                          <span className="w-6 h-6 md:w-10 md:h-10 flex items-center justify-center text-[9px] md:text-[10px] lg:text-[11px] shrink-0">?</span>
                         )}
                         <div className="flex flex-col min-w-0">
+                          {/* Mobile: city on its own line, nickname below */}
+                          <span className="md:hidden text-label truncate">{mainTeam.city}</span>
                           {result ? (
-                            <>
-                              <span className="md:hidden font-bold text-[8px] sm:text-[9px] uppercase tracking-tight truncate text-gray-500">{mainTeam.city}</span>
-                              <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate leading-tight">{mainTeam.name}{mobileAsterisk}</span>
-                            </>
+                            <span className="md:hidden text-label truncate">{mainTeam.name}{mobileAsterisk}</span>
                           ) : (
-                            <>
-                              <span className="md:hidden font-bold text-[8px] sm:text-[9px] uppercase tracking-tight truncate text-gray-500">{mainTeam.city}</span>
-                              <span className="md:hidden font-bold text-[10px] sm:text-[11px] uppercase tracking-tight truncate leading-tight">{mainTeam.name}{tooltipText ? '*' : (abbrev === 'OTT' ? '**' : '')}</span>
-                            </>
+                            <span className="md:hidden text-label truncate">{mainTeam.name}{tooltipText ? '*' : (abbrev === 'OTT' ? '**' : '')}</span>
                           )}
-                          <span className={`hidden md:block font-bold text-[9px] uppercase tracking-tight whitespace-nowrap ${mainGreyed ? 'text-gray-400' : 'text-gray-500'}`}>{mainTeam.city}</span>
-                          <span className={`hidden md:block font-bold text-sm uppercase tracking-tight whitespace-nowrap leading-tight team-name ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.name}{asterisk}</span>
+                          {/* Desktop: same two-line layout */}
+                          <span className={`hidden md:block text-label whitespace-nowrap ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.city}</span>
+                          <span className={`hidden md:block text-label whitespace-nowrap team-name ${mainGreyed ? 'text-gray-400' : ''}`}>{mainTeam.name}{asterisk}</span>
                         </div>
-                        {/* Pre-sim only: trade partner logo inside TEAM cell (desktop) */}
-                        {!result && tooltipText && (() => {
-                          const secondaryAbbrev = isResolved ? abbrev : isConditional ? (trade as { acquirer: string }).acquirer : null;
-                          const secondaryTeam = secondaryAbbrev ? NHL_TEAMS[secondaryAbbrev] : null;
-                          const secondaryGreyClass = ' opacity-40 grayscale';
-                          if (secondaryTeam?.logoLight) {
-                            return (
-                              <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default">
-                                <CroppedLogo src={secondaryTeam.logoLight} alt={secondaryTeam.abbreviation} sizeClass="w-10 h-10" wrapperClass={`shrink-0${secondaryGreyClass}`} />
-                                <span className={`pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 ${tooltipIsRed ? 'bg-[#E2231A]' : 'bg-gray-500'} text-white text-[8px] font-bold uppercase tracking-tight whitespace-pre-line rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 w-[150px]`} style={{ wordSpacing: 'normal' }}>
-                                  {tooltipText}
-                                </span>
-                              </span>
-                            );
-                          }
-                          return (
-                            <span className="hidden md:inline-flex flex-1 justify-end shrink-0 relative group cursor-default self-stretch min-w-[40px]">
-                              <span className={`pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 mr-1 px-2 py-1 bg-[#E2231A] text-white text-[8px] font-bold uppercase tracking-tight whitespace-pre-line rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 w-[150px]`} style={{ wordSpacing: 'normal' }}>
-                                {tooltipText}
-                              </span>
-                            </span>
-                          );
-                        })()}
-                        {/* Post-sim desktop: FROM logo inside TEAM cell */}
-                        {result && shouldFlip && (() => {
-                          const fromTeam = NHL_TEAMS[abbrev];
-                          if (!fromTeam?.logoLight) return null;
-                          return (
-                            <span className="hidden md:inline-flex shrink-0 ml-auto">
-                              <CroppedLogo src={fromTeam.logoLight} alt={fromTeam.abbreviation} sizeClass="w-10 h-10" wrapperClass="shrink-0 opacity-40 grayscale" />
-                            </span>
-                          );
-                        })()}
                       </div>
                     </td>
 
-                    {/* Secondary logo column (mobile only) — pre-sim: trade partner, post-sim: FROM logo */}
-                    <td className="py-1.5 pl-0 pr-0 md:hidden">
+                    {/* Trade partner / FROM logo column — dedicated at all breakpoints */}
+                    <td className="py-1.5 pl-0 pr-0 md:pl-1 md:pr-1">
                       {(() => {
+                        // Post-sim: show FROM logo (greyed) when primary was flipped
                         if (result) {
                           if (!shouldFlip) return null;
                           const fromTeam = NHL_TEAMS[abbrev];
                           if (!fromTeam?.logoLight) return null;
-                          return <CroppedLogo src={fromTeam.logoLight} alt={fromTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8" wrapperClass="shrink-0 opacity-40 grayscale" />;
+                          return (
+                            <CroppedLogo src={fromTeam.logoLight} alt={fromTeam.abbreviation} sizeClass="w-6 h-6 md:w-10 md:h-10" wrapperClass="shrink-0 opacity-40 grayscale" />
+                          );
                         }
+
+                        // Pre-sim: partner logo + tooltip
                         if (!tooltipText && abbrev !== 'OTT') return null;
-                        const mSecondaryAbbrev = isResolved ? abbrev : isConditional ? (trade as { acquirer: string }).acquirer : null;
-                        const mSecondaryTeam = mSecondaryAbbrev ? NHL_TEAMS[mSecondaryAbbrev] : null;
-                        if (!mSecondaryTeam) return null;
+                        const secondaryAbbrev = isResolved ? abbrev : isConditional ? (trade as { acquirer: string }).acquirer : null;
+                        const secondaryTeam = secondaryAbbrev ? NHL_TEAMS[secondaryAbbrev] : null;
+
+                        // OTT case: no logo, desktop-only hover tooltip via invisible span
+                        if (!secondaryTeam) {
+                          return (
+                            <span className="hidden md:inline-flex relative group cursor-default self-stretch min-w-[40px] h-10">
+                              <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 bg-[#E2231A] text-white text-[7px] md:text-[8px] lg:text-[9px] uppercase tracking-tight whitespace-pre-line rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 w-[150px]">
+                                {mTipText}
+                              </span>
+                            </span>
+                          );
+                        }
+
+                        const tipBg = tooltipIsRed ? 'bg-[#E2231A]' : 'bg-gray-500';
+                        const showMobileTip = mobileTooltip === abbrev;
+
                         return (
-                          <div className="flex items-center gap-1 relative">
+                          <div className="relative group inline-flex">
                             <button
                               type="button"
-                              className="shrink-0"
-                              onClick={(e) => { e.stopPropagation(); setMobileTooltip(mobileTooltip === abbrev ? null : abbrev); }}
+                              className="shrink-0 bg-transparent border-0 p-0 cursor-default"
+                              onClick={(e) => { e.stopPropagation(); setMobileTooltip(showMobileTip ? null : abbrev); }}
                             >
-                              <CroppedLogo src={mSecondaryTeam.logoLight} alt={mSecondaryAbbrev ?? ''} sizeClass="w-6 h-6 sm:w-8 sm:h-8" wrapperClass="opacity-40 grayscale" />
-                              {mobileTooltip === abbrev && mTipText && (
-                                <span
-                                  className={`absolute left-full top-1/2 -translate-y-1/2 ml-1 px-2 py-1 ${tooltipIsRed ? 'bg-[#E2231A]' : 'bg-gray-500'} text-white text-[7px] font-bold uppercase tracking-tight rounded-sm z-40 shadow-[2px_2px_0_rgba(0,0,0,0.5)] w-[32vw] text-left whitespace-pre-line`}
-                                  style={{ wordSpacing: 'normal' }}
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  {mTipText}
-                                </span>
-                              )}
+                              <CroppedLogo src={secondaryTeam.logoLight} alt={secondaryTeam.abbreviation} sizeClass="w-6 h-6 md:w-10 md:h-10" wrapperClass="shrink-0 opacity-40 grayscale" />
                             </button>
+                            <span
+                              className={`pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 ${tipBg} text-white text-[7px] md:text-[8px] lg:text-[9px] uppercase tracking-tight whitespace-pre-line rounded-sm transition-opacity duration-150 z-40 w-[150px] ${showMobileTip ? 'opacity-100' : 'opacity-0'} md:group-hover:opacity-100`}
+                            >
+                              {tooltipText}
+                            </span>
                           </div>
                         );
                       })()}
@@ -376,57 +345,45 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     {result ? (
                       <>
                         {/* DRAW 1 */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg} ${expandedColClass}`}>
                           {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
                         </td>
                         {/* #1 OVR */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg}`}>
                           {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
                         </td>
                         {/* DRAW 2 (conditional on D1 result) */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg} ${expandedColClass}`}>
                           {(() => {
                             const d2 = conditionalOdds?.draw2Odds[abbrev] ?? 0;
                             return d2 > 0 ? <RetroNum value={d2.toFixed(1)} /> : '—';
                           })()}
                         </td>
                         {/* #2 OVR (conditional on D1 result) */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg} ${expandedColClass}`}>
                           {(() => {
                             const p2 = conditionalOdds?.pick2Odds[abbrev] ?? 0;
                             return p2 > 0 ? <RetroNum value={p2.toFixed(1)} /> : '—';
                           })()}
                         </td>
                         {/* CHANGE */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num`}>
                           <span className={`whitespace-nowrap ${changeColor}`}>{changeLabel}</span>
                         </td>
                       </>
                     ) : (
                       <>
                         {/* DRAW 1 */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg} ${expandedColClass}`}>
                           {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
                         </td>
                         {/* #1 OVR */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg}`}>
                           {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
                         </td>
                         {/* #2 OVR */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-num ${oddsCellBg}`}>
                           {teamOdds.secondOvr > 0 ? <RetroNum value={teamOdds.secondOvr.toFixed(1)} /> : '—'}
-                        </td>
-                        {/* PTS */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${statsColorClass}`}>
-                          {stats?.points ?? '—'}
-                        </td>
-                        {/* RW */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
-                          {stats?.regulationWins ?? '—'}
-                        </td>
-                        {/* ROW */}
-                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
-                          {stats?.regulationPlusOtWins ?? '—'}
                         </td>
                       </>
                     )}
@@ -442,11 +399,11 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
         {/* Footnotes */}
         <div className="px-2 md:px-4 pt-3 md:pt-4 pb-0 space-y-0.5">
           {result ? (
-            <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.4em' }}>
+            <p className="text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 uppercase tracking-wide">
               *NYR to keep better of DAL/CAR 1st rd pick.
             </p>
           ) : (
-            <p className="text-[7px] sm:text-[8px] md:text-[10px] text-gray-500 uppercase tracking-wide" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.4em' }}>
+            <p className="text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 uppercase tracking-wide">
               *Original pick owner&apos;s season results shown.
             </p>
           )}

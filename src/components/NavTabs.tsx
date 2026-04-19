@@ -28,8 +28,8 @@ export default function NavTabs() {
   const pathname = usePathname();
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-4 pt-3 pb-1">
-      <div className="grid grid-cols-3 w-full gap-3 md:gap-4">
+    <div className="w-full max-w-5xl mx-auto px-3 md:px-4 pt-3 pb-1">
+      <div className="grid grid-cols-3 w-full gap-2 md:gap-4">
         {tabs.map((tab) => {
           const isActive =
             tab.path === "/" ? pathname === "/" : pathname.startsWith(tab.path);
@@ -38,12 +38,7 @@ export default function NavTabs() {
             <Link
               key={tab.path}
               href={tab.path}
-              className={`w-full h-full px-2 md:px-5 py-1.5 border-4 uppercase text-[9px] md:text-sm leading-snug tracking-widest flex items-center justify-center text-center transition-all ${
-                isActive
-                  ? "bg-black text-[#96EDF6] border-black cursor-default shadow-none hover:-translate-y-[2px] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all"
-                  : "bg-white text-black border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-[#E5E5E5] hover:text-black hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
-              }`}
-              style={{ fontFamily: 'var(--font-press-start)' }}
+              className={`header-font w-full h-full px-1 md:px-5 py-1.5 border-4 text-xs md:text-[13px] lg:text-sm uppercase tracking-wider leading-snug md:tracking-widest flex items-center justify-center text-center transition-all ${ isActive ? "bg-black text-[#96EDF6] border-black cursor-default shadow-none hover:-translate-y-[2px] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-all" : "bg-white text-black border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-[#E5E5E5] hover:text-black hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none" }`}
             >
               {tab.label}
             </Link>

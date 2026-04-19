@@ -14,22 +14,22 @@ const LOGO_SCALE_OVERRIDES: Record<string, number> = {
  * then scales the image up to crop transparent padding around the logo.
  */
 interface CroppedLogoProps {
-  src: string;
-  alt?: string;
-  /** Tailwind size classes for the outer container, e.g. "w-6 h-6 sm:w-8 sm:h-8" */
-  sizeClass: string;
-  /** Extra classes on the outer wrapper (e.g. shrink-0, opacity-60) */
-  wrapperClass?: string;
-  /** Scale factor for cropping. Default 1.45 */
-  scale?: number;
-  /** Whether to apply retro filter effects */
-  retro?: boolean;
-  onError?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
+ src: string;
+ alt?: string;
+ /** Tailwind size classes for the outer container, e.g. "w-6 h-6 md:w-8 md:h-8" */
+ sizeClass: string;
+ /** Extra classes on the outer wrapper (e.g. shrink-0, opacity-60) */
+ wrapperClass?: string;
+ /** Scale factor for cropping. Default 1.45 */
+ scale?: number;
+ /** Whether to apply retro filter effects */
+ retro?: boolean;
+ onError?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
 }
 
 export default function CroppedLogo({
-  src,
-  alt = '',
+ src,
+ alt = '',
   sizeClass,
   wrapperClass = '',
   scale = 1.45,

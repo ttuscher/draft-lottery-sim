@@ -34,20 +34,19 @@ export default function SimulatorNav({
   return (
     <>
       {/* Sticky bar */}
-      <div className="sticky top-[52px] md:top-[62px] z-40 bg-[#96EDF6]">
+      <div className="sticky sticky-below-header z-40 bg-[#96EDF6]">
         <div className="grid grid-cols-3 gap-3 md:gap-4 h-full">
 
           {/* Mode Dropdown */}
           <div className="relative w-full h-full flex items-center col-span-2">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="w-full h-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
-              style={{ fontFamily: 'var(--font-press-start)' }}
+              className="header-font w-full h-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
             >
-              <span className="text-[9px] sm:text-[10px] md:text-[11px] lg:text-sm leading-snug text-left truncate">
-                SIM MODE: {currentLabel}
+              <span className="text-xs md:text-[13px] lg:text-sm leading-snug text-left truncate">
+                <span className="hidden md:inline">SIM MODE: </span>{currentLabel}
               </span>
-              <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6] ml-2 flex-shrink-0">
+              <span className="text-xs md:text-[13px] lg:text-sm text-[#96EDF6] ml-2 flex-shrink-0">
                 ▼
               </span>
             </button>
@@ -61,10 +60,9 @@ export default function SimulatorNav({
                       setMode(mode.value);
                       setDropdownOpen(false);
                     }}
-                    className="text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-[9px] sm:text-[10px] md:text-[11px] lg:text-sm py-3 px-4 border-b-2 border-gray-800 last:border-none transition-colors truncate"
-                    style={{ fontFamily: 'var(--font-press-start)' }}
+                    className="header-font text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-xs md:text-[13px] lg:text-sm py-3 px-4 border-b-2 border-gray-800 last:border-none transition-colors truncate"
                   >
-                    SIM MODE: {mode.label}
+                    <span className="hidden md:inline">SIM MODE: </span>{mode.label}
                   </button>
                 ))}
               </div>
@@ -77,14 +75,9 @@ export default function SimulatorNav({
               onClick={onAction}
               disabled={actionDisabled}
               aria-disabled={actionDisabled}
-              className={`w-full h-full border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center px-2 md:px-5 py-1.5 transition-all ${
-                actionDisabled
-                  ? 'bg-[#B8F6FA] text-black cursor-not-allowed opacity-90'
-                  : 'bg-[#E2231A] hover:bg-[#C41E17] text-white hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none'
-              }`}
-              style={{ fontFamily: 'var(--font-press-start)' }}
+              className={`header-font w-full h-full border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center px-2 md:px-5 py-1.5 transition-all ${ actionDisabled ? 'bg-[#B8F6FA] text-black cursor-not-allowed opacity-90' : 'bg-[#E2231A] hover:bg-[#C41E17] text-white hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none' }`}
             >
-              <span className="text-[9px] md:text-[11px] lg:text-sm leading-snug text-center">
+              <span className="text-xs md:text-[13px] lg:text-sm leading-snug text-center">
                 {(currentMode === "FULL" || currentMode === "LIVE") && actionText ? (
                   actionText.split('\n').map((line, idx, arr) => (
                     <React.Fragment key={idx}>
@@ -108,22 +101,20 @@ export default function SimulatorNav({
 
       {/* Attempts counter: not sticky, aligned under button (col 3 of 3) */}
       {attempts > 0 ? (
-        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-[0.525rem] md:mt-2 mb-1">
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-2 mb-1">
           <div className="col-start-3 col-span-1">
             <div
-              className="text-center text-[7px] sm:text-[9px] text-black drop-shadow-[1px_1px_0_#fff] font-bold tracking-widest uppercase"
-              style={{ fontFamily: 'var(--font-press-start)' }}
+              className="text-center text-[9px] md:text-[10px] lg:text-[11px] text-black drop-shadow-[1px_1px_0_#fff] font-bold tracking-widest uppercase"
             >
               ATTEMPTS: {attempts}
             </div>
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-[0.525rem] md:mt-2 mb-1">
+        <div className="grid grid-cols-3 gap-3 md:gap-4 mt-2 mb-1">
           <div className="col-start-3 col-span-1">
             <div
-              className="text-center text-[7px] sm:text-[9px] font-bold tracking-widest uppercase invisible"
-              style={{ fontFamily: 'var(--font-press-start)' }}
+              className="text-center text-[9px] md:text-[10px] lg:text-[11px] font-bold tracking-widest uppercase invisible"
             >
               &nbsp;
             </div>

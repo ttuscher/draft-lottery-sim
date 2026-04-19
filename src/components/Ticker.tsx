@@ -68,7 +68,7 @@ export default function Ticker() {
 
   return (
     <div className="ticker-container">
-      <div className="ticker-content text-[9px] md:text-[12px]" style={{ fontFamily: 'var(--font-press-start)', letterSpacing: '0.05em' }}>
+      <div className="ticker-content text-body">
         <div className="inline-flex items-center">{tickerItems}</div>
         <div className="inline-flex items-center" aria-hidden="true">{tickerItems}</div>
       </div>

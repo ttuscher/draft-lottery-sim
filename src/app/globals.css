@@ -17,9 +17,15 @@
   --rewind-row-hover: #E5FCFD;
 }
 
+/* Fonts are loaded by next/font on <body> (see layout.tsx).
+   Body = Press Start 2P (pixel-crisp, no smoothing).
+   Headers = Press Start 2P (same). Share Tech Mono is still loaded
+   but not applied by default — available via var(--font-share-tech-mono)
+   if any element needs to opt in. */
 body {
+  font-family: var(--font-press-start), ui-monospace, monospace;
   background-color: var(--rewind-cyan);
-  /* Subtle diagonal ice glare effect combined with a CRT scanline overlay */
+  /* Subtle diagonal ice glare combined with a CRT scanline overlay */
   background-image:
     linear-gradient(
       rgba(18, 16, 16, 0) 50%,
@@ -35,24 +41,143 @@ body {
   background-size: 100% 4px, 100% 100%;
   color: var(--rewind-black);
 
-  /* Sharp pixel font rendering — no smoothing */
+  /* PS2P is a pixel font: smoothing OFF for crisp glyphs */
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
   text-rendering: optimizeSpeed;
   font-smooth: never;
-  image-rendering: pixelated;
+
+  /* Base line-height tuned for PS2P. Tailwind's text-* utilities bundle
+     loose line-heights; every body token also applies leading-[1.25]
+     to override those when used. */
+  line-height: 1.25;
+
+  /* PS2P ships with wide word gaps. Tighten globally so headers + body
+     both read compact. Individual elements can opt out with
+     `word-spacing: normal` (see .text-tooltip). */
+  word-spacing: -0.4em;
 }
 
-/* Team name word spacing — tighter than global -0.3em */
-.team-name {
-  word-spacing: -0.6em;
+/* Headers pinned to Press Start 2P with pixel-crisp rendering.
+   The smoothing overrides here are what keep PS2P glyphs sharp
+   while the vector body font stays antialiased. */
+.header-font,
+.text-display,
+.text-title,
+.text-heading,
+.text-hero,
+.text-banner,
+.text-star,
+.text-award {
+  font-family: var(--font-press-start), ui-monospace, monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
 }
 
-/* Tighten spacing around decimal points in pixel font numbers */
-.retro-num .dec {
-  letter-spacing: -0.12em;
-  margin-left: -0.05em;
-  margin-right: -0.05em;
+/* ========== Design System ==========
+   Responsive model: base < md (768) < lg (1024).
+   Do NOT use sm: or xl: anywhere — only base, md:, lg:.
+
+   Type scale (PS2P everywhere). One token per semantic level:
+
+     TOKEN          BASE / MD / LG   USE
+     ------------   --------------   ---------------------------------
+     text-display   16 / 18 / 20     Site header logo (PUCKSON.NET)
+     text-title     12 / 13 / 14     Main panel H2 ("DRAFT LOTTERY ODDS")
+     text-heading   12 / 16 / 16     Sub-panel H3 ("LEAGUE VIEW")
+     text-body      9 / 10 / 11      Regular content / table cells
+     text-label     9 / 10 / 11      Small caps (column headers, footnotes)
+     text-micro     9 / 10 / 11      Ultra-tight / legacy
+     text-stat      14 / 15 / 16     Numeric callouts (stat cards, %) — Share Tech Mono
+     text-num       14 / 15 / 16     In-table numeric (pick #, change) — Share Tech Mono
+
+   Spacing: use only the Tailwind scale (p-1, p-1.5, p-2, p-3, p-4, p-6).
+   No arbitrary px/rem values (py-[7px] etc.) anywhere.
+
+   Tracking: PS2P carries its own letter spacing. Only add:
+     tracking-wider   on caps labels
+     tracking-widest  on main titles / header logo
+*/
+
+/* Primary scale — header tokens (PS2P, sized for the arcade look). */
+.text-display { @apply text-[22px] md:text-[26px] lg:text-[30px] uppercase tracking-widest; }
+.text-title   { @apply text-xs md:text-[13px] lg:text-sm uppercase tracking-widest; }
+.text-heading { @apply text-xs md:text-base uppercase tracking-wider; }
+
+/* Primary scale — body tokens (PS2P). All body tokens now use
+   the same three-tier size: text-[9px] md:text-[10px] lg:text-[11px].
+   Individual tokens retain their semantic attributes (bold, uppercase,
+   tracking) for visual role distinction. Every body token applies
+   leading-[1.25] to override Tailwind's loose bundled line-heights. */
+.text-body    { @apply text-[9px] md:text-[10px] lg:text-[11px] leading-[1.25]; }
+.text-label   { @apply text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-wider leading-[1.25]; }
+.text-micro   { @apply text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-wider leading-[1.25]; }
+/* Numeric tokens: match table-header styling (.text-label) so numbers
+   and headers render as the same font treatment. Color stays black
+   via the td's text-black class, not set here. */
+.text-stat,
+.text-num {
+  @apply text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-wider leading-[1.25];
+  word-spacing: normal;
+}
+
+/* Decimal-number wrapper rendered by <RetroNum> in all three Draw boards.
+   Inherits its parent's font-size so the wrapper adopts whatever scale the
+   containing cell/span uses (table numerics: text-num; stat cards: custom). */
+.retro-num {
+  @apply font-bold uppercase tracking-wider leading-[1.25];
+  font-size: inherit;
+  word-spacing: normal;
+}
+
+/* Display flourishes (modal / arcade). Used only for the Three Stars popup. */
+.text-hero    { @apply text-xl md:text-5xl; }
+.text-banner  { @apply text-base md:text-4xl; }
+.text-star    { @apply text-xl md:text-4xl; }
+.text-award   { @apply text-lg md:text-3xl; }
+
+/* Interactive elements. */
+.text-button  { @apply text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-widest leading-[1.25]; }
+.text-tooltip {
+  @apply text-[9px] md:text-[10px] lg:text-[11px] font-bold uppercase tracking-tight leading-[1.25];
+  word-spacing: normal;
+}
+
+/* Structural offset: sit a sticky element directly below the site header.
+   Values are pinned to the computed header height at base / md+ and should
+   be updated together with header changes. */
+.sticky-below-header { top: 52px; }
+@media (min-width: 768px) {
+  .sticky-below-header { top: 62px; }
+}
+
+/* Layout primitive: bordered white card with hard shadow.
+   Padding is applied by the component (p-3 md:p-6 etc) so individual
+   panels can tune their own padding without fighting cascade order. */
+.panel {
+  width: 100%;
+  background: var(--rewind-white);
+  border: 4px solid var(--rewind-black);
+  box-shadow: 8px 8px 0 rgba(0,0,0,1);
+}
+
+/* Page-width wrapper with responsive gutters */
+.page-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 /* ========== Reusable Retro Design System ========== */

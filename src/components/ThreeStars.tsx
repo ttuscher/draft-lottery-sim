@@ -215,7 +215,6 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
       className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 ${
         fadeIn ? 'opacity-100' : 'opacity-0'
       }`}
-      style={{ fontFamily: 'var(--font-press-start)' }}
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" onClick={onClose} />
@@ -232,27 +231,27 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
         />
 
         {/* Main panel — symmetric vertical padding */}
-        <div className="relative bg-black border-4 border-[#96EDF6] px-2 sm:px-3 md:px-5 py-4 sm:py-5 md:py-7 shadow-[0_0_40px_rgba(150,237,246,0.3),0_0_80px_rgba(150,237,246,0.1)] overflow-hidden flex flex-col">
+        <div className="relative bg-black border-4 border-[#96EDF6] px-2 md:px-5 py-4 md:py-7 shadow-[0_0_40px_rgba(150,237,246,0.3),0_0_80px_rgba(150,237,246,0.1)] overflow-hidden flex flex-col">
 
           {/* === HEADER ZONE === */}
           <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 sm:gap-3 md:gap-4">
-              <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
-              <span className="text-[#FFCC00] text-base sm:text-3xl md:text-4xl uppercase tracking-wide sm:tracking-wider [text-shadow:3px_3px_0_#E2231A] whitespace-nowrap">
+            <div className="flex items-center gap-1 md:gap-4">
+              <span className="text-[#FFCC00] text-hero animate-pulse -mt-2 md:-mt-4">★★★</span>
+              <span className="text-[#FFCC00] text-banner uppercase tracking-wide md:tracking-wider [text-shadow:3px_3px_0_#E2231A] whitespace-nowrap">
                 STARS OF
               </span>
-              <span className="text-[#FFCC00] text-xl sm:text-3xl md:text-5xl animate-pulse -mt-2 sm:-mt-3 md:-mt-4">★★★</span>
+              <span className="text-[#FFCC00] text-hero animate-pulse -mt-2 md:-mt-4">★★★</span>
             </div>
-            <span className="text-[#FFCC00] text-base sm:text-3xl md:text-4xl uppercase tracking-wide sm:tracking-wider [text-shadow:3px_3px_0_#E2231A] mt-1 sm:mt-2 whitespace-nowrap">
+            <span className="text-[#FFCC00] text-banner uppercase tracking-wide md:tracking-wider [text-shadow:3px_3px_0_#E2231A] mt-1 md:mt-2 whitespace-nowrap">
               THE LOTTERY
             </span>
           </div>
 
           {/* Divider */}
-          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#96EDF6]/50 to-transparent my-3 sm:my-4 md:my-6" />
+          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#96EDF6]/50 to-transparent my-3 md:my-6" />
 
           {/* === STAR ROWS === */}
-          <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mx-1 sm:mx-2 md:mx-5">
+          <div className="flex flex-col gap-2 md:gap-4 mx-1 md:mx-5">
             {[0, 1, 2].map((starIdx) => {
               const star = stars[starIdx];
               const team = NHL_TEAMS[star.abbrev];
@@ -262,25 +261,23 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
               return (
                 <div
                   key={starIdx}
-                  className={`flex items-center gap-3 sm:gap-4 md:gap-5 px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 transition-all duration-700 ${
-                    isVisible
-                      ? 'opacity-100 translate-y-0 scale-100'
-                      : 'opacity-0 translate-y-6 scale-95'
-                  } ${starIdx === 0
-                    ? 'bg-[#FFCC00]/10 border border-[#FFCC00]/40 shadow-[0_0_20px_rgba(255,204,0,0.15)]'
-                    : isSorry
-                    ? 'bg-[#E2231A]/10 border border-[#E2231A]/30'
-                    : 'border border-[#96EDF6]/10'
-                  }`}
+                  className={`flex items-center gap-3 md:gap-5 px-3 md:px-6 py-2 md:py-4 transition-all duration-700 ${
+ isVisible
+ ? 'opacity-100 translate-y-0 scale-100'
+ : 'opacity-0 translate-y-6 scale-95'
+ } ${starIdx === 0
+ ? 'bg-[#FFCC00]/10 border border-[#FFCC00]/40 shadow-[0_0_20px_rgba(255,204,0,0.15)]'
+ : isSorry
+ ? 'bg-[#E2231A]/10 border border-[#E2231A]/30'
+ : 'border border-[#96EDF6]/10'
+ }`}
                 >
                   {/* Star symbols — fixed width so logos align across rows */}
-                  <div className={`w-8 sm:w-10 md:w-16 shrink-0 flex justify-center text-[#FFCC00] text-xl sm:text-2xl md:text-4xl leading-[1] ${
-                    starIdx === 0 ? '[text-shadow:2px_2px_0_#E2231A] animate-pulse' : ''
-                  }`}>
+                  <div className={`w-8 md:w-16 shrink-0 flex justify-center text-[#FFCC00] text-star leading-[1] ${ starIdx === 0 ? '[text-shadow:2px_2px_0_#E2231A] animate-pulse' : '' }`}>
                     {starIdx === 2 ? (
                       <div className="flex flex-col items-center">
-                        <span className="leading-[0.7] text-lg sm:text-xl md:text-3xl">★★</span>
-                        <span className="leading-[0.7] text-lg sm:text-xl md:text-3xl">★</span>
+                        <span className="leading-[0.7] text-award">★★</span>
+                        <span className="leading-[0.7] text-award">★</span>
                       </div>
                     ) : (
                       <span>{starLabels[starIdx]}</span>
@@ -292,26 +289,22 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
 
                   {/* Logo */}
                   {team?.logoLight && (
-                    <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 shrink-0">
+                    <div className="flex items-center justify-center w-12 h-12 md:w-24 md:h-24 shrink-0">
                       <CroppedLogo
                         src={team.logoLight}
                         alt={star.abbrev}
-                        sizeClass="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24"
+                        sizeClass="w-12 h-12 md:w-24 md:h-24"
                         wrapperClass=""
                       />
                     </div>
                   )}
 
                   {/* Abbrev + sub-label — fixed width so text aligns across rows */}
-                  <div className="w-[70px] sm:w-[90px] md:w-[140px] shrink-0 flex flex-col justify-center">
-                    <span className="font-bold text-lg sm:text-xl md:text-3xl uppercase leading-tight text-white whitespace-nowrap">
+                  <div className="w-[70px] md:w-[140px] shrink-0 flex flex-col justify-center">
+                    <span className="font-bold text-award uppercase leading-tight text-white whitespace-nowrap">
                       {star.abbrev}
                     </span>
-                    <span className={`text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 whitespace-nowrap ${
-                      starIdx === 0 ? 'text-[#FFCC00]'
-                      : isSorry ? 'text-[#E2231A]/70'
-                      : 'text-[#96EDF6]'
-                    }`}>
+                    <span className={`text-body uppercase tracking-wider mt-0.5 whitespace-nowrap ${ starIdx === 0 ? 'text-[#FFCC00]' : isSorry ? 'text-[#E2231A]/70' : 'text-[#96EDF6]' }`}>
                       {subLabels[starIdx]}
                     </span>
                   </div>
@@ -320,23 +313,15 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                   <div className="flex-1" />
 
                   {/* Stat block — fixed width so metrics align across rows */}
-                  <div className="w-[100px] sm:w-[120px] md:w-[140px] flex flex-col items-center justify-center shrink-0">
-                    <span className={`font-bold leading-none whitespace-nowrap ${
-                      isSorry
-                        ? 'text-[#E2231A] [text-shadow:2px_2px_0_#7f1d1d] text-lg sm:text-xl md:text-3xl'
-                        : 'text-[#FFCC00] [text-shadow:2px_2px_0_#E2231A] text-lg sm:text-xl md:text-3xl'
-                    }`}>
+                  <div className="w-[100px] md:w-[140px] flex flex-col items-center justify-center shrink-0">
+                    <span className={`font-bold text-award leading-none whitespace-nowrap ${ isSorry ? 'text-[#E2231A] [text-shadow:2px_2px_0_#7f1d1d]' : 'text-[#FFCC00] [text-shadow:2px_2px_0_#E2231A]' }`}>
                       {star.rightBig}
                     </span>
-                    <span className={`uppercase tracking-wider mt-1 md:mt-1.5 text-center ${star.rightSmall.includes('\n') ? 'whitespace-pre-line' : 'whitespace-nowrap'} ${
-                      isSorry
-                        ? 'text-[#E2231A]/70 text-[9px] sm:text-[11px] md:text-sm'
-                        : 'text-[#FFCC00]/70 text-[9px] sm:text-[11px] md:text-sm'
-                    }`}>
+                    <span className={`text-body uppercase tracking-wider mt-1 md:mt-1.5 text-center ${star.rightSmall.includes('\n') ? 'whitespace-pre-line' : 'whitespace-nowrap'} ${ isSorry ? 'text-[#E2231A]/70' : 'text-[#FFCC00]/70' }`}>
                       {star.rightSmall}
                     </span>
                     {star.pickNum && (
-                      <span className="text-[#E2231A]/50 text-[9px] sm:text-[11px] md:text-sm uppercase tracking-wider mt-0.5 text-center whitespace-nowrap">
+                      <span className="text-[#E2231A]/50 text-body uppercase tracking-wider mt-0.5 text-center whitespace-nowrap">
                         PICK #{star.pickNum}
                       </span>
                     )}
@@ -347,19 +332,19 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
           </div>
 
           {/* Divider */}
-          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#96EDF6]/50 to-transparent my-3 sm:my-4 md:my-6" />
+          <div className="w-full h-[2px] bg-gradient-to-r from-transparent via-[#96EDF6]/50 to-transparent my-3 md:my-6" />
 
           {/* === FOOTER ZONE: Buttons + branding === */}
-          <div className={`flex items-center justify-center gap-3 sm:gap-4 transition-all duration-500 ${
-            showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}>
+          <div className={`flex items-center justify-center gap-3 md:gap-4 transition-all duration-500 ${
+ showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+ }`}>
             {/* Share button with dropdown */}
-            <div className="relative w-[140px] sm:w-[160px] md:w-[180px]">
+            <div className="relative w-[140px] md:w-[180px]">
               <button
                 type="button"
                 onClick={() => setShareOpen(prev => !prev)}
                 disabled={!showButtons}
-                className="w-full bg-[#96EDF6] text-black border-2 border-[#96EDF6] px-3 sm:px-4 py-2 sm:py-2.5 text-[9px] sm:text-[11px] md:text-xs font-bold uppercase tracking-wider text-center whitespace-nowrap shadow-[4px_4px_0px_rgba(150,237,246,0.4)] transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(150,237,246,0.4)] active:translate-y-1 active:shadow-none cursor-pointer"
+                className="w-full bg-[#96EDF6] text-black border-2 border-[#96EDF6] px-3 md:px-4 py-2 md:py-2.5 text-label font-bold text-center whitespace-nowrap shadow-[4px_4px_0px_rgba(150,237,246,0.4)] transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(150,237,246,0.4)] active:translate-y-1 active:shadow-none cursor-pointer"
               >
                 {copied ? 'COPIED!' : 'SHARE'}
               </button>
@@ -369,9 +354,9 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                   <button
                     type="button"
                     onClick={() => { handleCopyLink(); setShareOpen(false); }}
-                    className="group w-full flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 text-[8px] sm:text-[10px] md:text-xs text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold uppercase tracking-wider whitespace-nowrap border-b border-[#96EDF6]/20 cursor-pointer"
+                    className="group w-full flex items-center gap-2.5 md:gap-3 px-3 md:px-4 py-2.5 text-label text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold whitespace-nowrap border-b border-[#96EDF6]/20 cursor-pointer"
                   >
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <svg className="w-3.5 h-3.5 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                       <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                     </svg>
@@ -380,9 +365,9 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                   <button
                     type="button"
                     onClick={() => { handleShareX(); setShareOpen(false); }}
-                    className="group w-full flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 text-[8px] sm:text-[10px] md:text-xs text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold uppercase tracking-wider whitespace-nowrap border-b border-[#96EDF6]/20 cursor-pointer"
+                    className="group w-full flex items-center gap-2.5 md:gap-3 px-3 md:px-4 py-2.5 text-label text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold whitespace-nowrap border-b border-[#96EDF6]/20 cursor-pointer"
                   >
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                    <svg className="w-3.5 h-3.5 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                     </svg>
                     SHARE TO X
@@ -390,9 +375,9 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
                   <button
                     type="button"
                     onClick={() => { handleShareIG(); setShareOpen(false); }}
-                    className="group w-full flex items-center gap-2.5 sm:gap-3 px-3 sm:px-4 py-2.5 text-[8px] sm:text-[10px] md:text-xs text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold uppercase tracking-wider whitespace-nowrap cursor-pointer"
+                    className="group w-full flex items-center gap-2.5 md:gap-3 px-3 md:px-4 py-2.5 text-label text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black transition-colors font-bold whitespace-nowrap cursor-pointer"
                   >
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg className="w-3.5 h-3.5 md:w-5 md:h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                       <circle cx="12" cy="12" r="5" />
                       <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
@@ -407,18 +392,18 @@ export default function ThreeStars({ stars, onClose, onShare }: ThreeStarsProps)
               type="button"
               onClick={onClose}
               disabled={!showButtons}
-              className="w-[140px] sm:w-[160px] md:w-[180px] bg-[#FFCC00] text-black border-2 border-[#FFCC00] px-3 sm:px-4 py-2 sm:py-2.5 text-[9px] sm:text-[11px] md:text-xs font-bold uppercase tracking-wider text-center whitespace-nowrap shadow-[4px_4px_0px_rgba(255,204,0,0.4)] transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(255,204,0,0.4)] active:translate-y-1 active:shadow-none cursor-pointer"
+              className="w-[140px] md:w-[180px] bg-[#FFCC00] text-black border-2 border-[#FFCC00] px-3 md:px-4 py-2 md:py-2.5 text-label font-bold text-center whitespace-nowrap shadow-[4px_4px_0px_rgba(255,204,0,0.4)] transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(255,204,0,0.4)] active:translate-y-1 active:shadow-none cursor-pointer"
             >
               VIEW RESULTS
             </button>
           </div>
 
           {/* Branding + ESC hint */}
-          <div className={`text-center mt-2 sm:mt-3 transition-opacity duration-500 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
-            <span className="hidden md:block text-[#96EDF6]/30 text-[8px] uppercase tracking-widest mb-1">
+          <div className={`text-center mt-2 md:mt-3 transition-opacity duration-500 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
+            <span className="hidden md:block text-[#96EDF6]/30 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-widest mb-1">
               ESC TO CLOSE
             </span>
-            <span className="text-[#96EDF6] text-[7px] sm:text-[8px] md:text-[10px] font-bold uppercase tracking-wider">
+            <span className="text-[#96EDF6] text-label font-bold">
               DRAFT LOTTERY SIMULATOR BY PUCKSON.NET
             </span>
           </div>

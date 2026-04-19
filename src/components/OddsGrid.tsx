@@ -92,42 +92,32 @@ export default function OddsGrid({
   // Sticky column classes. Left offsets match SEED column widths
   // (w-8=32px, w-9=36px, w-11=44px).
   const stickySeedHead = 'sticky left-0 z-20 bg-[#B8F6FA]';
-  const stickyTeamHead = 'sticky left-8 sm:left-9 md:left-11 z-20 bg-[#B8F6FA]';
+  const stickyTeamHead = 'sticky left-8 md:left-11 z-20 bg-[#B8F6FA]';
   const stickySeedCell = 'sticky left-0 z-10 bg-inherit';
-  const stickyTeamCell = 'sticky left-8 sm:left-9 md:left-11 z-10 bg-inherit';
+  const stickyTeamCell = 'sticky left-8 md:left-11 z-10 bg-inherit';
 
-  return (
-    <div className="w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] mb-4">
-      <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
-        <h3
-          className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}
-        >
-          % ODDS BY PICK
-        </h3>
-        <span
-          className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap"
-          style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}
-        >
-          {phaseLabel(phase, drawnBalls.length)}
-        </span>
-      </div>
+ return (
+ <div className="panel p-3 md:p-4 mb-4">
+ <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
+ <h3 className="text-heading text-[#E2231A] whitespace-nowrap">
+ % ODDS BY PICK
+ </h3>
+ <span className="text-label text-gray-500 whitespace-nowrap">
+ {phaseLabel(phase, drawnBalls.length)}
+ </span>
+ </div>
 
-      {/* Horizontal scroll on mobile; fits naturally on desktop */}
-      <div className="w-full overflow-x-auto">
-        <table className="w-full text-left border-collapse table-fixed" style={{ minWidth: `${n * 40 + 120}px` }}>
-          <thead>
-            <tr
-              className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[10px] md:text-[11px]"
-              style={{ fontFamily: 'var(--font-press-start)', wordSpacing: 'normal' }}
-            >
-              <th className={`py-1 pl-0.5 pr-2 md:pr-3 text-center whitespace-nowrap w-8 sm:w-9 md:w-11 ${stickySeedHead}`}>SEED</th>
-              <th className={`py-1 pl-2 md:pl-3 text-left whitespace-nowrap w-10 sm:w-12 md:w-12 ${stickyTeamHead}`}>TEAM</th>
-              {pickColumns.map((p) => (
-                <th
-                  key={p}
-                  className="py-1 px-0 text-center whitespace-nowrap"
-                  style={{ wordSpacing: 'normal' }}
+ {/* Horizontal scroll on mobile; fits naturally on desktop */}
+ <div className="w-full overflow-x-auto">
+ <table className="w-full text-left border-collapse table-fixed" style={{ minWidth: `${n * 40 + 120}px` }}>
+ <thead>
+ <tr className="bg-[#B8F6FA] border-b-4 border-black text-micro">
+ <th className={`py-1 pl-0.5 pr-2 md:pr-3 text-center whitespace-nowrap w-8 md:w-11 ${stickySeedHead}`}>SEED</th>
+ <th className={`py-1 pl-2 md:pl-3 text-left whitespace-nowrap w-10 md:w-12 ${stickyTeamHead}`}>TEAM</th>
+ {pickColumns.map((p) => (
+ <th
+ key={p}
+ className="py-1 px-0 text-center whitespace-nowrap text-[8px] md:text-[8px] lg:text-[9px]"
                 >
                   {p}
                 </th>
@@ -144,47 +134,42 @@ export default function OddsGrid({
               // with hover tooltip matching the pattern used elsewhere.
               const trade = PICK_OWNERSHIP[code];
               const isResolved = trade?.type === 'resolved';
-              const ownerAbbrev = isResolved ? (trade as { owner: string }).owner : code;
-              const displayTeam = isResolved ? (NHL_TEAMS[ownerAbbrev] ?? teamInfo) : teamInfo;
-              const tooltipText = isResolved
-                ? `${code} TO ${ownerAbbrev}:\nTRADE COMPLETE.`
-                : null;
+ const ownerAbbrev = isResolved ? (trade as { owner: string }).owner : code;
+ const displayTeam = isResolved ? (NHL_TEAMS[ownerAbbrev] ?? teamInfo) : teamInfo;
+ const tooltipText = isResolved
+ ? `${code} TO ${ownerAbbrev}:\nTRADE COMPLETE.`
+ : null;
 
-              return (
-                <tr
-                  key={code}
-                  className="bg-white border-b border-gray-200 hover:bg-[#E5FCFD] transition-colors text-[8px] sm:text-[9px] md:text-[10px]"
-                >
-                  <td
-                    className={`py-[6px] px-0.5 text-center font-bold whitespace-nowrap ${stickySeedCell} ${
-                      rowIsLocked ? 'text-gray-400' : ''
+ return (
+ <tr
+ key={code}
+ className="bg-white border-b border-gray-200 hover:bg-[#E5FCFD] transition-colors text-micro"
+ >
+ <td
+ className={`py-1.5 px-0.5 text-center text-num whitespace-nowrap text-[8px]! md:text-[8px]! lg:text-[9px]! ${stickySeedCell} ${
+ rowIsLocked ? 'text-gray-400' : ''
                     }`}
-                    style={{ fontFamily: 'var(--font-press-start)' }}
-                  >
-                    {label}
-                  </td>
-                  <td className={`py-[6px] pl-2 md:pl-3 pr-0.5 relative group cursor-default ${stickyTeamCell}`}>
-                    <div className="flex items-center gap-0.5">
-                      {displayTeam?.logoLight && (
-                        <CroppedLogo
-                          src={displayTeam.logoLight}
-                          sizeClass="w-5 h-5 sm:w-6 sm:h-6"
-                          wrapperClass="shrink-0"
-                        />
-                      )}
-                      {isResolved && (
-                        <span
-                          className="font-bold leading-none"
-                          style={{ fontFamily: 'var(--font-press-start)' }}
-                        >
+ >
+ {label}
+ </td>
+ <td className={`py-1.5 pl-2 md:pl-3 pr-0.5 relative group cursor-default ${stickyTeamCell}`}>
+ <div className="flex items-center gap-0.5">
+ {displayTeam?.logoLight && (
+ <CroppedLogo
+ src={displayTeam.logoLight}
+ sizeClass="w-5 h-5 md:w-6 md:h-6"
+ wrapperClass="shrink-0"
+ />
+ )}
+ {isResolved && (
+ <span className="font-bold leading-none">
                           *
                         </span>
                       )}
                     </div>
                     {tooltipText && (
                       <span
-                        className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 bg-gray-500 text-white text-[8px] font-bold uppercase tracking-tight whitespace-pre-line rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 w-[150px]"
-                        style={{ wordSpacing: 'normal', fontFamily: 'var(--font-press-start)' }}
+                        className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 bg-gray-500 text-white text-tooltip whitespace-pre-line rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-30 w-[150px]"
                       >
                         {tooltipText}
                       </span>
@@ -209,28 +194,27 @@ export default function OddsGrid({
                     return (
                       <td
                         key={p}
-                        className={`py-[6px] px-0 text-center font-bold whitespace-nowrap ${
+                        className={`py-1.5 px-0 text-center text-num whitespace-nowrap tracking-tight text-[8px]! md:text-[8px]! lg:text-[9px]! ${
                           isLocked ? 'bg-[#FFD700]' : isMax ? 'bg-[#FFFDE5]' : ''
                         } ${isBlank ? 'text-gray-300' : 'text-black'} ${
                           showBosSwap ? 'relative group/bos cursor-pointer' : ''
                         }`}
-                        style={{ fontFamily: 'var(--font-press-start)', letterSpacing: '-0.1em' }}
-                      >
-                        {showBosSwap ? (
-                          <>
-                            <span className="group-hover/bos:invisible">
-                              {raw.toFixed(1)}
-                            </span>
-                            <span className="pointer-events-none absolute inset-0 hidden group-hover/bos:flex items-center justify-center">
-                              <CroppedLogo
-                                src="/logos/20252026_BOS_Logo_Light.png"
-                                sizeClass="w-5 h-5 sm:w-6 sm:h-6"
-                                wrapperClass="shrink-0"
-                              />
-                            </span>
-                          </>
-                        ) : (
-                          isBlank ? '' : raw.toFixed(1)
+ >
+ {showBosSwap ? (
+ <>
+ <span className="group-hover/bos:invisible">
+ {raw.toFixed(1)}
+ </span>
+ <span className="pointer-events-none absolute inset-0 hidden group-hover/bos:flex items-center justify-center">
+ <CroppedLogo
+ src="/logos/20252026_BOS_Logo_Light.png"
+ sizeClass="w-5 h-5 md:w-6 md:h-6"
+ wrapperClass="shrink-0"
+ />
+ </span>
+ </>
+ ) : (
+ isBlank ? '' : raw.toFixed(1)
                         )}
                       </td>
                     );
