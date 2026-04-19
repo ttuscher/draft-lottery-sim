@@ -277,9 +277,9 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
           <div className="w-full mb-2">
             <table className="w-full text-left border-collapse table-fixed">
               <colgroup>
-                <col className="w-[15%] sm:w-[10%]" />
-                <col className="w-[35%] sm:w-[35%]" />
-                <col className="w-[50%] sm:w-[55%]" />
+                <col className="w-[12%] sm:w-[8%]" />
+                <col className="w-[28%] sm:w-[25%]" />
+                <col className="w-[60%] sm:w-[67%]" />
               </colgroup>
               <thead>
                 <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px] text-black" style={{ fontFamily: 'var(--font-press-start)' }}>
@@ -333,11 +333,11 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         </div>
                       </td>
                       <td className="py-1 px-1 sm:px-4">
-                        <div className="flex items-center justify-end w-full h-full pr-1 md:pr-4">
+                        <div className="flex items-center justify-start w-full h-full">
                           {isRedraw ? (
                             <span className="text-red-600 font-bold text-[10px] md:text-xs uppercase drop-shadow-[1px_1px_0_#fff]">RE-DRAW</span>
                           ) : resultTeam ? (
-                            <div className="flex items-center gap-2 md:gap-4 justify-end">
+                            <div className="flex items-center gap-2 md:gap-4 justify-start">
                               {resultTeam.team.logoLight && (
                                 <CroppedLogo src={resultTeam.team.logoLight} sizeClass="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10" wrapperClass="shrink-0" />
                               )}
@@ -426,7 +426,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                     </div>
                   </td>
                   <td className="py-1 px-1 sm:px-4">
-                    <div className="flex items-center justify-end w-full h-full pr-1 md:pr-4">
+                    <div className="flex items-center w-full h-full justify-start">
                       {allInputsValid ? (
                         <button
                           type="button"
@@ -437,8 +437,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                           {phase === 'DRAW_1' ? 'COMPLETE DRAW 1' : 'COMPLETE DRAW 2'}
                         </button>
                       ) : (
-                        <span className="text-gray-400 font-bold text-[8px] sm:text-[9px] md:text-[11px] uppercase tracking-widest animate-pulse" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                          MANUALLY ENTER COMBINATIONS...
+                        <span className="text-gray-400 font-bold text-[8px] sm:text-[9px] md:text-[11px] uppercase tracking-widest animate-pulse ml-2 sm:ml-3" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
+                          ENTER NUMBERS TO SEE ODDS CHANGE LIVE...
                         </span>
                       )}
                     </div>
@@ -554,8 +554,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                                   <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
                                     <CroppedLogo src={ownerTeam.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
                                     <span className={`uppercase font-bold tracking-tight team-name ${isExcluded ? 'text-gray-400' : ''}`}>
-                                      <span className="hidden lg:inline">{ownerTeam.city}</span>
-                                      <span className="lg:hidden">{ownerAbbrev}</span>
+                                      <span className="md:hidden lg:inline">{ownerTeam.city}</span>
+                                      <span className="hidden md:inline lg:hidden">{ownerAbbrev}</span>
                                       <br /><span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px]">FROM {odds.teamCode}</span>
                                     </span>
                                   </div>
@@ -567,8 +567,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                                     <CroppedLogo src={teamInfo.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
                                   )}
                                   <span className={`uppercase font-bold tracking-tight truncate team-name ${isExcluded ? 'text-gray-400' : ''}`}>
-                                    <span className="hidden lg:inline">{teamInfo?.city || odds.teamCode}</span>
-                                    <span className="lg:hidden">{odds.teamCode}</span>
+                                    <span className="md:hidden lg:inline">{teamInfo?.city || odds.teamCode}</span>
+                                    <span className="hidden md:inline lg:hidden">{odds.teamCode}</span>
                                   </span>
                                 </div>
                               );

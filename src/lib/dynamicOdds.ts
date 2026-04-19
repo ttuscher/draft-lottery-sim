@@ -5,7 +5,7 @@
 // instead of reading from the static JSON.
 
 import { SeededTeam, LotteryCombo } from '../data/types';
-import { MAX_MOVE_UP, resolveDraftOrder } from './engine';
+import { MAX_MOVE_UP, resolveDraftOrder, getLockedFirstPickTeam } from './engine';
 
 /**
  * Computes the exact probability each team lands in each pick slot (1-N).
@@ -77,6 +77,88 @@ export function computeDraw1Odds(
       e => e.teamCode === t.team.abbreviation
     ).length;
     result[t.team.abbreviation] = (count / totalValid) * 100;
+  }
+
+  return result;
+}
+
+/**
+ * Computes conditional Draw 2 win probability for each team,
+ * given a known Draw 1 winner. Teams excluded from Draw 2
+ * (D1 winner + locked-first-pick team) get 0%.
+ */
+export function computeConditionalDraw2Odds(
+  teams: SeededTeam[],
+  allCombos: LotteryCombo[],
+  draw1WinnerCode: string
+): Record<string, number> {
+  const comboCountByTeam: Record<string, number> = {};
+  for (const t of teams) comboCountByTeam[t.team.abbreviation] = 0;
+  for (const e of allCombos) {
+    if (e.teamCode !== 'REDRAW' && comboCountByTeam[e.teamCode] !== undefined) {
+      comboCountByTeam[e.teamCode]++;
+    }
+  }
+
+  const totalValid = allCombos.filter(e => e.teamCode !== 'REDRAW').length;
+  const totalValidDraw2 = totalValid - comboCountByTeam[draw1WinnerCode];
+
+  const lockedFirst = getLockedFirstPickTeam(teams, draw1WinnerCode, MAX_MOVE_UP);
+  const excluded = new Set<string>([draw1WinnerCode]);
+  if (lockedFirst) excluded.add(lockedFirst);
+
+  const result: Record<string, number> = {};
+  for (const t of teams) {
+    const code = t.team.abbreviation;
+    if (excluded.has(code)) {
+      result[code] = 0;
+    } else {
+      result[code] = (comboCountByTeam[code] / totalValidDraw2) * 100;
+    }
+  }
+  return result;
+}
+
+/**
+ * Computes conditional probability of each team landing at pick #2,
+ * given a known Draw 1 winner. Enumerates all possible Draw 2 outcomes.
+ */
+export function computeConditionalPick2Odds(
+  teams: SeededTeam[],
+  allCombos: LotteryCombo[],
+  draw1WinnerCode: string
+): Record<string, number> {
+  const comboCountByTeam: Record<string, number> = {};
+  for (const t of teams) comboCountByTeam[t.team.abbreviation] = 0;
+  for (const e of allCombos) {
+    if (e.teamCode !== 'REDRAW' && comboCountByTeam[e.teamCode] !== undefined) {
+      comboCountByTeam[e.teamCode]++;
+    }
+  }
+
+  const totalValid = allCombos.filter(e => e.teamCode !== 'REDRAW').length;
+  const totalValidDraw2 = totalValid - comboCountByTeam[draw1WinnerCode];
+
+  const lockedFirst = getLockedFirstPickTeam(teams, draw1WinnerCode, MAX_MOVE_UP);
+  const excluded = new Set<string>([draw1WinnerCode]);
+  if (lockedFirst) excluded.add(lockedFirst);
+
+  const d1Winner = teams.find(t => t.team.abbreviation === draw1WinnerCode)!;
+
+  const result: Record<string, number> = {};
+  for (const t of teams) result[t.team.abbreviation] = 0;
+
+  for (const t of teams) {
+    const d2Code = t.team.abbreviation;
+    if (excluded.has(d2Code)) continue;
+
+    const d2Winner = teams.find(tm => tm.team.abbreviation === d2Code)!;
+    const pD2 = comboCountByTeam[d2Code] / totalValidDraw2;
+
+    const finalOrder = resolveDraftOrder(teams, d1Winner, d2Winner, MAX_MOVE_UP);
+    if (finalOrder[1]) {
+      result[finalOrder[1].team.abbreviation] += pD2 * 100;
+    }
   }
 
   return result;

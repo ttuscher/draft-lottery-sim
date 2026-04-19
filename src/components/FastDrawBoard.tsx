@@ -6,7 +6,7 @@ import { NHL_TEAMS } from '../data/teams';
 import { SeededTeam, LotteryCombo, SimulationResult } from '../data/types';
 import { useNHLStandings, NHLTeamStanding } from '../hooks/useNHLStandings';
 import { buildDynamicLotteryData } from '../lib/dynamicCombos';
-import { computeDynamicPickSlotOdds, computeDraw1Odds } from '../lib/dynamicOdds';
+import { computeDynamicPickSlotOdds, computeDraw1Odds, computeConditionalDraw2Odds, computeConditionalPick2Odds } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import { PICK_OWNERSHIP } from '../data/pickOwnership';
 
@@ -49,6 +49,23 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
     );
     return { pickSlotOdds, draw1Odds };
   }, [dynamicData]);
+
+  // Conditional odds computed after simulation (Draw 2 odds given known D1 winner)
+  const conditionalOdds = useMemo(() => {
+    if (!result) return null;
+    const d1Code = result.draw1Winner.team.abbreviation;
+    const draw2Odds = computeConditionalDraw2Odds(
+      dynamicData.lotteryTeams,
+      dynamicData.remappedCombos,
+      d1Code
+    );
+    const pick2Odds = computeConditionalPick2Odds(
+      dynamicData.lotteryTeams,
+      dynamicData.remappedCombos,
+      d1Code
+    );
+    return { draw2Odds, pick2Odds };
+  }, [result, dynamicData]);
 
   const handleFastDraw = useCallback(() => {
     const simResult = runSimulation(
@@ -101,8 +118,9 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
   // On desktop (md:), always show expanded columns. On mobile, toggle via expanded state.
   const expandedColClass = expanded ? '' : 'hidden md:table-cell';
-  // Post-sim + expanded: hide 2ND OVR on mobile to make room for trade partner column
-  const hide2ndOvrClass = (result && expanded) ? 'hidden md:table-cell' : '';
+  // Data column width: 6 pre-sim or 5 post-sim columns share the same total space (~66%)
+  // PICK ~6% + TEAM ~28% + data ~66% = 100%
+  const dataColWidth = result ? 'md:w-[13.2%]' : 'md:w-[11%]';
 
   return (
     <div className="w-full pb-2">
@@ -128,26 +146,32 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
         </div>
 
         <div className="overflow-x-auto mb-2">
-          <table className={`text-left border-collapse w-full ${result ? 'md:min-w-[960px]' : 'md:min-w-[800px]'}`}>
+          <table className="text-left border-collapse w-full md:min-w-[800px]">
 
             <thead>
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
-                <th className={`py-2 px-1 text-center w-8 sm:w-12 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
-                <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[1%] ${stickyTeamHeadClass}`}>TEAM</th>
+                <th className={`py-2 px-1 text-center w-8 sm:w-12 md:w-14 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
+                <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[28%] md:min-w-[28%] md:max-w-[28%] ${stickyTeamHeadClass}`}>TEAM</th>
                 {/* Secondary logo column (mobile only, hidden desktop) */}
-                <th className="py-2 pl-2 sm:pl-3 pr-0 text-left whitespace-nowrap md:hidden"></th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass} ${expandedColClass}`}>DRAW 1</th>
+                <th className="py-2 pl-0 pr-0 text-left whitespace-nowrap md:hidden"></th>
                 {result ? (
-                  <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass}`} colSpan={2}>CHANGE</th>
+                  <>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>DRAW 1</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass}`}>#1 OVR</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>DRAW 2</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>#2 OVR</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth}`}>CHANGE</th>
+                  </>
                 ) : (
                   <>
-                    <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass}`}>#1 OVR</th>
-                    <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${cyanHeadClass} ${hide2ndOvrClass}`}>#2 OVR</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass} ${expandedColClass}`}>DRAW 1</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass}`}>#1 OVR</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${cyanHeadClass}`}>#2 OVR</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>PTS</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>RW</th>
+                    <th className={`py-2 px-2 text-center whitespace-nowrap ${dataColWidth} ${expandedColClass}`}>ROW</th>
                   </>
                 )}
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>PTS</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>RW</th>
-                <th className={`py-2 px-2 text-center whitespace-nowrap md:w-[12%] ${expandedColClass}`}>ROW</th>
               </tr>
             </thead>
 
@@ -246,7 +270,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     key={abbrev}
                     className={`border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors ${rowBg}`}
                   >
-                    <td className={`py-1.5 px-1 ${stickyPickClass}`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-1 w-8 sm:w-12 md:w-14 ${stickyPickClass}`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex justify-center items-center h-full">
                         <div className={`font-bold text-xs sm:text-sm md:text-base transition-all duration-300 ${numClass}`}>
                           {pickNum}
@@ -254,7 +278,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       </div>
                     </td>
 
-                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} md:w-[1%]`} style={{ backgroundColor: 'inherit' }}>
+                    <td className={`py-1.5 px-0 sm:px-1 ${stickyTeamClass} md:w-[28%] md:min-w-[28%] md:max-w-[28%]`} style={{ backgroundColor: 'inherit' }}>
                       <div className="flex items-center gap-1.5 md:gap-2 w-full">
                         {mainTeam.logoLight ? (
                           <CroppedLogo src={mainTeam.logoLight} alt={mainTeam.abbreviation} sizeClass="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" wrapperClass="shrink-0" />
@@ -313,7 +337,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                     </td>
 
                     {/* Secondary logo column (mobile only) — pre-sim: trade partner, post-sim: FROM logo */}
-                    <td className="py-1.5 pl-2 sm:pl-3 pr-0 md:hidden">
+                    <td className="py-1.5 pl-0 pr-0 md:hidden">
                       {(() => {
                         if (result) {
                           if (!shouldFlip) return null;
@@ -348,37 +372,64 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
                       })()}
                     </td>
 
-                    {/* DRAW 1 */}
-                    <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
-                      {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
-                    </td>
-
-                    {/* #1 OVR / #2 OVR pre-sim — CHANGE post-sim (colspan 2) */}
+                    {/* Data columns: pre-sim (6 cols) vs post-sim (5 cols) */}
                     {result ? (
-                      <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold`} colSpan={2}>
-                        <span className={`whitespace-nowrap ${changeColor}`}>{changeLabel}</span>
-                      </td>
-                    ) : (
                       <>
-                        <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                        {/* DRAW 1 */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                          {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
+                        </td>
+                        {/* #1 OVR */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
                           {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
                         </td>
-                        <td className={`py-1.5 px-2 text-center md:w-[12%] text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${hide2ndOvrClass}`}>
+                        {/* DRAW 2 (conditional on D1 result) */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                          {(() => {
+                            const d2 = conditionalOdds?.draw2Odds[abbrev] ?? 0;
+                            return d2 > 0 ? <RetroNum value={d2.toFixed(1)} /> : '—';
+                          })()}
+                        </td>
+                        {/* #2 OVR (conditional on D1 result) */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                          {(() => {
+                            const p2 = conditionalOdds?.pick2Odds[abbrev] ?? 0;
+                            return p2 > 0 ? <RetroNum value={p2.toFixed(1)} /> : '—';
+                          })()}
+                        </td>
+                        {/* CHANGE */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold`}>
+                          <span className={`whitespace-nowrap ${changeColor}`}>{changeLabel}</span>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        {/* DRAW 1 */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg} ${expandedColClass}`}>
+                          {teamOdds.d1 > 0 ? <RetroNum value={teamOdds.d1.toFixed(1)} /> : '—'}
+                        </td>
+                        {/* #1 OVR */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
+                          {teamOdds.firstOvr > 0 ? <RetroNum value={teamOdds.firstOvr.toFixed(1)} /> : '—'}
+                        </td>
+                        {/* #2 OVR */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${oddsCellBg}`}>
                           {teamOdds.secondOvr > 0 ? <RetroNum value={teamOdds.secondOvr.toFixed(1)} /> : '—'}
+                        </td>
+                        {/* PTS */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm font-bold ${expandedColClass} ${statsColorClass}`}>
+                          {stats?.points ?? '—'}
+                        </td>
+                        {/* RW */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
+                          {stats?.regulationWins ?? '—'}
+                        </td>
+                        {/* ROW */}
+                        <td className={`py-1.5 px-2 text-center ${dataColWidth} text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
+                          {stats?.regulationPlusOtWins ?? '—'}
                         </td>
                       </>
                     )}
-
-                    {/* PTS / RW / ROW */}
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm font-bold md:w-[12%] ${expandedColClass} ${statsColorClass}`}>
-                      {stats?.points ?? '—'}
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
-                      {stats?.regulationWins ?? '—'}
-                    </td>
-                    <td className={`py-1.5 px-2 text-center text-[10px] sm:text-[11px] md:text-sm ${expandedColClass} ${statsColorClass}`}>
-                      {stats?.regulationPlusOtWins ?? '—'}
-                    </td>
                   </tr>
                 );
               })}

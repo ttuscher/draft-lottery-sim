@@ -267,9 +267,9 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           <div className="w-full mb-2">
             <table className="w-full text-left border-collapse table-fixed">
               <colgroup>
-                <col className="w-[15%] sm:w-[10%]" />
-                <col className="w-[35%] sm:w-[35%]" />
-                <col className="w-[50%] sm:w-[55%]" />
+                <col className="w-[12%] sm:w-[8%]" />
+                <col className="w-[28%] sm:w-[25%]" />
+                <col className="w-[60%] sm:w-[67%]" />
               </colgroup>
               <thead>
                 <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px] text-black" style={{ fontFamily: 'var(--font-press-start)' }}>
@@ -504,8 +504,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                   <div className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5">
                                     <CroppedLogo src={ownerTeam.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
                                     <span className={`uppercase font-bold tracking-tight team-name ${isExcluded ? 'text-gray-400' : ''}`}>
-                                      <span className="hidden lg:inline">{ownerTeam.city}</span>
-                                      <span className="lg:hidden">{ownerAbbrev}</span>
+                                      <span className="md:hidden lg:inline">{ownerTeam.city}</span>
+                                      <span className="hidden md:inline lg:hidden">{ownerAbbrev}</span>
                                       <br /><span className="text-gray-400 text-[8px] sm:text-[9px] md:text-[10px]">FROM {odds.teamCode}</span>
                                     </span>
                                   </div>
@@ -517,8 +517,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                                     <CroppedLogo src={teamInfo.logoLight} sizeClass="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" wrapperClass="shrink-0" />
                                   )}
                                   <span className={`uppercase font-bold tracking-tight truncate team-name ${isExcluded ? 'text-gray-400' : ''}`}>
-                                    <span className="hidden lg:inline">{teamInfo?.city || odds.teamCode}</span>
-                                    <span className="lg:hidden">{odds.teamCode}</span>
+                                    <span className="md:hidden lg:inline">{teamInfo?.city || odds.teamCode}</span>
+                                    <span className="hidden md:inline lg:hidden">{odds.teamCode}</span>
                                   </span>
                                 </div>
                               );
