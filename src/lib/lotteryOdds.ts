@@ -11,7 +11,7 @@
 import lotteryData from '../data/lottery-2025.json';
 import { NHL_TEAMS } from '../data/teams';
 import { SeededTeam } from '../data/types';
-import { MAX_MOVE_UP, resolveDraftOrder } from './engine';
+import { MAX_MOVE_UP, resolveDraftOrder, getLockedFirstPickTeam } from './engine';
 
 function buildSeededTeams(): SeededTeam[] {
   return lotteryData.teamOrder.map((teamCode: string, index: number) => ({
@@ -59,17 +59,25 @@ export function computePickSlotOdds(): Record<number, Record<string, number>> {
     for (const code of teamCodes) result[pick][code] = 0;
   }
 
-  // Enumerate all (D1, D2) pairs
+  // Enumerate all (D1, D2) pairs.
+  //
+  // When D1 is capped by the 10-spot rule, the team locked at pick #1 is also
+  // excluded from Draw 2 (their combos trigger a redraw). We mirror runSimulation:
+  // skip D2 = lockedFirst AND subtract lockedFirst's combos from the D2 denominator.
   for (const d1Code of teamCodes) {
     const d1Winner = originalTeams.find(t => t.team.abbreviation === d1Code)!;
     const pDraw1 = comboCountByTeam[d1Code] / totalValid;
 
-    // For Draw 2: D1 winner's combos trigger redraw, so effective denominator
-    // is totalValid minus D1 winner's combos
-    const totalValidDraw2 = totalValid - comboCountByTeam[d1Code];
+    const lockedFirst = getLockedFirstPickTeam(originalTeams, d1Code, MAX_MOVE_UP);
+    const lockedFirstCombos = lockedFirst ? (comboCountByTeam[lockedFirst] ?? 0) : 0;
+    const totalValidDraw2 =
+      totalValid - comboCountByTeam[d1Code] - lockedFirstCombos;
+
+    if (totalValidDraw2 <= 0) continue;
 
     for (const d2Code of teamCodes) {
       if (d2Code === d1Code) continue;
+      if (d2Code === lockedFirst) continue;
 
       const d2Winner = originalTeams.find(t => t.team.abbreviation === d2Code)!;
       const pDraw2GivenDraw1 = comboCountByTeam[d2Code] / totalValidDraw2;

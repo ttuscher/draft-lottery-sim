@@ -7,9 +7,10 @@ import { calculateLiveOdds, getFullBallImpacts, probabilityOfWin } from '../lib/
 import { resolveDraftOrder, MAX_MOVE_UP, getLockedFirstPickTeam } from '../lib/engine';
 import { useNHLStandings } from '../hooks/useNHLStandings';
 import { buildDynamicLotteryData } from '../lib/dynamicCombos';
-import { computeDraw1Odds } from '../lib/dynamicOdds';
+import { computeDraw1Odds, phaseLabel } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import ThreeStars, { computeThreeStars } from './ThreeStars';
+import OddsGrid from './OddsGrid';
 import { PICK_OWNERSHIP, resolvePickOwner, getPickOwnershipDisplay } from '../data/pickOwnership';
 
 /** Renders a number with a tightened decimal point */
@@ -197,6 +198,9 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           isRedraw = true;
         } else if (draw1Winner && winnerTeam.team.abbreviation === draw1Winner.team.abbreviation) {
           isRedraw = true;
+        } else if (lockedFirstPick && winnerTeam.team.abbreviation === lockedFirstPick) {
+          // Locked-first-pick team's combos trigger a redraw of Draw 2
+          isRedraw = true;
         }
       }
 
@@ -221,7 +225,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
         }
       }
     }
-  }, [activeBalls, comboByBalls, draw1Winner, phase, initialStandings]);
+  }, [activeBalls, comboByBalls, draw1Winner, lockedFirstPick, phase, initialStandings]);
 
   useEffect(() => {
     if (triggerRef) {
@@ -316,7 +320,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                       <td className="py-1 px-1 sm:px-4 border-r-2 border-transparent">
                         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                           {row.balls.map((b, i) => (
-                            <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
+                            <div key={i} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
                               {b}
                             </div>
                           ))}
@@ -370,13 +374,13 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                         const ball = activeBalls[slotIndex];
                         if (ball) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-white bg-white text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-in zoom-in duration-200">
+                            <div key={`slot-${slotIndex}`} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-white bg-white text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-in zoom-in duration-200">
                               {ball}
                             </div>
                           );
                         } else {
                           return (
-                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-solid border-gray-400 bg-transparent text-gray-400 font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_8px_rgba(156,163,175,0.8)]">
+                            <div key={`slot-${slotIndex}`} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-solid border-gray-400 bg-transparent text-gray-400 font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_8px_rgba(156,163,175,0.8)]">
                               ?
                             </div>
                           );
@@ -403,8 +407,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
       {/* LEAGUE VIEW + TEAM VIEW: Shown during active draws only */}
       {phase !== 'COMPLETE' && (
         <>
-        {/* Mobile toggle buttons */}
-        <div className="flex md:hidden gap-2 mb-4">
+        {/* Mobile/tablet toggle buttons (visible below lg where panels stack) */}
+        <div className="flex lg:hidden gap-2 mb-4">
           <button
             type="button"
             onClick={() => setMobileViewerTab('league')}
@@ -431,16 +435,16 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-4">
 
           {/* ===== LEAGUE VIEW: Live Odds Leaderboard ===== */}
-          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] ${mobileViewerTab !== 'league' ? 'hidden md:block' : ''}`}>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] ${mobileViewerTab !== 'league' ? 'hidden lg:block' : ''}`}>
             <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
               <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
                 LEAGUE VIEW
               </h3>
               <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+                {phaseLabel(phase, activeBalls.length)}
               </span>
             </div>
 
@@ -448,8 +452,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[11px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
-                    <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">RANK</th>
-                    <th className="py-1 pl-2 sm:pl-3 md:pl-4 text-left">TEAM</th>
+                    <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">SEED</th>
+                    <th className="py-1 pl-0.5 sm:pl-1 md:pl-2 text-left">TEAM</th>
                     <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">COMBOS</th>
                     <th className="py-1 px-1 text-right md:w-[1%] whitespace-nowrap">WIN %</th>
                     <th className="py-1 px-1 text-right pr-2 md:w-[1%] whitespace-nowrap">CHANGE</th>
@@ -492,7 +496,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                           <td className={`py-[7px] px-0.5 sm:px-1 text-center font-bold whitespace-nowrap ${isExcluded ? 'text-gray-400' : 'text-black'}`}>
                             {isExcluded ? `#${isLockedFirst ? 1 : d1WinnerPickNum}` : rank}
                           </td>
-                          <td className="py-[7px] pl-2 sm:pl-3 md:pl-4 pr-0.5">
+                          <td className="py-[7px] pl-0.5 sm:pl-1 md:pl-2 pr-0.5">
                             {(() => {
                               const trade = PICK_OWNERSHIP[odds.teamCode];
                               const isResolved = trade?.type === 'resolved';
@@ -556,13 +560,13 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
           </div>
 
           {/* ===== TEAM VIEW: Per-Ball Intel Panel ===== */}
-          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col ${mobileViewerTab !== 'team' ? 'hidden md:flex' : ''}`}>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col ${mobileViewerTab !== 'team' ? 'hidden lg:flex' : ''}`}>
             <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
               <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
                 TEAM VIEW
               </h3>
               <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+                {phaseLabel(phase, activeBalls.length)}
               </span>
             </div>
 
@@ -661,7 +665,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
                     <span className="text-sm md:text-lg font-bold text-black leading-tight"><RetroNum value={currentWin.toFixed(1)} suffix="%" /></span>
-                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight">CURRENT WIN %</span>
+                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight whitespace-nowrap">CURRENT WIN</span>
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
                     <span className={`text-sm md:text-lg font-bold leading-tight ${deltaColor}`}>{deltaNode}</span>
@@ -784,6 +788,18 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
         </>
       )}
 
+      {/* PICK ODDS GRID: live during draws; hidden post-sim (COMPLETE) */}
+      {phase !== 'COMPLETE' && (
+        <OddsGrid
+          teams={initialStandings}
+          combos={combos}
+          phase={phase}
+          drawnBalls={activeBalls}
+          draw1Winner={draw1Winner}
+          draw2Winner={draw2Winner}
+        />
+      )}
+
       {/* 3 Stars of the Lottery — modal popup */}
       {showStars && phase === 'COMPLETE' && (
         <ThreeStars
@@ -799,12 +815,12 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
             2026 SIMULATED DRAFT ORDER
           </h2>
 
-          <div className="w-full mb-2">
+          <div className="w-full mb-2 overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]" style={{ fontFamily: 'var(--font-press-start)' }}>
-                  <th className="py-2 px-1 text-center w-10 sm:w-16 whitespace-nowrap">PICK</th>
-                  <th className="py-2 px-1 sm:px-2 text-left">TEAM</th>
+                  <th className="py-2 px-1 text-center w-10 sm:w-16 whitespace-nowrap sticky left-0 z-20 bg-[#B8F6FA]">PICK</th>
+                  <th className="py-2 px-1 sm:px-2 text-left sticky left-10 sm:left-16 z-20 bg-[#B8F6FA]">TEAM</th>
                   <th className="py-2 px-1 text-center w-16 sm:w-24 whitespace-nowrap">CHANGE</th>
                 </tr>
               </thead>
@@ -838,8 +854,8 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                   }
 
                   return (
-                    <tr key={abbrev} className="border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors">
-                      <td className="py-1.5 px-1">
+                    <tr key={abbrev} className="bg-white border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors">
+                      <td className="py-1.5 px-1 sticky left-0 z-10 bg-inherit">
                         <div className="flex justify-center items-center h-full">
                           <div className={`font-bold text-[12px] sm:text-sm md:text-base transition-all duration-300 ${numClass}`}>
                             {pickNum}
@@ -847,7 +863,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                         </div>
                       </td>
 
-                      <td className="py-1.5 px-1 sm:px-2">
+                      <td className="py-1.5 px-1 sm:px-2 sticky left-10 sm:left-16 z-10 bg-inherit">
                         <div className="flex items-center gap-2 md:gap-3 w-full">
                           {showTeamData.logoLight ? (
                             <CroppedLogo src={showTeamData.logoLight} alt={showTeamData.abbreviation} sizeClass="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14" wrapperClass="shrink-0" />

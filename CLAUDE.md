@@ -34,6 +34,7 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 | `FastDrawBoard.tsx` | Quick-draw simulator table (collapsed/expanded views) | **ACTIVE - MASTER** |
 | `FullDrawBoard.tsx` | Ball-by-ball live draw with league/team viewers | **ACTIVE - MASTER** |
 | `LiveDrawBoard.tsx` | Manual ball entry live draw with arcade cursor UI | **ACTIVE - MASTER** |
+| `OddsGrid.tsx` | Live % odds by pick (Tankathon-style). Sort-to-top for locked teams with `#X` seed label + bright-gold 100% cell + sticky SEED/TEAM columns | **ACTIVE - MASTER** |
 | `ThreeStars.tsx` | 3 Stars of the Lottery popup modal | **ACTIVE - MASTER** |
 | `SimulatorNav.tsx` | Mode toggle (QUICK/FULL/LIVE) + action button + attempt counter | Active |
 | `NavTabs.tsx` | Top navigation tabs | Active |
@@ -197,11 +198,42 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 14. **Pre-sim and post-sim spacing must match.** SimulatorNav pre-sim spacer is an invisible clone of the ATTEMPTS row structure to guarantee identical gap.
 15. **`colSpan` causes browser column width recalculation.** Avoid colSpan; render same structure with different content instead.
 
+## Current OddsGrid State (`OddsGrid.tsx`)
+Live pick-slot odds table rendered under the Full / Live Draw boards.
+- Header row: SEED, TEAM, 1..N pick columns (N = lottery team count)
+- SEED column: original 1..N before any draw completes; once a team locks (≥99.95% at some pick), that team floats to the top with a `#X` tag (X = locked pick) and remaining teams restart at 1, 2, 3... (mirrors how the real draw reorders after each pick)
+- 100% cell painted bright gold `bg-[#FFD700]`; other row-max cells pale `bg-[#FFFDE5]`
+- Tiny non-zero cells render as `0.0` (threshold `raw < 1e-9`) to match Tankathon
+- Sticky SEED + TEAM columns (`left-0` / `left-8 sm:left-9 md:left-11`) survive horizontal scroll
+- Resolved-trade row: owner logo shown + `*` + black hover tooltip
+- TOR conditional: hover over picks 6+ reveals BOS logo
+
+## Current Algorithm: Cascade (production in `src/lib/engine.ts`)
+Ported from Tankathon's 2026 chart. `resolveDraftOrder(teams, d1Winner, d2Winner)`:
+1. **D1 cascade**: target index = `max(0, d1OrigIdx - MAX_MOVE_UP)`. Splice D1 winner out, splice into target index.
+2. **D2 target in post-D1 frame**: compute in the re-seeded order, apply 10-spot cap against post-D1 index. Bump to `d1Target + 1` if it collides with D1 target.
+3. **D2 cascade on `withoutD1`**: splice D2 winner to its target in the D1-excluded view; backward-move guard prevents moving teams down.
+4. **Re-insert D1 winner** at its locked target.
+Exact-math enumeration in `computeDynamicPickSlotOdds` matches Tankathon to 3 decimals.
+Tests: `src/lib/engine.test.ts`, `src/lib/dynamicOdds.test.ts` — 80 passing.
+
+## Responsive breakpoint notes
+- Full/Live Draw League + Team panels: stack until `lg:` (1024px), side-by-side ≥ lg. Toggle button pair visible `flex lg:hidden`. Previously was `md:` but panels got squeezed at 768-1023px.
+- Stats row label: "CURRENT WIN" (trimmed from "CURRENT WIN %" since top value already carries `%`)
+- Lottery balls in Draw table: every slot div has `shrink-0` so flex can't squish them into ovals
+
+## Header renames
+- Fast Draw pre-sim: PICK column → "SEED" (reverts to "PICK" post-sim)
+- Full / Live Draw league view header: permanent "SEED" (never flips to "RANK")
+
 ## Pending Work
 - [x] Pick ownership integration into FastDrawBoard UI (all trades + post-sim flip)
 - [x] FastDrawBoard column restructure (pre-sim 6 cols / post-sim 5 cols with conditional odds)
 - [x] SimulatorNav sticky positioning + consistent pre/post-sim spacing
 - [x] LiveDrawBoard manual ball entry with arcade cursor UI
+- [x] Cascade algorithm in production engine (matches Tankathon exactly)
+- [x] OddsGrid with locked-row float-to-top + sticky SEED/TEAM
+- [x] Narrow-desktop responsive fixes (lg breakpoint, oval balls, label wrap)
 - [ ] Pick ownership integration into FullDrawBoard UI
 - [ ] Playoff ordering logic (picks 17-28 by regular season tiebreakers, 29-32 by playoff result)
 - [ ] Ottawa always picks 32 regardless of standings

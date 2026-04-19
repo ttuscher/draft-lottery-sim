@@ -109,16 +109,28 @@ export function runSimulation(
 /**
  * Applies the NHL 10-spot maximum move-up rule and calculates the final 1-16 order.
  *
- * Correct NHL rules implemented here:
- *   1. Draw 1 winner can move up to pick #1, capped at `maxMove` spots from their
- *      ORIGINAL standings position.
- *   2. Draw 2 winner targets pick #2 at best. Draw 2 can never take pick #1.
- *   3. Cap for Draw 2 is also measured from the original standings position.
- *   4. If Draw 2's target collides with Draw 1's target, Draw 2 is bumped back.
- *   5. Backward-move guard: if Draw 2 winner is already at or ahead of their
- *      target after Draw 1 resolves, they keep their position.
+ * Correct NHL algorithm (Tankathon-verified cascade):
+ *   1. **Draw 1 cascade.** D1 winner splices out of their original seed and
+ *      inserts at `d1Target = max(0, d1Seed - maxMove)`. Teams between target
+ *      and original position shift down by 1. Pick #1 is now fixed.
+ *   2. **Locked pick #1.** If D1 was capped (d1Target > 0), the team now at
+ *      pick #1 is "locked" there. In the main draw flow (`runSimulation`) that
+ *      team is also excluded from Draw 2; `resolveDraftOrder` itself does not
+ *      enforce eligibility (callers do), but it will never move a locked team.
+ *   3. **Draw 2 cascade.** D2's 10-spot cap is measured from their *post-D1*
+ *      position, not their original seed. Target is floored at pick #2:
+ *      `d2Target = max(1, d2PostD1Idx - maxMove)`.
+ *   4. **Next-available bump.** If D2's target equals D1's locked slot
+ *      (d1Target), D2 moves to `d1Target + 1` instead.
+ *   5. **Cascade insertion.** D2 is operated on a 15-team view with D1 removed,
+ *      so D1's locked slot is skipped. Teams between D2's post-D1 position and
+ *      target shift down by 1 in that 15-team view.
+ *   6. **Backward-move guard.** If D2 is already at or ahead of their target
+ *      in the 15-team view (only possible with illegal inputs like D2 == the
+ *      locked-seed-1 team), D2 stays put rather than moving backward.
+ *   7. D1 is reinserted at `d1Target` to produce the final 16-team order.
  *
- * Validated against published NHL odds via 500k-trial Monte Carlo.
+ * Validated against Tankathon's published 2026 chart via 500k-trial Monte Carlo.
  */
 export function resolveDraftOrder(
   originalTeams: SeededTeam[],
@@ -141,28 +153,52 @@ export function resolveDraftOrder(
     throw new Error('Winning team not found in originalTeams.');
   }
 
+  const d1Code = d1Winner.team.abbreviation;
+
+  // ---- Step 1: D1 cascade ------------------------------------------------
+  // Splice D1 out of their original seed and insert at d1Target.
   const d1Target = Math.max(0, d1OrigIdx - maxMove);
+  const postD1: SeededTeam[] = [...originalTeams];
+  postD1.splice(d1OrigIdx, 1);
+  postD1.splice(d1Target, 0, d1Winner);
 
-  const post = originalTeams.filter(
-    t => t.team.abbreviation !== d1Winner.team.abbreviation
-  );
-  post.splice(d1Target, 0, d1Winner);
-
-  let d2Target = Math.max(1, d2OrigIdx - maxMove);
-  if (d2Target === d1Target) {
-    d2Target = d1Target + 1;
-  }
-
-  const d2PostIdx = post.findIndex(
+  // ---- Step 2: Compute D2's target in the post-D1 full-array frame -------
+  const d2PostD1IdxFull = postD1.findIndex(
     t => t.team.abbreviation === d2Winner.team.abbreviation
   );
-  if (d2PostIdx <= d2Target) {
-    return post;
+
+  // D2 cap: 10 spots from post-D1 position, with pick #2 floor.
+  let d2TargetFull = Math.max(1, d2PostD1IdxFull - maxMove);
+
+  // Next-available bump: if target collides with D1's locked slot, step past it.
+  if (d2TargetFull === d1Target) {
+    d2TargetFull = d1Target + 1;
   }
 
-  const final = post.filter(
-    t => t.team.abbreviation !== d2Winner.team.abbreviation
+  // ---- Step 3: D2 cascade on the 15-team "without-D1" view --------------
+  // Skipping over D1's locked slot is naturally handled by operating on the
+  // array with D1 removed.
+  const withoutD1: SeededTeam[] = postD1.filter(
+    t => t.team.abbreviation !== d1Code
   );
-  final.splice(d2Target, 0, d2Winner);
-  return final;
+
+  // Translate full-array indices to the withoutD1-array indices.
+  // (withoutD1 idx = full idx if the item was before D1, else full idx - 1)
+  const d2PostD1IdxNoD1 =
+    d2PostD1IdxFull > d1Target ? d2PostD1IdxFull - 1 : d2PostD1IdxFull;
+  const d2TargetNoD1 =
+    d2TargetFull > d1Target ? d2TargetFull - 1 : d2TargetFull;
+
+  // Backward-move guard: only cascade D2 when they're actually behind their
+  // target. This is the usual case; the guard only matters for illegal inputs.
+  if (d2PostD1IdxNoD1 > d2TargetNoD1) {
+    withoutD1.splice(d2PostD1IdxNoD1, 1);
+    withoutD1.splice(d2TargetNoD1, 0, d2Winner);
+  }
+
+  // ---- Step 4: Reinsert D1 at their locked slot --------------------------
+  const result: SeededTeam[] = [...withoutD1];
+  result.splice(d1Target, 0, d1Winner);
+
+  return result;
 }

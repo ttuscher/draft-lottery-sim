@@ -7,7 +7,7 @@ import { calculateLiveOdds, getFullBallImpacts, probabilityOfWin } from '../lib/
 import { resolveDraftOrder, MAX_MOVE_UP, getLockedFirstPickTeam } from '../lib/engine';
 import { useNHLStandings } from '../hooks/useNHLStandings';
 import { buildDynamicLotteryData } from '../lib/dynamicCombos';
-import { computeDraw1Odds } from '../lib/dynamicOdds';
+import { computeDraw1Odds, phaseLabel } from '../lib/dynamicOdds';
 import CroppedLogo from './CroppedLogo';
 import ThreeStars, { computeThreeStars } from './ThreeStars';
 import { PICK_OWNERSHIP, resolvePickOwner, getPickOwnershipDisplay } from '../data/pickOwnership';
@@ -326,7 +326,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                       <td className="py-1 px-1 sm:px-4 border-r-2 border-transparent">
                         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                           {row.balls.map((b, i) => (
-                            <div key={i} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
+                            <div key={i} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
                               {b}
                             </div>
                           ))}
@@ -385,7 +385,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         // Filled: gold ball
                         if (val !== null) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]" style={{ fontFamily: 'var(--font-press-start)' }}>
+                            <div key={`slot-${slotIndex}`} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]" style={{ fontFamily: 'var(--font-press-start)' }}>
                               {val}
                             </div>
                           );
@@ -394,7 +394,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         // Active: blinking arcade cursor block with dropdown
                         if (isActive) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="relative w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 arcade-cursor">
+                            <div key={`slot-${slotIndex}`} className="shrink-0 relative w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 arcade-cursor">
                               <select
                                 value=""
                                 onChange={(e) => {
@@ -420,7 +420,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
 
                         // Locked: dim empty placeholder
                         return (
-                          <div key={`slot-${slotIndex}`} className="w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 border-2 md:border-3 border-gray-300/40 rounded-sm" />
+                          <div key={`slot-${slotIndex}`} className="shrink-0 w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 border-2 md:border-3 border-gray-300/40 rounded-sm" />
                         );
                       })}
                     </div>
@@ -455,7 +455,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
       {phase !== 'COMPLETE' && (
         <>
         {/* Mobile toggle buttons */}
-        <div className="flex md:hidden gap-2 mb-4">
+        <div className="flex lg:hidden gap-2 mb-4">
           <button
             type="button"
             onClick={() => setMobileViewerTab('league')}
@@ -482,16 +482,16 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-4">
 
           {/* ===== LEAGUE VIEW: Live Odds Leaderboard ===== */}
-          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] ${mobileViewerTab !== 'league' ? 'hidden md:block' : ''}`}>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] ${mobileViewerTab !== 'league' ? 'hidden lg:block' : ''}`}>
             <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
               <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
                 LEAGUE VIEW
               </h3>
               <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+                {phaseLabel(phase, liveBalls.length)}
               </span>
             </div>
 
@@ -499,8 +499,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[11px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
-                    <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">RANK</th>
-                    <th className="py-1 pl-2 sm:pl-3 md:pl-4 text-left">TEAM</th>
+                    <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">SEED</th>
+                    <th className="py-1 pl-0.5 sm:pl-1 md:pl-2 text-left">TEAM</th>
                     <th className="py-1 px-1 text-center md:w-[1%] whitespace-nowrap">COMBOS</th>
                     <th className="py-1 px-1 text-right md:w-[1%] whitespace-nowrap">WIN %</th>
                     <th className="py-1 px-1 text-right pr-2 md:w-[1%] whitespace-nowrap">CHANGE</th>
@@ -542,7 +542,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                           <td className={`py-[7px] px-0.5 sm:px-1 text-center font-bold whitespace-nowrap ${isExcluded ? 'text-gray-400' : 'text-black'}`}>
                             {isExcluded ? `#${isLockedFirst ? 1 : d1WinnerPickNum}` : rank}
                           </td>
-                          <td className="py-[7px] pl-2 sm:pl-3 md:pl-4 pr-0.5">
+                          <td className="py-[7px] pl-0.5 sm:pl-1 md:pl-2 pr-0.5">
                             {(() => {
                               const trade = PICK_OWNERSHIP[odds.teamCode];
                               const isResolved = trade?.type === 'resolved';
@@ -606,13 +606,13 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
           </div>
 
           {/* ===== TEAM VIEW: Per-Ball Intel Panel ===== */}
-          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col ${mobileViewerTab !== 'team' ? 'hidden md:flex' : ''}`}>
+          <div className={`w-full bg-white border-4 border-black p-3 md:p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)] flex flex-col ${mobileViewerTab !== 'team' ? 'hidden lg:flex' : ''}`}>
             <div className="flex items-center justify-between mb-3 border-b-4 border-black pb-2">
               <h3 className="text-xs sm:text-sm md:text-base lg:text-base text-[#E2231A] uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.5em' }}>
                 TEAM VIEW
               </h3>
               <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 uppercase tracking-wider whitespace-nowrap" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                {phase === 'DRAW_1' ? 'DRAW 1' : 'DRAW 2'}
+                {phaseLabel(phase, liveBalls.length)}
               </span>
             </div>
 
@@ -711,7 +711,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
                     <span className="text-sm md:text-lg font-bold text-black leading-tight"><RetroNum value={currentWin.toFixed(1)} suffix="%" /></span>
-                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight">CURRENT WIN %</span>
+                    <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase font-bold text-gray-500 leading-tight whitespace-nowrap">CURRENT WIN</span>
                   </div>
                   <div className="flex-1 flex flex-col items-center justify-center py-1 bg-[#E5FCFD]">
                     <span className={`text-sm md:text-lg font-bold leading-tight ${deltaColor}`}>{deltaNode}</span>
@@ -849,12 +849,12 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
             2026 SIMULATED DRAFT ORDER
           </h2>
 
-          <div className="w-full mb-2">
+          <div className="w-full mb-2 overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px]" style={{ fontFamily: 'var(--font-press-start)' }}>
-                  <th className="py-2 px-1 text-center w-10 sm:w-16 whitespace-nowrap">PICK</th>
-                  <th className="py-2 px-1 sm:px-2 text-left">TEAM</th>
+                  <th className="py-2 px-1 text-center w-10 sm:w-16 whitespace-nowrap sticky left-0 z-20 bg-[#B8F6FA]">PICK</th>
+                  <th className="py-2 px-1 sm:px-2 text-left sticky left-10 sm:left-16 z-20 bg-[#B8F6FA]">TEAM</th>
                   <th className="py-2 px-1 text-center w-16 sm:w-24 whitespace-nowrap">CHANGE</th>
                 </tr>
               </thead>
@@ -888,8 +888,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                   }
 
                   return (
-                    <tr key={abbrev} className="border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors">
-                      <td className="py-1.5 px-1">
+                    <tr key={abbrev} className="bg-white border-b-2 border-gray-200 hover:bg-[#E5FCFD] transition-colors">
+                      <td className="py-1.5 px-1 sticky left-0 z-10 bg-inherit">
                         <div className="flex justify-center items-center h-full">
                           <div className={`font-bold text-[12px] sm:text-sm md:text-base transition-all duration-300 ${numClass}`}>
                             {pickNum}
@@ -897,7 +897,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         </div>
                       </td>
 
-                      <td className="py-1.5 px-1 sm:px-2">
+                      <td className="py-1.5 px-1 sm:px-2 sticky left-10 sm:left-16 z-10 bg-inherit">
                         <div className="flex items-center gap-2 md:gap-3 w-full">
                           {showTeamData.logoLight ? (
                             <CroppedLogo src={showTeamData.logoLight} alt={showTeamData.abbreviation} sizeClass="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14" wrapperClass="shrink-0" />

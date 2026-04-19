@@ -150,7 +150,7 @@ export default function FastDrawBoard({ triggerRef }: FastDrawBoardProps) {
 
             <thead>
               <tr className="bg-[#B8F6FA] border-b-4 border-black text-[8px] sm:text-[9px] md:text-xs" style={{ fontFamily: 'var(--font-press-start)' }}>
-                <th className={`py-2 px-1 text-center w-8 sm:w-12 md:w-14 whitespace-nowrap ${stickyPickHeadClass}`}>PICK</th>
+                <th className={`py-2 px-1 text-center w-8 sm:w-12 md:w-14 whitespace-nowrap ${stickyPickHeadClass}`}>{result ? 'PICK' : 'SEED'}</th>
                 <th className={`py-2 px-1 sm:px-2 text-left whitespace-nowrap md:w-[28%] md:min-w-[28%] md:max-w-[28%] ${stickyTeamHeadClass}`}>TEAM</th>
                 {/* Secondary logo column (mobile only, hidden desktop) */}
                 <th className="py-2 pl-0 pr-0 text-left whitespace-nowrap md:hidden"></th>
