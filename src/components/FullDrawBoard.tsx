@@ -576,26 +576,26 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 onClick={() => setTeamDropdownOpen(!teamDropdownOpen)}
                 className="w-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
               >
-                <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
-                  {(() => {
-                    const selTrade = PICK_OWNERSHIP[selectedTeam];
-                    const selIsResolved = selTrade?.type === 'resolved';
-                    const selOwner = selIsResolved ? (selTrade as { owner: string }).owner : null;
-                    if (selOwner) {
-                      return <>{NHL_TEAMS[selOwner]?.city || selOwner} <span className="text-[#96EDF6]/60">(FROM {selectedTeam})</span></>;
-                    }
-                    return <>{NHL_TEAMS[selectedTeam]?.city || selectedTeam}</>;
-                  })()}
-                </span>
-                <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+                <div className="flex items-center gap-2 min-w-0">
                   {(() => {
                     const selTrade = PICK_OWNERSHIP[selectedTeam];
                     const selOwner = selTrade?.type === 'resolved' ? (selTrade as { owner: string }).owner : null;
                     const displayLogo = selOwner ? NHL_TEAMS[selOwner]?.logoDark : NHL_TEAMS[selectedTeam]?.logoDark;
-                    return displayLogo ? <CroppedLogo src={displayLogo} sizeClass="w-5 h-5 sm:w-6 sm:h-6" /> : null;
+                    return displayLogo ? <CroppedLogo src={displayLogo} sizeClass="w-5 h-5 sm:w-6 sm:h-6" wrapperClass="shrink-0" /> : null;
                   })()}
-                  <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6]">▼</span>
+                  <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
+                    {(() => {
+                      const selTrade = PICK_OWNERSHIP[selectedTeam];
+                      const selIsResolved = selTrade?.type === 'resolved';
+                      const selOwner = selIsResolved ? (selTrade as { owner: string }).owner : null;
+                      if (selOwner) {
+                        return <>{NHL_TEAMS[selOwner]?.city || selOwner} <span className="text-[#96EDF6]/60">(FROM {selectedTeam})</span></>;
+                      }
+                      return <>{NHL_TEAMS[selectedTeam]?.city || selectedTeam}</>;
+                    })()}
+                  </span>
                 </div>
+                <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6] ml-2 flex-shrink-0">▼</span>
               </button>
 
               {teamDropdownOpen && (
@@ -613,34 +613,34 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                           }}
                           className="group text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-[9px] sm:text-[11px] md:text-sm lg:text-xs py-2 px-4 border-b-2 border-gray-800 last:border-none transition-colors flex items-center justify-between"
                         >
-                          {(() => {
-                            const ddTrade = PICK_OWNERSHIP[code];
-                            const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
-                            const ddOwnerTeam = ddOwner ? NHL_TEAMS[ddOwner] : null;
-                            if (ddOwnerTeam) {
-                              return (
-                                <span className="uppercase font-bold tracking-tight truncate team-name">
-                                  {ddOwnerTeam.city} <span className="text-[#96EDF6]/60 group-hover:text-black/40">(FROM {code})</span>
-                                </span>
-                              );
-                            }
-                            return (
-                              <span className="uppercase font-bold tracking-tight truncate team-name">
-                                {NHL_TEAMS[code]?.city || code}
-                              </span>
-                            );
-                          })()}
-                          <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+                          <div className="flex items-center gap-2 min-w-0 flex-1">
                             {(() => {
                               const ddTrade = PICK_OWNERSHIP[code];
                               const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
                               const ddLogo = ddOwner ? NHL_TEAMS[ddOwner]?.logoDark : t?.logoDark;
-                              return ddLogo ? <CroppedLogo src={ddLogo} sizeClass="w-4 h-4 sm:w-5 sm:h-5" /> : null;
+                              return ddLogo ? <CroppedLogo src={ddLogo} sizeClass="w-4 h-4 sm:w-5 sm:h-5" wrapperClass="shrink-0" /> : null;
                             })()}
-                            <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block">
-                              {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
-                            </span>
+                            {(() => {
+                              const ddTrade = PICK_OWNERSHIP[code];
+                              const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
+                              const ddOwnerTeam = ddOwner ? NHL_TEAMS[ddOwner] : null;
+                              if (ddOwnerTeam) {
+                                return (
+                                  <span className="uppercase font-bold tracking-tight truncate team-name">
+                                    {ddOwnerTeam.city} <span className="text-[#96EDF6]/60 group-hover:text-black/40">(FROM {code})</span>
+                                  </span>
+                                );
+                              }
+                              return (
+                                <span className="uppercase font-bold tracking-tight truncate team-name">
+                                  {NHL_TEAMS[code]?.city || code}
+                                </span>
+                              );
+                            })()}
                           </div>
+                          <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block ml-2 flex-shrink-0">
+                            {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
+                          </span>
                         </button>
                       );
                     })}

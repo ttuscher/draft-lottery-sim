@@ -9,6 +9,7 @@ interface SimulatorNavProps {
   actionText: string;
   onAction: () => void;
   attempts: number;
+  actionDisabled?: boolean;
 }
 
 export default function SimulatorNav({
@@ -17,6 +18,7 @@ export default function SimulatorNav({
   actionText,
   onAction,
   attempts,
+  actionDisabled = false,
 }: SimulatorNavProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -69,11 +71,17 @@ export default function SimulatorNav({
             )}
           </div>
 
-          {/* Action Button: invisible in LIVE mode */}
-          <div className={`w-full h-full relative flex flex-col items-center justify-center col-span-1 ${currentMode === 'LIVE' ? 'invisible' : ''}`}>
+          {/* Action Button: cyan+disabled when actionDisabled, red+clickable otherwise */}
+          <div className="w-full h-full relative flex flex-col items-center justify-center col-span-1">
             <button
               onClick={onAction}
-              className="w-full h-full bg-[#E2231A] hover:bg-[#C41E17] text-white border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center px-2 md:px-5 py-1.5 transition-all hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
+              disabled={actionDisabled}
+              aria-disabled={actionDisabled}
+              className={`w-full h-full border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-center px-2 md:px-5 py-1.5 transition-all ${
+                actionDisabled
+                  ? 'bg-[#B8F6FA] text-black cursor-not-allowed opacity-90'
+                  : 'bg-[#E2231A] hover:bg-[#C41E17] text-white hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none'
+              }`}
               style={{ fontFamily: 'var(--font-press-start)' }}
             >
               <span className="text-[9px] md:text-[11px] lg:text-sm leading-snug text-center">

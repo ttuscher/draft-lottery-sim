@@ -32,10 +32,11 @@ interface DrawHistoryEntry {
 
 interface LiveDrawBoardProps {
   setActionText?: (text: string) => void;
+  setActionDisabled?: (disabled: boolean) => void;
   triggerRef?: React.MutableRefObject<() => void>;
 }
 
-export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoardProps) {
+export default function LiveDrawBoard({ setActionText, setActionDisabled, triggerRef }: LiveDrawBoardProps) {
   // Dynamic standings from NHL API data
   const { lotteryTeams: lotteryStandings, playoffTeams: playoffStandings } = useNHLStandings();
   const dynamicData = useMemo(
@@ -254,15 +255,18 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
 
     if (phase === 'COMPLETE') {
       setActionText("PUSH TO\nTRY AGAIN");
+      setActionDisabled?.(false);
       return;
     }
 
     if (allInputsValid) {
-      setActionText("SUBMIT\nBALLS");
+      setActionText(phase === 'DRAW_1' ? "COMPLETE\nDRAW 1" : "COMPLETE\nDRAW 2");
+      setActionDisabled?.(false);
     } else {
-      setActionText("ENTER\nBALLS");
+      setActionText("SELECT\nNUMBERS");
+      setActionDisabled?.(true);
     }
-  }, [phase, allInputsValid, setActionText]);
+  }, [phase, allInputsValid, setActionText, setActionDisabled]);
 
   return (
     <div className="max-w-5xl mx-auto">
@@ -278,8 +282,8 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
             <table className="w-full text-left border-collapse table-fixed">
               <colgroup>
                 <col className="w-[12%] sm:w-[8%]" />
-                <col className="w-[28%] sm:w-[25%]" />
-                <col className="w-[60%] sm:w-[67%]" />
+                <col className="w-[32%] sm:w-[25%]" />
+                <col className="w-[56%] sm:w-[67%]" />
               </colgroup>
               <thead>
                 <tr className="bg-[#B8F6FA] border-b-4 border-black text-[9px] sm:text-[10px] md:text-[11px] text-black" style={{ fontFamily: 'var(--font-press-start)' }}>
@@ -326,7 +330,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                       <td className="py-1 px-1 sm:px-4 border-r-2 border-transparent">
                         <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                           {row.balls.map((b, i) => (
-                            <div key={i} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
+                            <div key={i} className="shrink-0 w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[8px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]">
                               {b}
                             </div>
                           ))}
@@ -385,7 +389,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         // Filled: gold ball
                         if (val !== null) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="shrink-0 w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[9px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]" style={{ fontFamily: 'var(--font-press-start)' }}>
+                            <div key={`slot-${slotIndex}`} className="shrink-0 w-5 h-5 sm:w-8 sm:h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full border-2 md:border-4 border-[#FFCC00] bg-[#FFCC00] text-black font-bold text-[8px] sm:text-[11px] md:text-sm shadow-[0_0_10px_rgba(255,204,0,0.8)]" style={{ fontFamily: 'var(--font-press-start)' }}>
                               {val}
                             </div>
                           );
@@ -394,7 +398,7 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                         // Active: blinking arcade cursor block with dropdown
                         if (isActive) {
                           return (
-                            <div key={`slot-${slotIndex}`} className="shrink-0 relative w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 arcade-cursor">
+                            <div key={`slot-${slotIndex}`} className="shrink-0 relative w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 arcade-cursor">
                               <select
                                 value=""
                                 onChange={(e) => {
@@ -420,25 +424,16 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
 
                         // Locked: dim empty placeholder
                         return (
-                          <div key={`slot-${slotIndex}`} className="shrink-0 w-7 h-7 sm:w-9 sm:h-9 md:w-11 md:h-11 border-2 md:border-3 border-gray-300/40 rounded-sm" />
+                          <div key={`slot-${slotIndex}`} className="shrink-0 w-5 h-5 sm:w-9 sm:h-9 md:w-11 md:h-11 border-2 md:border-3 border-gray-300/40 rounded-sm" />
                         );
                       })}
                     </div>
                   </td>
                   <td className="py-1 px-1 sm:px-4">
                     <div className="flex items-center w-full h-full justify-start">
-                      {allInputsValid ? (
-                        <button
-                          type="button"
-                          onClick={handleSubmitBalls}
-                          className="bg-[#E2231A] text-white font-bold text-[9px] sm:text-[10px] md:text-xs uppercase px-3 py-1.5 border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none transition-all"
-                          style={{ fontFamily: 'var(--font-press-start)' }}
-                        >
-                          {phase === 'DRAW_1' ? 'COMPLETE DRAW 1' : 'COMPLETE DRAW 2'}
-                        </button>
-                      ) : (
-                        <span className="text-gray-400 font-bold text-[8px] sm:text-[9px] md:text-[11px] uppercase tracking-widest animate-pulse ml-2 sm:ml-3" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
-                          ENTER NUMBERS TO SEE ODDS CHANGE LIVE...
+                      {!allInputsValid && (
+                        <span className="text-gray-400 font-bold text-[8px] sm:text-[9px] md:text-[11px] uppercase tracking-widest animate-pulse ml-2 sm:ml-3 leading-tight" style={{ fontFamily: 'var(--font-press-start)', wordSpacing: '-0.3em' }}>
+                          SELECT NUMBERS TO SEE ODDS CHANGE LIVE...
                         </span>
                       )}
                     </div>
@@ -622,26 +617,26 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                 onClick={() => setTeamDropdownOpen(!teamDropdownOpen)}
                 className="w-full bg-black text-[#96EDF6] border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center justify-between px-2 md:px-4 py-1.5 transition-all hover:bg-gray-900 hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
               >
-                <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
-                  {(() => {
-                    const selTrade = PICK_OWNERSHIP[selectedTeam];
-                    const selIsResolved = selTrade?.type === 'resolved';
-                    const selOwner = selIsResolved ? (selTrade as { owner: string }).owner : null;
-                    if (selOwner) {
-                      return <>{NHL_TEAMS[selOwner]?.city || selOwner} <span className="text-[#96EDF6]/60">(FROM {selectedTeam})</span></>;
-                    }
-                    return <>{NHL_TEAMS[selectedTeam]?.city || selectedTeam}</>;
-                  })()}
-                </span>
-                <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+                <div className="flex items-center gap-2 min-w-0">
                   {(() => {
                     const selTrade = PICK_OWNERSHIP[selectedTeam];
                     const selOwner = selTrade?.type === 'resolved' ? (selTrade as { owner: string }).owner : null;
                     const displayLogo = selOwner ? NHL_TEAMS[selOwner]?.logoDark : NHL_TEAMS[selectedTeam]?.logoDark;
-                    return displayLogo ? <CroppedLogo src={displayLogo} sizeClass="w-5 h-5 sm:w-6 sm:h-6" /> : null;
+                    return displayLogo ? <CroppedLogo src={displayLogo} sizeClass="w-5 h-5 sm:w-6 sm:h-6" wrapperClass="shrink-0" /> : null;
                   })()}
-                  <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6]">▼</span>
+                  <span className="text-[9px] sm:text-[11px] md:text-sm lg:text-xs leading-snug text-left truncate uppercase team-name">
+                    {(() => {
+                      const selTrade = PICK_OWNERSHIP[selectedTeam];
+                      const selIsResolved = selTrade?.type === 'resolved';
+                      const selOwner = selIsResolved ? (selTrade as { owner: string }).owner : null;
+                      if (selOwner) {
+                        return <>{NHL_TEAMS[selOwner]?.city || selOwner} <span className="text-[#96EDF6]/60">(FROM {selectedTeam})</span></>;
+                      }
+                      return <>{NHL_TEAMS[selectedTeam]?.city || selectedTeam}</>;
+                    })()}
+                  </span>
                 </div>
+                <span className="text-[9px] md:text-[11px] lg:text-sm text-[#96EDF6] ml-2 flex-shrink-0">▼</span>
               </button>
 
               {teamDropdownOpen && (
@@ -659,34 +654,34 @@ export default function LiveDrawBoard({ setActionText, triggerRef }: LiveDrawBoa
                           }}
                           className="group text-left text-[#96EDF6] hover:bg-[#96EDF6] hover:text-black text-[9px] sm:text-[11px] md:text-sm lg:text-xs py-2 px-4 border-b-2 border-gray-800 last:border-none transition-colors flex items-center justify-between"
                         >
-                          {(() => {
-                            const ddTrade = PICK_OWNERSHIP[code];
-                            const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
-                            const ddOwnerTeam = ddOwner ? NHL_TEAMS[ddOwner] : null;
-                            if (ddOwnerTeam) {
-                              return (
-                                <span className="uppercase font-bold tracking-tight truncate team-name">
-                                  {ddOwnerTeam.city} <span className="text-[#96EDF6]/60 group-hover:text-black/40">(FROM {code})</span>
-                                </span>
-                              );
-                            }
-                            return (
-                              <span className="uppercase font-bold tracking-tight truncate team-name">
-                                {NHL_TEAMS[code]?.city || code}
-                              </span>
-                            );
-                          })()}
-                          <div className="flex items-center gap-2 ml-2 flex-shrink-0">
+                          <div className="flex items-center gap-2 min-w-0 flex-1">
                             {(() => {
                               const ddTrade = PICK_OWNERSHIP[code];
                               const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
                               const ddLogo = ddOwner ? NHL_TEAMS[ddOwner]?.logoDark : t?.logoDark;
-                              return ddLogo ? <CroppedLogo src={ddLogo} sizeClass="w-4 h-4 sm:w-5 sm:h-5" /> : null;
+                              return ddLogo ? <CroppedLogo src={ddLogo} sizeClass="w-4 h-4 sm:w-5 sm:h-5" wrapperClass="shrink-0" /> : null;
                             })()}
-                            <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block">
-                              {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
-                            </span>
+                            {(() => {
+                              const ddTrade = PICK_OWNERSHIP[code];
+                              const ddOwner = ddTrade?.type === 'resolved' ? (ddTrade as { owner: string }).owner : null;
+                              const ddOwnerTeam = ddOwner ? NHL_TEAMS[ddOwner] : null;
+                              if (ddOwnerTeam) {
+                                return (
+                                  <span className="uppercase font-bold tracking-tight truncate team-name">
+                                    {ddOwnerTeam.city} <span className="text-[#96EDF6]/60 group-hover:text-black/40">(FROM {code})</span>
+                                  </span>
+                                );
+                              }
+                              return (
+                                <span className="uppercase font-bold tracking-tight truncate team-name">
+                                  {NHL_TEAMS[code]?.city || code}
+                                </span>
+                              );
+                            })()}
                           </div>
+                          <span className="font-bold text-[#96EDF6] group-hover:text-black w-[45px] sm:w-[50px] text-right inline-block ml-2 flex-shrink-0">
+                            {codeOdds ? <RetroNum value={codeOdds.winProbability.toFixed(1)} suffix="%" /> : '—'}
+                          </span>
                         </button>
                       );
                     })}

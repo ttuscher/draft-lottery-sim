@@ -9,11 +9,14 @@ import LiveDrawBoard from '../components/LiveDrawBoard';
 export default function LotterySimulatorPage() {
   const [mode, setMode] = useState<SimulatorMode>('QUICK');
   const [actionText, setActionText] = useState('PUSH TO\nSTART');
+  const [actionDisabled, setActionDisabled] = useState(false);
   const [attempts, setAttempts] = useState(0);
 
   const triggerSimulationRef = useRef<() => void>(() => {});
 
   const handleAction = useCallback(() => {
+    if (actionDisabled) return;
+
     const startsNewAttempt =
       mode === 'QUICK' ||
       (mode === 'FULL' && actionText === 'PUSH TO\nSTART') ||
@@ -24,12 +27,18 @@ export default function LotterySimulatorPage() {
     }
 
     triggerSimulationRef.current?.();
-  }, [mode, actionText]);
+  }, [mode, actionText, actionDisabled]);
 
   // Reset state when changing modes
   useEffect(() => {
     setAttempts(0);
-    setActionText(mode === 'LIVE' ? 'ENTER\nBALLS' : 'PUSH TO\nSTART');
+    if (mode === 'LIVE') {
+      setActionText('SELECT\nNUMBERS');
+      setActionDisabled(true);
+    } else {
+      setActionText('PUSH TO\nSTART');
+      setActionDisabled(false);
+    }
   }, [mode]);
 
   return (
@@ -42,6 +51,7 @@ export default function LotterySimulatorPage() {
           actionText={actionText}
           onAction={handleAction}
           attempts={attempts}
+          actionDisabled={actionDisabled}
         />
 
         {mode === 'QUICK' && (
@@ -58,7 +68,11 @@ export default function LotterySimulatorPage() {
 
         {mode === 'LIVE' && (
           <div className="animate-in fade-in duration-300">
-            <LiveDrawBoard setActionText={setActionText} triggerRef={triggerSimulationRef} />
+            <LiveDrawBoard
+              setActionText={setActionText}
+              setActionDisabled={setActionDisabled}
+              triggerRef={triggerSimulationRef}
+            />
           </div>
         )}
 
