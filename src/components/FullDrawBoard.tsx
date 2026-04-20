@@ -500,10 +500,10 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
  : 'hover:bg-[#E5FCFD]'
  }`}
                         >
-                          <td className={`py-2.5 px-0.5 md:px-1 text-center text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : 'text-black'}`}>
+                          <td className={`py-[7px] px-0.5 md:px-1 text-center text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : 'text-black'}`}>
                             {isExcluded ? `#${isLockedFirst ? 1 : d1WinnerPickNum}` : rank}
                           </td>
-                          <td className="py-2.5 pl-0.5 md:pl-2 pr-0.5">
+                          <td className="py-[7px] pl-0.5 md:pl-2 pr-0.5">
                             {(() => {
                               const trade = PICK_OWNERSHIP[odds.teamCode];
                               const isResolved = trade?.type === 'resolved';
@@ -538,10 +538,10 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                               );
                             })()}
                           </td>
-                          <td className={`py-2.5 px-0.5 md:px-1 text-center text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
+                          <td className={`py-[7px] px-0.5 md:px-1 text-center text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
                             {odds.remainingCombos}
                           </td>
-                          <td className={`py-2.5 px-0.5 md:px-1 text-right text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
+                          <td className={`py-[7px] px-0.5 md:px-1 text-right text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
                             {isExcluded ? (
                               <span className="text-gray-400">—</span>
                             ) : displayWin > 0 ? (
@@ -550,7 +550,7 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                               <span className="text-gray-300">0%</span>
                             )}
                           </td>
-                          <td className={`py-2.5 px-0.5 md:px-1 text-right pr-1 md:pr-2 text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
+                          <td className={`py-[7px] px-0.5 md:px-1 text-right pr-1 md:pr-2 text-num whitespace-nowrap ${isExcluded ? 'text-gray-400' : ''}`}>
                             {Math.abs(delta) < 0.05 ? (
                               <span className="text-gray-400">—</span>
                             ) : delta > 0 ? (
@@ -696,10 +696,10 @@ export default function FullDrawBoard({ setActionText, triggerRef }: FullDrawBoa
                 </colgroup>
                 <thead>
                   <tr className="bg-[#B8F6FA] border-b-4 border-black text-micro">
-                    <th className="py-1.5 px-1 text-center">BALL</th>
-                    <th className="py-1.5 px-1 text-center">STATUS</th>
-                    <th className="py-1.5 px-1 text-center">COMBOS</th>
-                    <th className="py-1.5 px-1 text-right pr-2">IMPACT</th>
+                    <th className="py-1 px-1 text-center">BALL</th>
+                    <th className="py-1 px-1 text-center">STATUS</th>
+                    <th className="py-1 px-1 text-center">COMBOS</th>
+                    <th className="py-1 px-1 text-right pr-2">IMPACT</th>
                   </tr>
                 </thead>
                 <tbody>
