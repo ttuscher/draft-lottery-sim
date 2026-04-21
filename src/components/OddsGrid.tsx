@@ -117,7 +117,7 @@ export default function OddsGrid({
  {pickColumns.map((p) => (
  <th
  key={p}
- className="py-1 px-0 text-center whitespace-nowrap text-[8px] md:text-[8px] lg:text-[9px]"
+ className="py-1 px-0 text-center whitespace-nowrap text-[8px] md:text-[7px] lg:text-[8px]"
                 >
                   {p}
                 </th>
@@ -146,7 +146,7 @@ export default function OddsGrid({
  className="bg-white border-b border-gray-200 hover:bg-[#E5FCFD] transition-colors text-micro"
  >
  <td
- className={`py-1.5 px-0.5 text-center text-num whitespace-nowrap text-[8px]! md:text-[8px]! lg:text-[9px]! ${stickySeedCell} ${
+ className={`py-1.5 px-0.5 text-center text-num whitespace-nowrap text-[8px]! md:text-[7px]! lg:text-[8px]! ${stickySeedCell} ${
  rowIsLocked ? 'text-gray-400' : ''
                     }`}
  >
@@ -194,7 +194,7 @@ export default function OddsGrid({
                     return (
                       <td
                         key={p}
-                        className={`py-1.5 px-0 text-center text-num whitespace-nowrap tracking-tight text-[8px]! md:text-[8px]! lg:text-[9px]! ${
+                        className={`py-1.5 px-0 text-center text-num whitespace-nowrap tracking-tight text-[8px]! md:text-[7px]! lg:text-[8px]! ${
                           isLocked ? 'bg-[#FFD700]' : isMax ? 'bg-[#FFFDE5]' : ''
                         } ${isBlank ? 'text-gray-300' : 'text-black'} ${
                           showBosSwap ? 'relative group/bos cursor-pointer' : ''

@@ -199,7 +199,7 @@ Previous snapshots: `snapshot-master-2026-04-16/` (pre-v2)
 15. **`colSpan` causes browser column width recalculation.** Avoid colSpan; render same structure with different content instead.
 
 ## Current OddsGrid State (`OddsGrid.tsx`)
-Live pick-slot odds table rendered under the Full / Live Draw boards.
+Live pick-slot odds table rendered under the Full / Live Draw boards (identical integration in both — same props, same phase gating).
 - Header row: SEED, TEAM, 1..N pick columns (N = lottery team count)
 - SEED column: original 1..N before any draw completes; once a team locks (≥99.95% at some pick), that team floats to the top with a `#X` tag (X = locked pick) and remaining teams restart at 1, 2, 3... (mirrors how the real draw reorders after each pick)
 - 100% cell painted bright gold `bg-[#FFD700]`; other row-max cells pale `bg-[#FFFDE5]`
@@ -207,6 +207,7 @@ Live pick-slot odds table rendered under the Full / Live Draw boards.
 - Sticky SEED + TEAM columns (`left-0` / `left-8 sm:left-9 md:left-11`) survive horizontal scroll
 - Resolved-trade row: owner logo shown + `*` + black hover tooltip
 - TOR conditional: hover over picks 6+ reveals BOS logo
+- Numeric cell font: `text-[8px] md:text-[7px] lg:text-[8px]` (mobile kept at 8px, tablet/desktop shrunk by 1px for denser grid)
 
 ## Current Algorithm: Cascade (production in `src/lib/engine.ts`)
 Ported from Tankathon's 2026 chart. `resolveDraftOrder(teams, d1Winner, d2Winner)`:
